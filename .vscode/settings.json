@@ -1,0 +1,5 @@
+{
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": "file:///home/axo/Delivery/Perso/portfolios/2024/frontend/.github/workflows/deploy.yml"
+  }
+}
