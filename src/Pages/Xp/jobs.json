@@ -1,0 +1,32 @@
+[
+  {
+    "year": 2019,
+    "company": "Quidol",
+    "description": "Développeur mobile & Backend",
+    "type": "job"
+  },
+  {
+    "year": 2021,
+    "company": "Groupe Bel",
+    "description": "Développeur full stack",
+    "type": "job"
+  },
+  {
+    "year": 2022,
+    "company": "RedPill Live",
+    "description": "Développeur full stack & DevOps",
+    "type": "job"
+  },
+  {
+    "year": 2023,
+    "company": "Master EPITECH",
+    "description": "",
+    "type": "school"
+  },
+  {
+    "year": 2024,
+    "company": "Pitchy",
+    "description": "",
+    "type": "job"
+  }
+]

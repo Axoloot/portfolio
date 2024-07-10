@@ -33,12 +33,13 @@ export const Section = styled.div`
 `;
 
 export const Timeline = styled.div<{ sectionNb: number }>`
-  width: 5em;
+  width: 6em;
   background-color: #ddd;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 `;
 
 export const TimelineItem = styled.div`
@@ -46,30 +47,35 @@ export const TimelineItem = styled.div`
   justify-content: center;
   width: 100%;
   z-index: 1;
+  margin: 1em;
 `;
 
 export const TimelineDot = styled(motion.div)<{
   active?: boolean;
   hide?: boolean;
+  event?: boolean;
 }>`
   ${props => (props.hide ? 'opacity: 0;' : '')}
-  width: 1.5em;
-  height: 1.5em;
-  margin: 1.5em 0;
+  ${props => (props.event ? 'border-radius: 50%;' : '')}
+  ${props => (!props.event ? 'align-self: center;' : '')}
+  width: 1.3em;
+  height: ${props => (props.event ? '1.3em' : '.3em')};
   background-color: ${props => (props.active ? 'blue' : 'gray')};
-  border-radius: 50%;
   transition: background-color 0.3s ease;
   z-index: 1;
+  position: absolute;
+  left: 1em;
 `;
 
 export const TimelineText = styled.div`
-  margin: 1.5em 0;
+  margin: 0 0 0 2.5em;
 `;
 
 export const Line = styled(motion.div)<{ red?: boolean }>`
   ${props => (props.red ? 'background: grey;' : 'background: green;')}
   ${props => (props.red ? 'height: 100vh;' : 'height: 0;')}
-  width: .8em;
+  width: .4em;
   position: absolute;
   z-index: 0;
+  left: 1.45em;
 `;

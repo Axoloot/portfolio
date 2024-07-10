@@ -4,6 +4,7 @@ import utilisateur from '../../Images/utilisateur.png';
 import carriere from '../../Images/carriere.png';
 import contact from '../../Images/contact.png';
 import techno from '../../Images/techno.png';
+import resume from '../../Images/resume.png';
 import {
   DrawerItem,
   DrawerItemIcon,
@@ -87,7 +88,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           <DrawerItemText minified={minified}>Technologies</DrawerItemText>
         </DrawerItem>
         <DrawerItem
-          to="/xp"
+          to="/contact"
           replace={true}
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
@@ -98,21 +99,19 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           <DrawerItemText minified={minified}>Contact</DrawerItemText>
         </DrawerItem>
         <DrawerItem
-          to="/xp"
+          to="/cv"
           replace={true}
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
             color: isActive ? 'green' : 'black',
           })}
         >
-          <DrawerItemIcon src={contact} />
+          <DrawerItemIcon src={resume} />
           <DrawerItemText minified={minified}>Resume</DrawerItemText>
         </DrawerItem>
         <Cursor pos={pos} hidden={hidden} />
       </StyledDrawer>
-      <div style={{ flex: 1, height: '100%', minHeight: '100%' }}>
-        {childrenWithProps}
-      </div>
+      <div style={{ flex: 1, height: '100vh' }}>{childrenWithProps}</div>
     </DrawerWrapper>
   );
 };

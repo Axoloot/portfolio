@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Page,
   Content,
@@ -7,24 +7,36 @@ import {
   Timeline,
   TimelineDot,
   TimelineItem,
+  TimelineText,
 } from './styles';
+import JobsJSON from './jobs.json';
+import SchoolJSON from './schools.json';
 
-const baseYears = [
-  { year: 2018, type: 'school', y: 0 },
-  { year: 2019, y: 0 },
-  { year: 2021, type: 'school', y: 0 },
-  { year: 2022, y: 0 },
-  { year: 2023, type: 'school', y: 0 },
-  { year: 2024, y: 0 },
-];
+interface sectionContent {
+  year: number;
+  y: number;
+  type?: string;
+  event: boolean;
+}
+
+const startYear = 2019;
+const sectionsNb = new Date().getFullYear() - startYear + 1;
+const baseSections: sectionContent[] = [...Array(sectionsNb)].map(
+  (_, index) => {
+    const year = startYear + index;
+    const event = !!SchoolJSON.find(xp => xp.year === year);
+    return { year, event, y: 0 };
+  }
+);
 
 const App: React.FC = () => {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
-  const [years, setYears] = useState(baseYears);
+  const [Sections, setSections] = useState(baseSections);
   const [activeIndex, setActiveIndex] = useState(0);
 
   const handleScroll = () => {
     const index = sectionsRef.current.findIndex(section => {
+      if (!section) return null;
       const rect = section.getBoundingClientRect();
       return rect.top >= 0;
     });
@@ -33,21 +45,34 @@ const App: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    handleScroll();
+  }, []);
+
   return (
     <Page>
-      <Timeline sectionNb={years.length}>
+      <Timeline sectionNb={Sections.length}>
         <Line red />
-        <Line animate={{ height: years[activeIndex].y + 30 }} />
-        {years.map((section, index) => (
+        <Line animate={{ height: Sections[activeIndex].y }} />
+        {Sections.map((section, index) => (
           <TimelineItem
+            onClick={() => {
+              if (!section.event) return;
+              setActiveIndex(index);
+              sectionsRef.current[index].scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+              });
+            }}
             key={section.year}
             ref={el => {
               const rect = el?.getBoundingClientRect();
-              years[index].y = rect?.y || 0;
-              setYears(baseYears);
+              Sections[index].y = rect?.y || 0;
+              setSections(baseSections);
             }}
           >
             <TimelineDot
+              event={section.event}
               animate={{
                 scale: activeIndex === index ? 1.2 : 1,
                 backgroundColor:
@@ -57,16 +82,29 @@ const App: React.FC = () => {
                       : 'green'
                     : 'grey',
               }}
+              transition={{ ease: 'easeInOut' }}
             />
+            <TimelineText>{section.year}</TimelineText>
           </TimelineItem>
         ))}
       </Timeline>
       <Content onScroll={handleScroll}>
-        {years.map((_, index) => (
-          <Section key={index} ref={el => (sectionsRef.current[index] = el!)}>
-            {years[index].year}
-          </Section>
-        ))}
+        {Sections.map(
+          (_, index) =>
+            Sections[index].event && (
+              <Section
+                key={index}
+                ref={el => (sectionsRef.current[index] = el!)}
+              >
+                {Sections[index].year}
+                <br />
+                {
+                  JobsJSON.find(({ year }) => year === Sections[index].year)
+                    ?.company
+                }
+              </Section>
+            )
+        )}
       </Content>
     </Page>
   );

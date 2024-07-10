@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Router from './misc/Router';
 
+const env = process.env.NODE_ENV || 'local';
+window.document.title =
+  env === 'production' ? 'Cyril de Lajudie | Portofolio' : env;
+
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );

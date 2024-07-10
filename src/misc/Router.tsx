@@ -5,6 +5,7 @@ import Drawer from '../Components/Drawer';
 import About from '../Pages/About';
 import Xp from '../Pages/Xp';
 import Technologies from '../Pages/Technologies';
+import Contact from '../Pages/Contact';
 
 const Router = () => {
   return (
@@ -31,6 +32,22 @@ const Router = () => {
           element={
             <Drawer>
               <Technologies />
+            </Drawer>
+          }
+        />
+        <Route
+          path="contact"
+          element={
+            <Drawer>
+              <Contact />
+            </Drawer>
+          }
+        />
+        <Route
+          path="cv"
+          element={
+            <Drawer minified>
+              <iframe title="cv" src="./cv.pdf" width="100%" height="100%" />
             </Drawer>
           }
         />
