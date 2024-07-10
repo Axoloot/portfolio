@@ -46,6 +46,8 @@ jobs:
           echo "$PRIVATE_KEY" > private_key.pem && chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ${USER_NAME}@${HOSTNAME} '
             docker pull docker.io/axoloot/portfolio:latest &&
-            docker stop portfolio || docker rm portfolio ||
+            docker stop portfolio ||
+            true && docker rm portfolio ||
+            true &&
             docker run -d -p 80:80 --name portfolio docker.io/axoloot/portfolio:latest
           '
