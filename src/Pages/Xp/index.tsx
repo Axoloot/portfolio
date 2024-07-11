@@ -24,7 +24,7 @@ const sectionsNb = new Date().getFullYear() - startYear + 1;
 const baseSections: sectionContent[] = [...Array(sectionsNb)].map(
   (_, index) => {
     const year = startYear + index;
-    const event = !!SchoolJSON.find(xp => xp.year === year);
+    const event = !!JobsJSON.find(xp => xp.year === year);
     return { year, event, y: 0 };
   }
 );
