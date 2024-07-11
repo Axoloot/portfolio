@@ -10,7 +10,8 @@ import {
   TimelineText,
 } from './styles';
 import JobsJSON from './jobs.json';
-import SchoolJSON from './schools.json';
+import { useAnimation } from 'framer-motion';
+// import SchoolJSON from './schools.json';
 
 interface sectionContent {
   year: number;
@@ -33,6 +34,7 @@ const App: React.FC = () => {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const [Sections, setSections] = useState(baseSections);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [dotY, setDotY] = useState(Sections[activeIndex].y);
 
   const handleScroll = () => {
     const index = sectionsRef.current.findIndex(section => {
@@ -49,20 +51,50 @@ const App: React.FC = () => {
     handleScroll();
   }, []);
 
+  useEffect(() => {
+    setDotY(Sections[activeIndex].y);
+  });
+
+  const scrollToCurrent = (index: number) => {
+    if (!Sections[index].event) return;
+    setActiveIndex(index);
+    sectionsRef.current[index].scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    });
+  };
+
   return (
     <Page>
       <Timeline sectionNb={Sections.length}>
         <Line red />
         <Line animate={{ height: Sections[activeIndex].y }} />
+        <TimelineDot
+          drag="y"
+          initial={{ y: Sections[activeIndex].y }}
+          event
+          onDrag={(event, info) => {
+            const index = Sections.findIndex(s => {
+              if (!s) return null;
+              return info.point.y - s.y <= 50;
+            });
+            if (index !== -1) {
+              scrollToCurrent(index);
+            }
+          }}
+          onDragEnd={() => {
+            setDotY(Sections[activeIndex].y);
+          }}
+          animate={{
+            y: dotY,
+          }}
+          transition={{ ease: 'easeInOut' }}
+          style={{ scale: 1.2, background: 'green', zIndex: 3 }}
+        />
         {Sections.map((section, index) => (
           <TimelineItem
             onClick={() => {
-              if (!section.event) return;
-              setActiveIndex(index);
-              sectionsRef.current[index].scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-              });
+              scrollToCurrent(index);
             }}
             key={section.year}
             ref={el => {
@@ -74,7 +106,7 @@ const App: React.FC = () => {
             <TimelineDot
               event={section.event}
               animate={{
-                scale: activeIndex === index ? 1.2 : 1,
+                scale: 1,
                 backgroundColor:
                   activeIndex >= index
                     ? section.type === 'school'

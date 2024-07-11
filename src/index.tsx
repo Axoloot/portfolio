@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import Router from './misc/Router';
+import { createGlobalStyle } from 'styled-components';
 
 const env = process.env.NODE_ENV || 'local';
 window.document.title =
@@ -11,8 +11,28 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
+  body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+
+  body > #root > div {
+    height: 100vh;
+  }
+`;
 root.render(
   <React.StrictMode>
+    <GlobalStyle />
     <Router />
   </React.StrictMode>
 );

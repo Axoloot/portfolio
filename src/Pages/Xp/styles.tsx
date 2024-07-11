@@ -48,6 +48,7 @@ export const TimelineItem = styled.div`
   width: 100%;
   z-index: 1;
   margin: 1em;
+  cursor: pointer;
 `;
 
 export const TimelineDot = styled(motion.div)<{

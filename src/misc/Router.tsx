@@ -6,6 +6,8 @@ import About from '../Pages/About';
 import Xp from '../Pages/Xp';
 import Technologies from '../Pages/Technologies';
 import Contact from '../Pages/Contact';
+// @ts-ignore
+import cv from './cv.pdf';
 
 const Router = () => {
   return (
@@ -47,7 +49,7 @@ const Router = () => {
           path="cv"
           element={
             <Drawer minified>
-              <iframe title="cv" src="./cv.pdf" width="100%" height="100%" />
+              <iframe title="cv" src={cv} width="100%" height="100%" />
             </Drawer>
           }
         />
