@@ -32,17 +32,14 @@ const TypingEffect: React.FC = ({
 }: DrawerProps) => {
   const cursorObjRef = useRef<HTMLInputElement>(null);
   const [done, isDone] = useState(false);
+  const [text, setText] = useState('');
+  const message = 'my name is Cyril. I am a DevOps';
+
   useEffect(() => {
     const pos = cursorObjRef.current?.getBoundingClientRect();
     if (!pos || !setPos) return;
-    setTimeout(
-      () => setPos({ x: pos.x + pos.width / 2, y: pos.y + pos.height - 5 }),
-      100
-    );
+    setPos({ x: pos.x + pos.width / 2, y: pos.y + pos.height - 5 });
   }, [cursorObjRef, setPos]);
-
-  const [text, setText] = useState('');
-  const message = 'my name is Cyril. I am a DevOps';
 
   const animate = useCallback(() => {
     let index = 0;
@@ -66,7 +63,7 @@ const TypingEffect: React.FC = ({
 
   return (
     <Wrapper>
-      <TextContainer ref={cursorObjRef}>
+      <TextContainer>
         Hi, {text.slice(0, 18)}
         {text.slice(18) && (
           <>
@@ -74,7 +71,7 @@ const TypingEffect: React.FC = ({
             {text.slice(18)}
           </>
         )}
-        {!done && <Cursor>|</Cursor>}
+        {!done && <Cursor ref={cursorObjRef}>|</Cursor>}
       </TextContainer>
     </Wrapper>
   );

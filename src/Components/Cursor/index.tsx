@@ -1,3 +1,4 @@
+import useWindowDimensions from '../../misc/dimension';
 import { CursorImg, CursorWrapper } from './styles';
 
 interface CursorProps {
@@ -8,9 +9,11 @@ interface CursorProps {
   };
 }
 const Cursor = ({ hidden, pos }: CursorProps) => {
+  const { height } = useWindowDimensions();
   return (
     <CursorWrapper
       drag
+      initial={{ x: 70, y: height - 30 }}
       hidden={hidden}
       animate={pos}
       transition={{

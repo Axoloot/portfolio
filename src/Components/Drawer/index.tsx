@@ -1,4 +1,11 @@
-import { cloneElement, ReactElement, useEffect, useRef, useState } from 'react';
+import {
+  cloneElement,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import utilisateur from '../../Images/utilisateur.png';
 import carriere from '../../Images/carriere.png';
@@ -24,29 +31,23 @@ interface DrawerProps {
 const Drawer = ({ children, minified }: DrawerProps) => {
   const { height } = useWindowDimensions();
   const [pos, setPos] = useState<Position>({ x: 70, y: height - 30 });
-  const [hidden, setHidden] = useState(true);
+  const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>();
 
-  (window as any).setPos = setPos;
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setHidden(false);
-    }, 1);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const homeCursor = () => {
+  const homeCursor = useCallback(() => {
     const rect = drawerRef.current?.getBoundingClientRect();
     if (rect) setPos({ y: height - 30, x: rect.width / 2 });
-  };
+  }, [height]);
 
   useEffect(() => {
     homeCursor();
-  }, [children, height]);
+  }, [children, height, homeCursor]);
 
   const childrenWithProps = cloneElement(children, {
-    setPos,
+    setPos: useCallback(
+      (pos: Position) => setTimeout(() => setPos(pos), 1),
+      []
+    ),
     homeCursor,
     setHidden,
   });
