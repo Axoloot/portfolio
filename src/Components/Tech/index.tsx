@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import techs from './techs';
 
 const TechWrapper = styled.div`
   height: fit-content;
@@ -7,6 +8,7 @@ const TechWrapper = styled.div`
 `;
 
 const TechLogo = styled.img`
+  width: 5em;
   height: 5em;
 `;
 
@@ -16,13 +18,6 @@ const TechName = styled.div`
     text-transform: capitalize;
   }
 `;
-
-const techs = [
-  {
-    name: 'react',
-    logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/2300px-React-icon.svg.png',
-  },
-];
 
 interface TechProps {
   name: string;

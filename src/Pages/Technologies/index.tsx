@@ -24,6 +24,7 @@ const TechCategories = styled(motion.div)<{ color?: string }>`
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  overflow: hidden;
 `;
 
 const TechCategoriesTitle = styled.div<{ color?: string }>`
@@ -34,6 +35,12 @@ const TechCategoriesTitle = styled.div<{ color?: string }>`
   right: 0;
   bottom: 0;
 `;
+
+const techs = {
+  devops: ['Docker', 'Kubernetes', 'Jenkins', 'Terraform'],
+  frontend: ['React', 'Angular', 'Vue.js', 'Svelte'],
+  backend: ['Node.js', 'Express.js', 'Django', 'Flask'],
+};
 
 const containerVariants = {
   hidden: {},
@@ -53,8 +60,8 @@ const itemVariants = {
 const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
   const techRef = useRef<HTMLInputElement>(null);
   const [viewed, setViewed] = techStatus;
-  const [width, setWidth] = useState(viewed ? 320 : 80);
-  const [height, setHeight] = useState(viewed ? 320 : 80);
+  const [width, setWidth] = useState(viewed ? 320 : 120);
+  const [height, setHeight] = useState(viewed ? 320 : 120);
 
   const animate = useCallback(
     (Woffset?: number, Hoffset?: number) => {
@@ -74,7 +81,7 @@ const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
   const startAnimations = useCallback(() => {
     animate();
     const timeout = setTimeout(() => {
-      animate(240, 240);
+      animate(200, 200);
       if (homeCursor) setTimeout(homeCursor, 1000);
     }, 1000);
 
@@ -105,17 +112,25 @@ const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
           duration: 1,
         }}
       >
+        {techs.devops.map(techname => (
+          <Tech key={techname} name={techname} />
+        ))}
         <TechCategoriesTitle color="purple">DevOps</TechCategoriesTitle>
       </TechCategories>
       <TechCategories color="tan" variants={itemVariants}>
-        <Tech name="react" />
+        {techs.frontend.map(techname => (
+          <Tech key={techname} name={techname} />
+        ))}
         <TechCategoriesTitle color="tan">Frontend</TechCategoriesTitle>
       </TechCategories>
       <TechCategories color="orange" variants={itemVariants}>
+        {techs.backend.map(techname => (
+          <Tech key={techname} name={techname} />
+        ))}
         <TechCategoriesTitle color="orange">Backend</TechCategoriesTitle>
       </TechCategories>
       <TechCategories color="blue" variants={itemVariants}>
-        <TechCategoriesTitle color="blue">DevOps</TechCategoriesTitle>
+        <TechCategoriesTitle color="blue">????</TechCategoriesTitle>
       </TechCategories>
     </TechWrapper>
   );
