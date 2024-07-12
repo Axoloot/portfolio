@@ -29,7 +29,7 @@ const baseSections: sectionContent[] = [...Array(sectionsNb)].map(
   }
 );
 
-const App: React.FC = () => {
+const Xp = () => {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const [Sections, setSections] = useState(baseSections);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -142,4 +142,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Xp;

@@ -33,6 +33,12 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>();
 
+  const style = ({ isActive }: { isActive: boolean }) => ({
+    fontWeight: isActive ? 'bold' : '',
+    color: isActive ? 'green' : 'black',
+    fill: isActive ? 'green' : 'black',
+  });
+
   const homeCursor = useCallback(() => {
     const rect = drawerRef.current?.getBoundingClientRect();
     if (rect) setPos({ y: height - 30, x: rect.width / 2 });
@@ -54,15 +60,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   return (
     <DrawerWrapper>
       <StyledDrawer ref={el => (drawerRef.current = el!)}>
-        <DrawerItem
-          to="/"
-          replace={true}
-          style={({ isActive }) => ({
-            fontWeight: isActive ? 'bold' : '',
-            color: isActive ? 'green' : 'black',
-            fill: isActive ? 'green' : 'black',
-          })}
-        >
+        <DrawerItem to="/" replace={true} style={style}>
           <About
             fill="inherit"
             height="2em"
@@ -71,15 +69,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>About</DrawerItemText>
         </DrawerItem>
-        <DrawerItem
-          to="/xp"
-          replace={true}
-          style={({ isActive }) => ({
-            fontWeight: isActive ? 'bold' : '',
-            color: isActive ? 'green' : 'black',
-            fill: isActive ? 'green' : 'black',
-          })}
-        >
+        <DrawerItem to="/xp" replace={true} style={style}>
           <Career
             fill="inherit"
             height="2em"
@@ -88,15 +78,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Expériences</DrawerItemText>
         </DrawerItem>
-        <DrawerItem
-          to="/techno"
-          replace={true}
-          style={({ isActive }) => ({
-            fontWeight: isActive ? 'bold' : '',
-            color: isActive ? 'green' : 'black',
-            fill: isActive ? 'green' : 'black',
-          })}
-        >
+        <DrawerItem to="/techno" replace={true} style={style}>
           <Code
             fill="inherit"
             height="2em"
@@ -105,15 +87,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Technologies</DrawerItemText>
         </DrawerItem>
-        <DrawerItem
-          to="/contact"
-          replace={true}
-          style={({ isActive }) => ({
-            fontWeight: isActive ? 'bold' : '',
-            color: isActive ? 'green' : 'black',
-            fill: isActive ? 'green' : 'black',
-          })}
-        >
+        <DrawerItem to="/contact" replace={true} style={style}>
           <Contact
             fill="inherit"
             height="2em"
@@ -122,15 +96,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Contact</DrawerItemText>
         </DrawerItem>
-        <DrawerItem
-          to="/cv"
-          replace={true}
-          style={({ isActive }) => ({
-            fontWeight: isActive ? 'bold' : '',
-            color: isActive ? 'green' : 'black',
-            fill: isActive ? 'green' : 'black',
-          })}
-        >
+        <DrawerItem to="/cv" replace={true} style={style}>
           <Resume
             fill="inherit"
             height="2em"

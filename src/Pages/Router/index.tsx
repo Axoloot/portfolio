@@ -1,15 +1,17 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
-import Drawer from '../Components/Drawer';
-
-import About from '../Pages/About';
-import Xp from '../Pages/Xp';
-import Technologies from '../Pages/Technologies';
-import Contact from '../Pages/Contact';
 // @ts-ignore
 import cv from './cv.pdf';
+import Drawer from '../../Components/Drawer';
+import About from '../About';
+import Xp from '../Xp';
+import Technologies from '../Technologies';
+import Contact from '../Contact';
+import { useState } from 'react';
 
 const Router = () => {
+  const techStatus = useState(false);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -33,7 +35,7 @@ const Router = () => {
           path="techno"
           element={
             <Drawer>
-              <Technologies />
+              <Technologies techStatus={techStatus} />
             </Drawer>
           }
         />

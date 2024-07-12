@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Router from './misc/Router';
 import { createGlobalStyle } from 'styled-components';
+import Router from './Pages/Router';
 
 const env = process.env.NODE_ENV || 'local';
 window.document.title =
