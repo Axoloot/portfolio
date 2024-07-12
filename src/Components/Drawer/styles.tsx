@@ -53,6 +53,7 @@ export const StyledChild = styled.div`
   flex: 1;
   height: 100vh;
   @media ${device.tablet} {
+    height: auto;
     overflow: scroll;
   }
 `;
