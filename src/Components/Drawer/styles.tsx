@@ -19,7 +19,7 @@ export const DrawerItem = styled(NavLink)`
   text-decoration: none;
 `;
 
-export const DrawerItemIcon = styled.img`
+export const DrawerItemIcon = styled.div`
   height: 2em;
   margin: 0 0.5em;
 `;

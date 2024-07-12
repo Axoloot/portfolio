@@ -10,7 +10,6 @@ import {
   TimelineText,
 } from './styles';
 import JobsJSON from './jobs.json';
-import { useAnimation } from 'framer-motion';
 // import SchoolJSON from './schools.json';
 
 interface sectionContent {

@@ -54,12 +54,15 @@ const TypingEffect: React.FC = ({
       }
     }, 150);
     return () => clearInterval(interval);
-  }, [message, setHidden, isDone]);
+  }, [message, setHidden, isDone, homeCursor]);
 
   useEffect(() => {
     const timeout = setTimeout(animate, 1500);
-    return () => clearTimeout(timeout);
-  }, [animate]);
+    return () => {
+      clearTimeout(timeout);
+      setHidden && setHidden(false);
+    };
+  }, [animate, setHidden]);
 
   return (
     <Wrapper>

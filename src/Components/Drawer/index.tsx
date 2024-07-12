@@ -7,14 +7,13 @@ import {
   useState,
 } from 'react';
 
-import utilisateur from '../../Images/utilisateur.png';
-import carriere from '../../Images/carriere.png';
-import contact from '../../Images/contact.png';
-import techno from '../../Images/techno.png';
-import resume from '../../Images/resume.png';
+import { ReactComponent as Career } from '../../Images/career.svg';
+import { ReactComponent as About } from '../../Images/about.svg';
+import { ReactComponent as Contact } from '../../Images/contact.svg';
+import { ReactComponent as Resume } from '../../Images/resume.svg';
+import { ReactComponent as Code } from '../../Images/code.svg';
 import {
   DrawerItem,
-  DrawerItemIcon,
   DrawerItemText,
   DrawerWrapper,
   StyledDrawer,
@@ -61,9 +60,15 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
             color: isActive ? 'green' : 'black',
+            fill: isActive ? 'green' : 'black',
           })}
         >
-          <DrawerItemIcon src={utilisateur} />
+          <About
+            fill="inherit"
+            height="2em"
+            width="2em"
+            style={{ margin: '0 0.5em' }}
+          />
           <DrawerItemText minified={minified}>About</DrawerItemText>
         </DrawerItem>
         <DrawerItem
@@ -72,9 +77,15 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
             color: isActive ? 'green' : 'black',
+            fill: isActive ? 'green' : 'black',
           })}
         >
-          <DrawerItemIcon src={carriere} />
+          <Career
+            fill="inherit"
+            height="2em"
+            width="2em"
+            style={{ margin: '0 0.5em' }}
+          />
           <DrawerItemText minified={minified}>Expériences</DrawerItemText>
         </DrawerItem>
         <DrawerItem
@@ -83,9 +94,15 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
             color: isActive ? 'green' : 'black',
+            fill: isActive ? 'green' : 'black',
           })}
         >
-          <DrawerItemIcon src={techno} />
+          <Code
+            fill="inherit"
+            height="2em"
+            width="2em"
+            style={{ margin: '0 0.5em' }}
+          />
           <DrawerItemText minified={minified}>Technologies</DrawerItemText>
         </DrawerItem>
         <DrawerItem
@@ -94,9 +111,15 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
             color: isActive ? 'green' : 'black',
+            fill: isActive ? 'green' : 'black',
           })}
         >
-          <DrawerItemIcon src={contact} />
+          <Contact
+            fill="inherit"
+            height="2em"
+            width="2em"
+            style={{ margin: '0 0.5em' }}
+          />
           <DrawerItemText minified={minified}>Contact</DrawerItemText>
         </DrawerItem>
         <DrawerItem
@@ -105,9 +128,15 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           style={({ isActive }) => ({
             fontWeight: isActive ? 'bold' : '',
             color: isActive ? 'green' : 'black',
+            fill: isActive ? 'green' : 'black',
           })}
         >
-          <DrawerItemIcon src={resume} />
+          <Resume
+            fill="inherit"
+            height="2em"
+            width="2em"
+            style={{ margin: '0 0.5em' }}
+          />
           <DrawerItemText minified={minified}>Resume</DrawerItemText>
         </DrawerItem>
         <Cursor pos={pos} hidden={hidden} />

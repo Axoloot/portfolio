@@ -4,7 +4,6 @@ const TechWrapper = styled.div`
   height: fit-content;
   width: fit-content;
   margin: 0.5em 0.3em;
-  background: green;
 `;
 
 const TechLogo = styled.img`
