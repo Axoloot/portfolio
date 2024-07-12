@@ -7,6 +7,7 @@ import {
   MediaIcon,
   MediasWrapper,
   NameWrapper,
+  SubmitButton,
 } from './styles';
 
 const Medias = [
@@ -42,6 +43,7 @@ const Contact = () => {
         </NameWrapper>
         <Input type="email" placeholder="Email" />
         <InputText placeholder="Contenu" />
+        <SubmitButton>coucou</SubmitButton>
       </ContactBox>
       <MediasWrapper>
         {Medias.map(m => (

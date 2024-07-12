@@ -6,5 +6,6 @@ export interface Position {
 export interface DrawerProps {
   setPos?: React.Dispatch<React.SetStateAction<Position>>;
   homeCursor?: () => void;
+  click?: () => void;
   setHidden?: React.Dispatch<React.SetStateAction<boolean>>;
 }

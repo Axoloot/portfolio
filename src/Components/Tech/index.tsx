@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 import techs from './techs';
 
+const FullTechWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const TechWrapper = styled.div`
   height: fit-content;
   width: fit-content;
   margin: 0.5em 0.3em;
+`;
+
+const ActiveContent = styled.div`
+  text-align: center;
 `;
 
 const TechLogo = styled.img`
@@ -21,15 +30,19 @@ const TechName = styled.div`
 
 interface TechProps {
   name: string;
+  active: boolean;
 }
 
-const Tech = ({ name }: TechProps) => {
+const Tech = ({ name, active }: TechProps) => {
   const element = techs.find(e => e.name === name);
   return (
-    <TechWrapper>
-      <TechLogo src={element?.logo} />
-      <TechName>{element?.name}</TechName>
-    </TechWrapper>
+    <FullTechWrapper>
+      <TechWrapper>
+        <TechLogo src={element?.logo} />
+        <TechName>{element?.name}</TechName>
+      </TechWrapper>
+      {active && <ActiveContent>Texts</ActiveContent>}
+    </FullTechWrapper>
   );
 };
 

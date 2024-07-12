@@ -26,18 +26,30 @@ interface DrawerProps {
   minified?: boolean;
   children: ReactElement;
 }
+const pointer =
+  'https://images.vexels.com/content/131773/preview/pixilated-hand-cursor-1-df1065.png';
+const cursor =
+  'https://www.freeiconspng.com/thumbs/cursor-png/download-big-image-png-medium-image-png-small-image-png-microsoft--15.png';
 
 const Drawer = ({ children, minified }: DrawerProps) => {
   const { height } = useWindowDimensions();
   const [pos, setPos] = useState<Position>({ x: 70, y: height - 30 });
   const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>();
+  const [cursorImg, setCursorImg] = useState(cursor);
 
   const style = ({ isActive }: { isActive: boolean }) => ({
     fontWeight: isActive ? 'bold' : '',
     color: isActive ? 'green' : 'black',
     fill: isActive ? 'green' : 'black',
   });
+
+  const click = useCallback(() => {
+    setCursorImg(pointer);
+    const timeout = setTimeout(() => setCursorImg(cursor), 1500);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const homeCursor = useCallback(() => {
     const rect = drawerRef.current?.getBoundingClientRect();
@@ -55,6 +67,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
     ),
     homeCursor,
     setHidden,
+    click,
   });
 
   return (
@@ -105,7 +118,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Resume</DrawerItemText>
         </DrawerItem>
-        <Cursor pos={pos} hidden={hidden} />
+        <Cursor pos={pos} hidden={hidden} cursorImg={cursorImg} />
       </StyledDrawer>
       <div style={{ flex: 1, height: '100vh' }}>{childrenWithProps}</div>
     </DrawerWrapper>

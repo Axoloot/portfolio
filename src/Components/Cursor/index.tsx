@@ -3,16 +3,19 @@ import { CursorImg, CursorWrapper } from './styles';
 
 interface CursorProps {
   hidden?: boolean;
+  cursorImg: string;
   pos: {
     x: number;
     y: number;
   };
 }
-const Cursor = ({ hidden, pos }: CursorProps) => {
+
+const Cursor = ({ hidden, pos, cursorImg }: CursorProps) => {
   const { height } = useWindowDimensions();
+
   return (
     <CursorWrapper
-      drag
+      draggable
       initial={{ x: 70, y: height - 30 }}
       hidden={hidden}
       animate={pos}
@@ -21,7 +24,7 @@ const Cursor = ({ hidden, pos }: CursorProps) => {
         duration: hidden ? 0 : 1,
       }}
     >
-      <CursorImg src="https://www.freeiconspng.com/thumbs/cursor-png/download-big-image-png-medium-image-png-small-image-png-microsoft--15.png" />
+      <CursorImg src={cursorImg} />
     </CursorWrapper>
   );
 };

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { DrawerProps } from '../../misc/types';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import Tech from '../../Components/Tech';
+import TechCategory from '../../Components/TechCategories';
 
 interface TechProps extends DrawerProps {
   techStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -22,42 +22,19 @@ const TechWrapper = styled(motion.div)`
   width: 100%;
 `;
 
-const TechCategories = styled(motion.div)<{
-  color?: string;
-  isFullWidth?: boolean;
-}>`
-  justify-content: inherit;
-  height: 20em;
-  width: ${({ isFullWidth }) => (isFullWidth ? '100%' : '20em')};
-  margin: 0.5em;
-  border: solid 0.1em ${({ color }) => color ?? 'green'};
-  border-radius: 0.5em 0.5em 0;
-  display: flex;
-  position: relative;
-  flex-wrap: wrap;
-  overflow: hidden;
-`;
+const baseCategory = [
+  { name: 'devops', title: 'DevOps', color: 'tan', hidePane: false },
+  { name: 'frontend', title: 'FrontEnd', color: 'blue', hidePane: false },
+  { name: 'backend', title: 'BackEnd', color: 'yellow', hidePane: false },
+  // { name: 'devops', title: 'DevOps', color: 'tan' },
+];
 
-const TechCategoriesTitle = styled.div<{ color?: string }>`
-  align-self: end;
-  border-radius: 0.3em 0 0;
-  background: ${({ color }) => color ?? 'red'};
-  position: absolute;
-  right: 0;
-  bottom: 0;
-`;
-
-const techs = {
-  devops: ['Docker', 'Kubernetes', 'Jenkins', 'Terraform'],
-  frontend: ['React', 'Angular', 'Vue.js', 'Svelte'],
-  backend: ['Node.js', 'Express.js', 'Django', 'Flask'],
-};
-
-const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
-  const techRef = useRef<HTMLInputElement>(null);
+const Technologies = ({ homeCursor, setPos, techStatus, click }: TechProps) => {
+  const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
   const [width, setWidth] = useState(viewed ? 320 : 120);
   const [height, setHeight] = useState(viewed ? 320 : 120);
+  const CategRef = useRef<HTMLDivElement[]>([]);
 
   const containerVariants = {
     hidden: {},
@@ -69,16 +46,9 @@ const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
     }),
   };
 
-  const itemVariants = {
-    hidden: { opacity: viewed ? 1 : 0 },
-    visible: { opacity: 1 },
-  };
-
   const animate = useCallback(
-    (Woffset?: number, Hoffset?: number) => {
-      const pos = techRef.current?.getBoundingClientRect();
-      if (Woffset) setWidth(width => width + Woffset);
-      if (Hoffset) setHeight(height => height + Hoffset);
+    (elem: number, Woffset?: number, Hoffset?: number) => {
+      const pos = CategRef.current[elem]?.getBoundingClientRect();
       if (pos && setPos) {
         setPos({
           x: pos.x + pos.width + (Woffset || 0),
@@ -89,22 +59,61 @@ const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
     [setPos]
   );
 
-  const startAnimations = useCallback(() => {
-    animate();
+  const HomeAnime = useCallback(
+    (cb?: () => void) => {
+      const timeout = setTimeout(() => {
+        homeCursor && homeCursor();
+        cb && cb();
+      }, 1000);
+      return () => clearTimeout(timeout);
+    },
+    [homeCursor]
+  );
+
+  const Click = useCallback(() => {
     const timeout = setTimeout(() => {
-      animate(200, 200);
-      if (homeCursor) setTimeout(homeCursor, 1000);
+      click && click();
+      HomeAnime();
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [click, HomeAnime]);
+
+  const SecondAnim = useCallback(() => {
+    const timeout = setTimeout(() => {
+      const { height, width } = CategRef.current[1].getBoundingClientRect();
+      animate(1, (width / 2) * -1, (height / 2) * -1);
+      Click();
+    }, 1000);
+    return () => clearTimeout(timeout);
+  }, [animate, Click]);
+
+  const FirstAnim = useCallback(() => {
+    animate(0);
+    const timeout = setTimeout(() => {
+      setWidth(width => width + 200);
+      setHeight(height => height + 200);
+      animate(0, 200, 200);
+      HomeAnime(() => {
+        setViewed(true);
+        SecondAnim();
+      });
     }, 1000);
 
     return () => clearTimeout(timeout);
-  }, [animate, homeCursor]);
+  }, [animate, HomeAnime, SecondAnim, setViewed]);
 
   useEffect(() => {
     if (viewed) return;
-    const run = startAnimations();
-    setViewed(true);
-    return run;
-  }, [startAnimations, setViewed]);
+    return FirstAnim();
+  }, [FirstAnim, setViewed, viewed]);
+
+  const toggleHidden = (index: number) => {
+    setCategories(prevCategories =>
+      prevCategories.map((c, i) =>
+        i !== index ? { ...c, hidePane: !c.hidePane } : c
+      )
+    );
+  };
 
   return (
     <TechContainer>
@@ -114,7 +123,34 @@ const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
         variants={containerVariants}
         custom={2}
       >
-        <TechCategories
+        {Categories.map((c, i) => {
+          if (!i)
+            return (
+              <TechCategory
+                onClickCb={() => toggleHidden(i)}
+                ref={el => (CategRef.current[i] = el!)}
+                key={c.title}
+                viewed={viewed}
+                initial={{ width, height }}
+                animate={{ width, height }}
+                transition={{
+                  ease: 'anticipate',
+                  duration: 1,
+                }}
+                {...c}
+              />
+            );
+          return (
+            <TechCategory
+              onClickCb={() => toggleHidden(i)}
+              ref={el => (CategRef.current[i] = el!)}
+              viewed={viewed}
+              key={c.title}
+              {...c}
+            />
+          );
+        })}
+        {/* <TechCategories
           color="purple"
           ref={techRef}
           initial={{ width, height }}
@@ -127,23 +163,7 @@ const Technologies = ({ homeCursor, setPos, techStatus }: TechProps) => {
           {techs.devops.map(techname => (
             <Tech key={techname} name={techname} />
           ))}
-          <TechCategoriesTitle color="purple">DevOps</TechCategoriesTitle>
-        </TechCategories>
-        <TechCategories color="tan" variants={itemVariants}>
-          {techs.frontend.map(techname => (
-            <Tech key={techname} name={techname} />
-          ))}
-          <TechCategoriesTitle color="tan">Frontend</TechCategoriesTitle>
-        </TechCategories>
-        <TechCategories color="orange" variants={itemVariants}>
-          {techs.backend.map(techname => (
-            <Tech key={techname} name={techname} />
-          ))}
-          <TechCategoriesTitle color="orange">Backend</TechCategoriesTitle>
-        </TechCategories>
-        <TechCategories color="blue" variants={itemVariants} isFullWidth>
-          <TechCategoriesTitle color="blue">????</TechCategoriesTitle>
-        </TechCategories>
+        </TechCategories> */}
       </TechWrapper>
     </TechContainer>
   );

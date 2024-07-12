@@ -45,3 +45,5 @@ export const MediaIcon = styled.img`
   margin: 0 1em;
   border-radius: 5px;
 `;
+
+export const SubmitButton = styled.button``;
