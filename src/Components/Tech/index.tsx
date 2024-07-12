@@ -17,8 +17,8 @@ const ActiveContent = styled.div`
 `;
 
 const TechLogo = styled.img`
-  width: 5em;
-  height: 5em;
+  width: 3em;
+  height: 3em;
 `;
 
 const TechName = styled.div`
