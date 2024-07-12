@@ -72,6 +72,7 @@ const App: React.FC = () => {
           drag="y"
           initial={{ y: Sections[activeIndex].y }}
           event
+          dragElastic={1}
           onDrag={(event, info) => {
             const index = Sections.findIndex(s => {
               if (!s) return null;
