@@ -16,6 +16,7 @@ export const StyledDrawer = styled.div`
   flex-direction: column;
   border-right: 0.1em solid;
   background: white;
+  z-index: 1;
 
   @media ${device.tablet} {
     flex-direction: row;
@@ -45,5 +46,13 @@ export const DrawerItemText = styled.div<{ minified?: boolean }>`
 
   &:hover {
     color: green;
+  }
+`;
+
+export const StyledChild = styled.div`
+  flex: 1;
+  height: 100vh;
+  @media ${device.tablet} {
+    overflow: scroll;
   }
 `;

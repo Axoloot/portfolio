@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { DrawerProps } from '../../misc/types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
+import pointers from '../../Components/Cursor/mouseIcon';
+import { device } from '../../misc/sizes';
 
 interface TechProps extends DrawerProps {
   techStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -13,6 +15,9 @@ const TechContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 1em;
+  @media ${device.tablet} {
+    overflow: scroll;
+  }
 `;
 
 const TechWrapper = styled(motion.div)`
@@ -29,7 +34,13 @@ const baseCategory = [
   // { name: 'devops', title: 'DevOps', color: 'tan' },
 ];
 
-const Technologies = ({ homeCursor, setPos, techStatus, click }: TechProps) => {
+const Technologies = ({
+  homeCursor,
+  setPos,
+  techStatus,
+  click,
+  setCursorImg,
+}: TechProps) => {
   const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
   const [width, setWidth] = useState(viewed ? 320 : 120);
@@ -90,17 +101,19 @@ const Technologies = ({ homeCursor, setPos, techStatus, click }: TechProps) => {
   const FirstAnim = useCallback(() => {
     animate(0);
     const timeout = setTimeout(() => {
+      setCursorImg && setCursorImg(pointers.drag);
       setWidth(width => width + 200);
       setHeight(height => height + 200);
       animate(0, 200, 200);
       HomeAnime(() => {
+        setCursorImg && setCursorImg(pointers.cursor);
         setViewed(true);
         SecondAnim();
       });
     }, 1000);
 
     return () => clearTimeout(timeout);
-  }, [animate, HomeAnime, SecondAnim, setViewed]);
+  }, [animate, HomeAnime, SecondAnim, setViewed, setCursorImg]);
 
   useEffect(() => {
     if (viewed) return;

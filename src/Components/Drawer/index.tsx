@@ -16,27 +16,25 @@ import {
   DrawerItem,
   DrawerItemText,
   DrawerWrapper,
+  StyledChild,
   StyledDrawer,
 } from './styles';
 import Cursor from '../Cursor';
 import { Position } from '../../misc/types';
 import useWindowDimensions from '../../misc/dimension';
+import pointer from '../Cursor/mouseIcon';
 
 interface DrawerProps {
   minified?: boolean;
   children: ReactElement;
 }
-const pointer =
-  'https://images.vexels.com/content/131773/preview/pixilated-hand-cursor-1-df1065.png';
-const cursor =
-  'https://www.freeiconspng.com/thumbs/cursor-png/download-big-image-png-medium-image-png-small-image-png-microsoft--15.png';
 
 const Drawer = ({ children, minified }: DrawerProps) => {
   const { height } = useWindowDimensions();
   const [pos, setPos] = useState<Position>({ x: 70, y: height - 30 });
   const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>();
-  const [cursorImg, setCursorImg] = useState(cursor);
+  const [cursorImg, setCursorImgFn] = useState(pointer['cursor']);
 
   const style = ({ isActive }: { isActive: boolean }) => ({
     fontWeight: isActive ? 'bold' : '',
@@ -45,8 +43,8 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   });
 
   const click = useCallback(() => {
-    setCursorImg(pointer);
-    const timeout = setTimeout(() => setCursorImg(cursor), 1500);
+    setCursorImgFn(pointer['pointer']);
+    const timeout = setTimeout(() => setCursorImgFn(pointer['cursor']), 1500);
 
     return () => clearTimeout(timeout);
   }, []);
@@ -68,6 +66,9 @@ const Drawer = ({ children, minified }: DrawerProps) => {
     homeCursor,
     setHidden,
     click,
+    setCursorImg: useCallback((name: 'cursor' | 'pointer' | 'grabe') => {
+      setCursorImgFn(name);
+    }, []),
   });
 
   return (
@@ -120,7 +121,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
         </DrawerItem>
         <Cursor pos={pos} hidden={hidden} cursorImg={cursorImg} />
       </StyledDrawer>
-      <div style={{ flex: 1, height: '100vh' }}>{childrenWithProps}</div>
+      <StyledChild>{childrenWithProps}</StyledChild>
     </DrawerWrapper>
   );
 };

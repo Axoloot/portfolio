@@ -8,4 +8,5 @@ export interface DrawerProps {
   homeCursor?: () => void;
   click?: () => void;
   setHidden?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCursorImg?: (name: string) => void;
 }
