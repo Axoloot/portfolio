@@ -33,7 +33,7 @@ const TypingEffect: React.FC = ({
   const cursorObjRef = useRef<HTMLInputElement>(null);
   const [done, isDone] = useState(false);
   const [text, setText] = useState('');
-  const message = 'my name is Cyril. I am a DevOps';
+  const message = "Bonjour, Je m'appelle Cyril.% Je suis developpeur web %";
 
   useEffect(() => {
     const pos = cursorObjRef.current?.getBoundingClientRect();
@@ -45,7 +45,8 @@ const TypingEffect: React.FC = ({
     let index = 0;
     setHidden && setHidden(true);
     const interval = setInterval(() => {
-      setText(message.slice(0, index));
+      const text = message.slice(0, index);
+      setText(text);
       if (index++ > message.length) {
         clearInterval(interval);
         setHidden && setHidden(false);
@@ -67,14 +68,15 @@ const TypingEffect: React.FC = ({
   return (
     <Wrapper>
       <TextContainer>
-        Hi, {text.slice(0, 18)}
-        {text.slice(18) && (
+        {text.split('%').map((t, i) => (
           <>
+            {t}
+            {!done && t.length !== message.split('%')[i].length && (
+              <Cursor ref={cursorObjRef}>|</Cursor>
+            )}
             <br />
-            {text.slice(18)}
           </>
-        )}
-        {!done && <Cursor ref={cursorObjRef}>|</Cursor>}
+        ))}
       </TextContainer>
     </Wrapper>
   );

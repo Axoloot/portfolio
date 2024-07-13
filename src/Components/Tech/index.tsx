@@ -1,47 +1,36 @@
-import styled from 'styled-components';
-import techs from './techs';
+import Rating from '../Rating';
+import {
+  ActiveContent,
+  FullTechWrapper,
+  TechLogo,
+  TechName,
+  TechWrapper,
+} from './styles';
 
-const FullTechWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-const TechWrapper = styled.div`
-  height: fit-content;
-  width: fit-content;
-  margin: 0.5em 0.3em;
-`;
-
-const ActiveContent = styled.div`
-  text-align: center;
-`;
-
-const TechLogo = styled.img`
-  width: 3em;
-  height: 3em;
-`;
-
-const TechName = styled.div`
-  text-align: center;
-  &&::first-letter {
-    text-transform: capitalize;
-  }
-`;
-
-interface TechProps {
+interface Tech {
   name: string;
-  active: boolean;
+  logo: string;
+  type: string;
+  rating: number;
 }
 
-const Tech = ({ name, active }: TechProps) => {
-  const element = techs.find(e => e.name === name);
+interface TechProps {
+  active: boolean;
+  element: Tech;
+}
+
+const Tech = ({ element, active }: TechProps) => {
   return (
     <FullTechWrapper>
       <TechWrapper>
-        <TechLogo src={element?.logo} />
-        <TechName>{element?.name}</TechName>
+        <TechLogo src={element.logo} />
+        <TechName>{element.name}</TechName>
       </TechWrapper>
-      {active && <ActiveContent>Texts</ActiveContent>}
+      {active && (
+        <ActiveContent>
+          <Rating rate={element.rating} />
+        </ActiveContent>
+      )}
     </FullTechWrapper>
   );
 };

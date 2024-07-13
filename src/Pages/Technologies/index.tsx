@@ -1,31 +1,12 @@
-import { motion } from 'framer-motion';
-import styled from 'styled-components';
 import { DrawerProps } from '../../misc/types';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
 import pointers from '../../Components/Cursor/mouseIcon';
-import { device } from '../../misc/sizes';
+import { TechContainer, TechWrapper } from './styles';
 
 interface TechProps extends DrawerProps {
   techStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
-
-const TechContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin: 0 1em;
-  @media ${device.tablet} {
-    overflow: scroll;
-  }
-`;
-
-const TechWrapper = styled(motion.div)`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-`;
 
 const baseCategory = [
   { name: 'devops', title: 'DevOps', color: 'tan', hidePane: false },
@@ -43,8 +24,8 @@ const Technologies = ({
 }: TechProps) => {
   const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
-  const [width, setWidth] = useState(viewed ? 320 : 120);
-  const [height, setHeight] = useState(viewed ? 320 : 120);
+  const [width, setWidth] = useState(viewed ? 420 : 120);
+  const [height, setHeight] = useState(viewed ? 420 : 120);
   const CategRef = useRef<HTMLDivElement[]>([]);
 
   const containerVariants = {
@@ -102,9 +83,9 @@ const Technologies = ({
     animate(0);
     const timeout = setTimeout(() => {
       setCursorImg && setCursorImg(pointers.drag);
-      setWidth(width => width + 200);
-      setHeight(height => height + 200);
-      animate(0, 200, 200);
+      setWidth(width => width + 300);
+      setHeight(height => height + 300);
+      animate(0, 300, 300);
       HomeAnime(() => {
         setCursorImg && setCursorImg(pointers.cursor);
         setViewed(true);
@@ -159,6 +140,10 @@ const Technologies = ({
               ref={el => (CategRef.current[i] = el!)}
               viewed={viewed}
               key={c.title}
+              transition={{
+                ease: 'anticipate',
+                duration: 1,
+              }}
               {...c}
             />
           );
