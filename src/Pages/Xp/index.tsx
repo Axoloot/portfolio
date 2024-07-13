@@ -12,11 +12,16 @@ import {
 import JobsJSON from './jobs.json';
 // import SchoolJSON from './schools.json';
 
-interface sectionContent {
+interface Job {
+  type: string;
   year: number;
-  y: number;
-  type?: string;
+  description: string;
+  company: string;
+  image: string;
+}
+interface sectionContent extends Job {
   event: boolean;
+  y: number;
 }
 
 const startYear = 2019;
@@ -24,8 +29,8 @@ const sectionsNb = new Date().getFullYear() - startYear + 1;
 const baseSections: sectionContent[] = [...Array(sectionsNb)].map(
   (_, index) => {
     const year = startYear + index;
-    const event = !!JobsJSON.find(xp => xp.year === year);
-    return { year, event, y: 0 };
+    const event = JobsJSON.find(xp => xp.year === year) as Job;
+    return { ...event, year, y: 0, event: !!event };
   }
 );
 
@@ -122,18 +127,16 @@ const Xp = () => {
       </Timeline>
       <Content onScroll={handleScroll}>
         {Sections.map(
-          (_, index) =>
-            Sections[index].event && (
+          (sec, index) =>
+            sec.event && (
               <Section
                 key={index}
                 ref={el => (sectionsRef.current[index] = el!)}
+                img={sec.image}
               >
-                {Sections[index].year}
+                {sec.year}
                 <br />
-                {
-                  JobsJSON.find(({ year }) => year === Sections[index].year)
-                    ?.company
-                }
+                {JobsJSON.find(({ year }) => year === sec.year)?.company}
               </Section>
             )
         )}

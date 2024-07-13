@@ -14,7 +14,7 @@ export const Content = styled.div`
   scroll-snap-type: y mandatory;
 `;
 
-export const Section = styled.div`
+export const Section = styled.div<{ img: string }>`
   flex: 1 0 100vh;
   display: flex;
   align-items: center;
@@ -23,13 +23,13 @@ export const Section = styled.div`
   font-size: 2rem;
   color: white;
 
-  &:nth-child(odd) {
-    background-color: #333;
-  }
-
-  &:nth-child(even) {
-    background-color: #666;
-  }
+  background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.7),
+      rgba(127, 127, 127, 0.4)
+    ),
+    url('${({ img }) => img}');
+  background-size: cover;
 `;
 
 export const Timeline = styled.div<{ sectionNb: number }>`

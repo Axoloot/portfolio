@@ -3,30 +3,28 @@
     "year": 2019,
     "company": "Quidol",
     "description": "Développeur mobile & Backend",
-    "type": "job"
+    "type": "job",
+    "image": "https://media.licdn.com/dms/image/C4E22AQFiTENHFqCbgw/feedshare-shrink_800/0/1556119440028?e=2147483647&v=beta&t=wu4Qx4oNNRHIQssYJLmZHBviJ3YBdCV3NxjMKxrsNn0"
   },
   {
     "year": 2021,
     "company": "Groupe Bel",
     "description": "Développeur full stack",
-    "type": "job"
+    "type": "job",
+    "image": "https://froid-news.com/wp-content/uploads/2023/10/Bel.jpg"
   },
   {
     "year": 2022,
     "company": "RedPill Live",
     "description": "Développeur full stack & DevOps",
-    "type": "job"
-  },
-  {
-    "year": 2023,
-    "company": "Master EPITECH",
-    "description": "",
-    "type": "school"
+    "type": "job",
+    "image": "https://dev.redpill.paris/public/img/home/redhouse.jpg"
   },
   {
     "year": 2024,
     "company": "Pitchy",
     "description": "",
-    "type": "job"
+    "type": "job",
+    "image": "https://bureaux-et-commerces-a-louer.rivp.fr/wp-content/uploads/2020/12/63_inaug_Le-Cargo_157-bd-Macdonald-19e_2016%C2%A9Jean-Baptiste-Gurliat-Ville-de-Paris.jpg"
   }
 ]
