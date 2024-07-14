@@ -51,7 +51,7 @@ export const DrawerItemText = styled.div<{ minified?: boolean }>`
 
 export const StyledChild = styled.div`
   flex: 1;
-  height: 100vh;
+  height: 100svh;
   @media ${device.tablet} {
     height: auto;
     overflow: scroll;

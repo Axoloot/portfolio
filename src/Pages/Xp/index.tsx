@@ -8,6 +8,8 @@ import {
   TimelineDot,
   TimelineItem,
   TimelineText,
+  Text,
+  Desc,
 } from './styles';
 import JobsJSON from './jobs.json';
 // import SchoolJSON from './schools.json';
@@ -15,9 +17,11 @@ import JobsJSON from './jobs.json';
 interface Job {
   type: string;
   year: number;
-  description: string;
+  desc: string;
+  shortDesc: string;
   company: string;
   image: string;
+  dates: string;
 }
 interface sectionContent extends Job {
   event: boolean;
@@ -87,7 +91,7 @@ const Xp = () => {
               scrollToCurrent(index);
             }
           }}
-          onDragEnd={() => {
+          onDragExit={() => {
             setDotY(Sections[activeIndex].y);
           }}
           animate={{
@@ -126,20 +130,22 @@ const Xp = () => {
         ))}
       </Timeline>
       <Content onScroll={handleScroll}>
-        {Sections.map(
-          (sec, index) =>
+        {Sections.map((sec, index) => {
+          return (
             sec.event && (
               <Section
                 key={index}
                 ref={el => (sectionsRef.current[index] = el!)}
                 img={sec.image}
               >
-                {sec.year}
-                <br />
-                {JobsJSON.find(({ year }) => year === sec.year)?.company}
+                <Text>{sec.dates}</Text>
+                <Text>{sec.company}</Text>
+                <Text>{sec.shortDesc}</Text>
+                <Desc>{sec.desc}</Desc>
               </Section>
             )
-        )}
+          );
+        })}
       </Content>
     </Page>
   );

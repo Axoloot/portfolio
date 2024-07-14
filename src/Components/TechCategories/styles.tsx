@@ -14,8 +14,9 @@ export const TechCategories = styled(motion.div)<{
   ${({ viewed }) => viewed && 'cursor: pointer;'}
   flex-wrap: wrap;
   overflow: hidden;
-  width: 26.3em;
+  width: 300px;
   background: white;
+  margin: 1em;
 `;
 
 export const Grid = styled.div<{ active: boolean }>`
@@ -26,7 +27,6 @@ export const Grid = styled.div<{ active: boolean }>`
     );
   grid-column-gap: 1em;
   grid-row-gap: 1em;
-  padding: 1em;
   height: 100%;
 `;
 

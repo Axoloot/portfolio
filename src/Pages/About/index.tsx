@@ -1,29 +1,7 @@
 // TypingEffect.tsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { Wrapper } from './styles';
+import { Cursor, TextContainer, Wrapper } from './styles';
 import { DrawerProps } from '../../misc/types';
-
-const blink = keyframes`
-  0% { opacity: 1; }
-  50% { opacity: 0; }
-  100% { opacity: 1; }
-`;
-
-const Cursor = styled.span`
-  font-weight: bold;
-  font-size: 24px;
-  margin-left: 5px;
-  color: black;
-  animation: ${blink} 1s infinite;
-`;
-
-const TextContainer = styled.div`
-  font-size: 24px;
-  font-family: 'Courier New', Courier, monospace;
-  white-space: nowrap;
-  overflow: hidden;
-`;
 
 const TypingEffect: React.FC = ({
   setPos,
@@ -33,7 +11,7 @@ const TypingEffect: React.FC = ({
   const cursorObjRef = useRef<HTMLInputElement>(null);
   const [done, isDone] = useState(false);
   const [text, setText] = useState('');
-  const message = "Bonjour, Je m'appelle Cyril.% Je suis developpeur web %";
+  const message = "% Je m'appelle Cyril.% Je suis developpeur web";
 
   useEffect(() => {
     const pos = cursorObjRef.current?.getBoundingClientRect();
@@ -68,6 +46,7 @@ const TypingEffect: React.FC = ({
   return (
     <Wrapper>
       <TextContainer>
+        Bonjour
         {text.split('%').map((t, i) => (
           <>
             {t}

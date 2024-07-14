@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const Page = styled.div`
   display: flex;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const Content = styled.div`
@@ -22,6 +22,7 @@ export const Section = styled.div<{ img: string }>`
   scroll-snap-align: start;
   font-size: 2rem;
   color: white;
+  flex-direction: column;
 
   background: linear-gradient(
       0deg,
@@ -60,6 +61,8 @@ export const TimelineDot = styled(motion.div)<{
   ${props => (props.event ? 'border-radius: 50%;' : '')}
   ${props => (!props.event ? 'align-self: center;' : '')}
   width: 1.3em;
+  flex: 1 0 100vh;
+
   height: ${props => (props.event ? '1.3em' : '.3em')};
   background-color: ${props => (props.active ? 'blue' : 'gray')};
   transition: background-color 0.3s ease;
@@ -74,9 +77,15 @@ export const TimelineText = styled.div`
 
 export const Line = styled(motion.div)<{ red?: boolean }>`
   ${props => (props.red ? 'background: grey;' : 'background: green;')}
-  ${props => (props.red ? 'height: 100vh;' : 'height: 0;')}
+  ${props => (props.red ? 'height: 100%;' : 'height: 0;')}
   width: .4em;
   position: absolute;
   z-index: 0;
   left: 1.45em;
+`;
+
+export const Text = styled.div``;
+
+export const Desc = styled.div`
+  text-align: center;
 `;

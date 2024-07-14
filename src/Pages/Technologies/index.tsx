@@ -24,7 +24,7 @@ const Technologies = ({
 }: TechProps) => {
   const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
-  const [width, setWidth] = useState(viewed ? 420 : 120);
+  const [width, setWidth] = useState(viewed ? 300 : 100);
   const [height, setHeight] = useState(viewed ? 420 : 120);
   const CategRef = useRef<HTMLDivElement[]>([]);
 
@@ -71,7 +71,9 @@ const Technologies = ({
   }, [click, HomeAnime]);
 
   const SecondAnim = useCallback(() => {
+    if (!CategRef.current[1]) return;
     const timeout = setTimeout(() => {
+      if (!CategRef.current[1]) return;
       const { height, width } = CategRef.current[1].getBoundingClientRect();
       animate(1, (width / 2) * -1, (height / 2) * -1);
       Click();
@@ -83,9 +85,9 @@ const Technologies = ({
     animate(0);
     const timeout = setTimeout(() => {
       setCursorImg && setCursorImg(pointers.drag);
-      setWidth(width => width + 300);
+      setWidth(width => width + 200);
       setHeight(height => height + 300);
-      animate(0, 300, 300);
+      animate(0, 200, 300);
       HomeAnime(() => {
         setCursorImg && setCursorImg(pointers.cursor);
         setViewed(true);

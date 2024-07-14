@@ -40,11 +40,11 @@ const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
             ? props.animate
             : active
               ? {
-                  height: '99vh',
+                  height: 'auto',
                   width: '100%',
                   zIndex: 10,
                 }
-              : { height: 420, width: 420 }
+              : { height: 420, width: 300 }
         }
       >
         <Grid active={active}>
