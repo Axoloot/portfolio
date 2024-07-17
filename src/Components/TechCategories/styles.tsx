@@ -15,11 +15,12 @@ export const TechCategories = styled(motion.div)<{
   ${({ viewed }) => viewed && 'cursor: pointer;'}
   flex-wrap: wrap;
   overflow: hidden;
+  margin: 1em;
+  justify-content: center;
+
   @media ${device.tablet} {
     width: 100%;
   }
-  background: white;
-  margin: 1em;
 `;
 
 export const Grid = styled.div<{ active: boolean }>`

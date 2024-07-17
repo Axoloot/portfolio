@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
 import pointers from '../../Components/Cursor/mouseIcon';
 import { TechContainer, TechWrapper } from './styles';
+import useWindowDimensions from '../../misc/dimension';
 
 interface TechProps extends DrawerProps {
   techStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
@@ -22,9 +23,10 @@ const Technologies = ({
   click,
   setCursorImg,
 }: TechProps) => {
+  const { isMobile } = useWindowDimensions();
   const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
-  const [width, setWidth] = useState(viewed ? 300 : 100);
+  const [width, setWidth] = useState<string | number>(viewed ? 420 : 120);
   const [height, setHeight] = useState(viewed ? 420 : 120);
   const CategRef = useRef<HTMLDivElement[]>([]);
 
@@ -36,6 +38,11 @@ const Technologies = ({
         delayChildren: custom,
       },
     }),
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   };
 
   const animate = useCallback(
@@ -85,9 +92,9 @@ const Technologies = ({
     animate(0);
     const timeout = setTimeout(() => {
       setCursorImg && setCursorImg(pointers.drag);
-      setWidth(width => width + 200);
+      setWidth(width => (isMobile ? '100%' : (width as number) + 300));
       setHeight(height => height + 300);
-      animate(0, 200, 300);
+      animate(0, 300, 300);
       HomeAnime(() => {
         setCursorImg && setCursorImg(pointers.cursor);
         setViewed(true);
@@ -96,7 +103,7 @@ const Technologies = ({
     }, 1000);
 
     return () => clearTimeout(timeout);
-  }, [animate, HomeAnime, SecondAnim, setViewed, setCursorImg]);
+  }, [animate, HomeAnime, SecondAnim, setViewed, setCursorImg, isMobile]);
 
   useEffect(() => {
     if (viewed) return;
@@ -120,28 +127,15 @@ const Technologies = ({
         custom={2}
       >
         {Categories.map((c, i) => {
-          if (!i)
-            return (
-              <TechCategory
-                onClickCb={() => toggleHidden(i)}
-                ref={el => (CategRef.current[i] = el!)}
-                key={c.title}
-                viewed={viewed}
-                initial={{ width, height }}
-                animate={{ width, height }}
-                transition={{
-                  ease: 'anticipate',
-                  duration: 1,
-                }}
-                {...c}
-              />
-            );
           return (
             <TechCategory
+              itemVariants={itemVariants}
               onClickCb={() => toggleHidden(i)}
               ref={el => (CategRef.current[i] = el!)}
-              viewed={viewed}
               key={c.title}
+              viewed={viewed}
+              initial={!i ? { width, height } : 'hidden'}
+              animate={!i && { width, height }}
               transition={{
                 ease: 'anticipate',
                 duration: 1,

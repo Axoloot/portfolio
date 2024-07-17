@@ -6,6 +6,7 @@ export const TechContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+
   @media ${device.tablet} {
     overflow: scroll;
   }
@@ -13,7 +14,10 @@ export const TechContainer = styled.div`
 
 export const TechWrapper = styled(motion.div)`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+
+  @media ${device.tablet} {
+    flex-wrap: wrap;
+  }
 `;

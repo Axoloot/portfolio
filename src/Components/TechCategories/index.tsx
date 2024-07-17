@@ -12,6 +12,7 @@ interface TechCategoryProps extends HTMLMotionProps<'div'> {
   title: string;
   hidePane: boolean;
   onClickCb: () => void;
+  itemVariants: any;
 }
 
 const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
@@ -19,16 +20,11 @@ const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
     const { isMobile } = useWindowDimensions();
     const [active, setActive] = useState(false);
 
-    const itemVariants = {
-      hidden: { opacity: props.viewed ? 1 : 0 },
-      visible: { opacity: 1 },
-    };
-
     if (props.hidePane) return <></>;
     return (
       <TechCategories
         ref={ref}
-        variants={itemVariants}
+        variants={props.itemVariants}
         onClick={() => {
           if (!props.viewed) return;
           setActive(a => !a);
@@ -46,7 +42,7 @@ const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
                   width: '100%',
                   zIndex: 10,
                 }
-              : { height: 420, width: isMobile ? '100%' : 320 }
+              : { height: 420, width: isMobile ? '100%' : 420 }
         }
       >
         <Grid active={active}>
