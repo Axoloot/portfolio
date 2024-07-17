@@ -29,6 +29,7 @@ const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
 
   body > #root > div {
     height: 100svh;
+    width: 100svw;
   }
 `;
 root.render(

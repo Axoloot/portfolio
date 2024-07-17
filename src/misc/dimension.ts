@@ -9,6 +9,8 @@ function getWindowDimensions() {
 }
 
 export default function useWindowDimensions() {
+  const [width, setWidth] = useState(window.innerWidth);
+
   const [windowDimensions, setWindowDimensions] = useState(
     getWindowDimensions()
   );
@@ -16,11 +18,16 @@ export default function useWindowDimensions() {
   useEffect(() => {
     function handleResize() {
       setWindowDimensions(getWindowDimensions());
+      setWidth(window.innerWidth);
     }
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  return windowDimensions;
+  const isMobile = width <= 768;
+  const isTablet = width <= 1024;
+  const isDesktop = width > 1024;
+
+  return { isMobile, isTablet, isDesktop, ...windowDimensions };
 }

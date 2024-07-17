@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { device } from '../../misc/sizes';
 
 export const TechCategories = styled(motion.div)<{
   color?: string;
@@ -14,7 +15,9 @@ export const TechCategories = styled(motion.div)<{
   ${({ viewed }) => viewed && 'cursor: pointer;'}
   flex-wrap: wrap;
   overflow: hidden;
-  width: 300px;
+  @media ${device.tablet} {
+    width: 100%;
+  }
   background: white;
   margin: 1em;
 `;

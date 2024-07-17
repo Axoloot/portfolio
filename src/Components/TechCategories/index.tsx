@@ -3,6 +3,7 @@ import { HTMLMotionProps } from 'framer-motion';
 import Tech from '../Tech';
 import { Grid, TechCategories, TechCategoriesTitle } from './styles';
 import techs from './techs';
+import useWindowDimensions from '../../misc/dimension';
 
 interface TechCategoryProps extends HTMLMotionProps<'div'> {
   viewed: boolean;
@@ -15,6 +16,7 @@ interface TechCategoryProps extends HTMLMotionProps<'div'> {
 
 const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
   (props, ref) => {
+    const { isMobile } = useWindowDimensions();
     const [active, setActive] = useState(false);
 
     const itemVariants = {
@@ -44,7 +46,7 @@ const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
                   width: '100%',
                   zIndex: 10,
                 }
-              : { height: 420, width: 300 }
+              : { height: 420, width: isMobile ? '100%' : 320 }
         }
       >
         <Grid active={active}>

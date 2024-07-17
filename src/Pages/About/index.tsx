@@ -50,9 +50,11 @@ const TypingEffect: React.FC = ({
         {text.split('%').map((t, i) => (
           <>
             {t}
-            {!done && t.length !== message.split('%')[i].length && (
-              <Cursor ref={cursorObjRef}>|</Cursor>
-            )}
+            {!done &&
+              (text.length === 0 ||
+                t.length !== message.split('%')[i].length) && (
+                <Cursor ref={cursorObjRef}>|</Cursor>
+              )}
             <br />
           </>
         ))}

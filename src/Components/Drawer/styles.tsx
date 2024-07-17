@@ -22,10 +22,14 @@ export const StyledDrawer = styled.div`
     flex-direction: row;
     border-right: 0;
     border-top: 0.1em solid;
+    justify-content: space-around;
   }
 `;
 
 export const DrawerItem = styled(NavLink)`
+  @media ${device.tablet} {
+    padding: 1em 0;
+  }
   padding: 1em;
   display: flex;
   align-items: center;
@@ -56,4 +60,11 @@ export const StyledChild = styled.div`
     height: auto;
     overflow: scroll;
   }
+`;
+
+export const MobileCursorWrapper = styled.div`
+  margin: 1em 0;
+  border-left: 0.1em solid black;
+  height: 2em;
+  width: 2em;
 `;

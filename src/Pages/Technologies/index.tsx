@@ -150,20 +150,6 @@ const Technologies = ({
             />
           );
         })}
-        {/* <TechCategories
-          color="purple"
-          ref={techRef}
-          initial={{ width, height }}
-          animate={{ width, height }}
-          transition={{
-            ease: 'anticipate',
-            duration: 1,
-          }}
-        >
-          {techs.devops.map(techname => (
-            <Tech key={techname} name={techname} />
-          ))}
-        </TechCategories> */}
       </TechWrapper>
     </TechContainer>
   );

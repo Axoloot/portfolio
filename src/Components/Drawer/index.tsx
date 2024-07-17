@@ -3,6 +3,7 @@ import {
   ReactElement,
   useCallback,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from 'react';
@@ -16,6 +17,7 @@ import {
   DrawerItem,
   DrawerItemText,
   DrawerWrapper,
+  MobileCursorWrapper,
   StyledChild,
   StyledDrawer,
 } from './styles';
@@ -30,8 +32,13 @@ interface DrawerProps {
 }
 
 const Drawer = ({ children, minified }: DrawerProps) => {
-  const { height } = useWindowDimensions();
-  const [pos, setPos] = useState<Position>({ x: 70, y: height - 30 });
+  const { height, width, isMobile } = useWindowDimensions();
+  const initial = useMemo(
+    () =>
+      isMobile ? { x: width - 30, y: height - 40 } : { x: 70, y: height - 30 },
+    [height, isMobile, width]
+  );
+  const [pos, setPos] = useState<Position>(initial);
   const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>();
   const [cursorImg, setCursorImgFn] = useState(pointer['cursor']);
@@ -50,9 +57,8 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   }, []);
 
   const homeCursor = useCallback(() => {
-    const rect = drawerRef.current?.getBoundingClientRect();
-    if (rect) setPos({ y: height - 30, x: rect.width / 2 });
-  }, [height]);
+    setPos(initial);
+  }, [initial]);
 
   useEffect(() => {
     homeCursor();
@@ -119,7 +125,13 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Resume</DrawerItemText>
         </DrawerItem>
-        <Cursor pos={pos} hidden={hidden} cursorImg={cursorImg} />
+        <MobileCursorWrapper />
+        <Cursor
+          initial={initial}
+          pos={pos}
+          hidden={hidden}
+          cursorImg={cursorImg}
+        />
       </StyledDrawer>
       <StyledChild>{childrenWithProps}</StyledChild>
     </DrawerWrapper>
