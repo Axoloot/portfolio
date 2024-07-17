@@ -3,15 +3,13 @@ import {
   Page,
   Content,
   Line,
-  Section,
   Timeline,
   TimelineDot,
   TimelineItem,
   TimelineText,
-  Text,
-  Desc,
 } from './styles';
 import JobsJSON from './jobs.json';
+import XPPage from '../../Components/XPPage';
 // import SchoolJSON from './schools.json';
 
 interface Job {
@@ -133,16 +131,10 @@ const Xp = () => {
         {Sections.map((sec, index) => {
           return (
             sec.event && (
-              <Section
-                key={index}
+              <XPPage
                 ref={el => (sectionsRef.current[index] = el!)}
-                img={sec.image}
-              >
-                <Text>{sec.dates}</Text>
-                <Text>{sec.company}</Text>
-                <Text>{sec.shortDesc}</Text>
-                <Desc>{sec.desc}</Desc>
-              </Section>
+                section={sec}
+              />
             )
           );
         })}

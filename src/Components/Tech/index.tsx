@@ -25,12 +25,9 @@ const Tech = ({ element, active }: TechProps) => {
       <TechWrapper>
         <TechLogo src={element.logo} />
         <TechName>{element.name}</TechName>
+        {active && <Rating rate={element.rating} />}
       </TechWrapper>
-      {active && (
-        <ActiveContent>
-          <Rating rate={element.rating} />
-        </ActiveContent>
-      )}
+      <ActiveContent></ActiveContent>
     </FullTechWrapper>
   );
 };

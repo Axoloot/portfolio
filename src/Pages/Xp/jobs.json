@@ -41,6 +41,7 @@
     "shortDesc": "DevOps & Architecture Cloud",
     "desc": "Maintient d'un VPS AWS d'une solution complete. Architecture et prototype de nouvelle logique dev & ops. Gestion et optimizations des couts de la platforme. SRE. Création et reecriture de script shell et powershell. Mise en place de IaC avec terraform & packer",
     "type": "job",
+    "dates": "MARS 2023 – AVRIL 2024",
     "image": "https://bureaux-et-commerces-a-louer.rivp.fr/wp-content/uploads/2020/12/63_inaug_Le-Cargo_157-bd-Macdonald-19e_2016%C2%A9Jean-Baptiste-Gurliat-Ville-de-Paris.jpg"
   }
 ]

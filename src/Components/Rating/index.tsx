@@ -27,10 +27,11 @@ const StarContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding: 0 1em;
 `;
 
 const Star = styled.span<{ filled: boolean }>`
-  font-size: 2em;
+  font-size: 1.5em;
   color: ${({ filled }) => (filled ? '#FFD700' : '#e4e5e9')};
   transition: color 0.2s;
 `;
