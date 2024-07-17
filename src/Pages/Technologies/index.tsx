@@ -40,11 +40,6 @@ const Technologies = ({
     }),
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
-
   const animate = useCallback(
     (elem: number, Woffset?: number, Hoffset?: number) => {
       const pos = CategRef.current[elem]?.getBoundingClientRect();
@@ -78,7 +73,7 @@ const Technologies = ({
   }, [click, HomeAnime]);
 
   const SecondAnim = useCallback(() => {
-    if (!CategRef.current[1]) return;
+    if (!CategRef.current[isMobile ? 0 : 1]) return;
     const timeout = setTimeout(() => {
       if (!CategRef.current[1]) return;
       const { height, width } = CategRef.current[1].getBoundingClientRect();
@@ -86,7 +81,7 @@ const Technologies = ({
       Click();
     }, 1000);
     return () => clearTimeout(timeout);
-  }, [animate, Click]);
+  }, [animate, Click, isMobile]);
 
   const FirstAnim = useCallback(() => {
     animate(0);
@@ -129,12 +124,15 @@ const Technologies = ({
         {Categories.map((c, i) => {
           return (
             <TechCategory
-              itemVariants={itemVariants}
               onClickCb={() => toggleHidden(i)}
               ref={el => (CategRef.current[i] = el!)}
               key={c.title}
               viewed={viewed}
-              initial={!i ? { width, height } : 'hidden'}
+              initial={
+                !i
+                  ? { width, height }
+                  : { opacity: viewed ? 1 : 0, width, height }
+              }
               animate={!i && { width, height }}
               transition={{
                 ease: 'anticipate',

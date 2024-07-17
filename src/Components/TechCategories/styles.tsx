@@ -12,7 +12,7 @@ export const TechCategories = styled(motion.div)<{
   border-radius: 0.5em 0.5em 0;
   display: flex;
   position: relative;
-  ${({ viewed }) => viewed && 'cursor: pointer;'}
+  height: 320px;
   flex-wrap: wrap;
   overflow: hidden;
   margin: 1em;
@@ -29,6 +29,13 @@ export const Grid = styled.div<{ active: boolean }>`
       ${({ active }) => (active ? 2 : 3)},
       1fr
     );
+
+  @media ${device.tablet} {
+    grid-template: repeat(3, 1fr) / repeat(
+        ${({ active }) => (active ? 1 : 3)},
+        1fr
+      );
+  }
   grid-column-gap: 1em;
   grid-row-gap: 1em;
   height: 100%;

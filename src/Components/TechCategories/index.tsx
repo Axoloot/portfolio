@@ -12,19 +12,23 @@ interface TechCategoryProps extends HTMLMotionProps<'div'> {
   title: string;
   hidePane: boolean;
   onClickCb: () => void;
-  itemVariants: any;
 }
 
-const TechCategory = React.forwardRef<HTMLInputElement, TechCategoryProps>(
+const TechCategory = React.forwardRef<HTMLDivElement, TechCategoryProps>(
   (props, ref) => {
     const { isMobile } = useWindowDimensions();
     const [active, setActive] = useState(false);
 
-    if (props.hidePane) return <></>;
+    const itemVariants = {
+      hidden: { opacity: props.viewed ? 1 : 0 },
+      visible: { opacity: 1 },
+    };
+
+    if (props.hidePane) return null;
     return (
       <TechCategories
         ref={ref}
-        variants={props.itemVariants}
+        variants={itemVariants}
         onClick={() => {
           if (!props.viewed) return;
           setActive(a => !a);
