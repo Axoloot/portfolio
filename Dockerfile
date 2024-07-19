@@ -3,7 +3,7 @@ WORKDIR /build
 COPY *.json ./
 COPY *.mjs ./
 COPY .prettierrc ./
-RUN npm ci --legacy-peer-deps
+RUN npm i --legacy-peer-deps
 COPY public/ public
 COPY src/ src
 RUN npm run build
