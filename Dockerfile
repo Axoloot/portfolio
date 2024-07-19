@@ -1,9 +1,9 @@
-FROM node:latest AS build
+FROM node:22 AS build
 WORKDIR /build
 COPY *.json ./
 COPY *.mjs ./
 COPY .prettierrc ./
-RUN npm i --legacy-peer-deps
+RUN npm ci --force
 COPY public/ public
 COPY src/ src
 RUN npm run build
