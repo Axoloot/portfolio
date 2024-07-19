@@ -1,5 +1,7 @@
-FROM node:22 AS build
+FROM node:22.3 AS build
 WORKDIR /build
+RUN node -v
+RUN npm -v
 COPY *.json ./
 COPY *.mjs ./
 COPY .prettierrc ./
