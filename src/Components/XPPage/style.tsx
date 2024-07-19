@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../misc/sizes';
 
 export const Section = styled.div<{ img: string }>`
   flex: 1 0 100vh;
@@ -10,14 +11,14 @@ export const Section = styled.div<{ img: string }>`
   color: white;
   flex-direction: column;
 
-  background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 0.7),
-      rgba(127, 127, 127, 0.4)
-    ),
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
     url('${({ img }) => img}');
   background-size: cover;
   position: relative;
+
+  @media ${device.tablet} {
+    justify-content: space-around;
+  }
 `;
 
 export const Year = styled.div`
@@ -34,6 +35,16 @@ export const Description = styled.div`
   margin: 2em 7em;
   font-size: 0.7em;
   text-align: center;
+
+  @media ${device.tablet} {
+    margin: 2em;
+    font-size: 0.5em;
+  }
 `;
 
-export const Duration = styled.div``;
+export const Duration = styled.div`
+  @media ${device.tablet} {
+    margin: 0;
+    font-size: 0.5em;
+  }
+`;

@@ -11,8 +11,10 @@ const XPPage = React.forwardRef<HTMLDivElement, XPSection>((props, ref) => {
   return (
     <Section ref={ref} img={section.image}>
       <Year>{section.year}</Year>
-      <Company>{section.company}</Company>
-      <Duration>{section.dates}</Duration>
+      <div style={{ textAlign: 'center' }}>
+        <Company>{section.company}</Company>
+        <Duration>{section.dates}</Duration>
+      </div>
       <Description>{section.desc}</Description>
     </Section>
   );

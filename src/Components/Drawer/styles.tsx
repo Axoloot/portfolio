@@ -14,14 +14,14 @@ export const DrawerWrapper = styled.div`
 export const StyledDrawer = styled.div`
   display: flex;
   flex-direction: column;
-  border-right: 0.1em solid;
+  border-right: grey 0.08em solid;
   background: white;
   z-index: 1;
 
   @media ${device.tablet} {
     flex-direction: row;
     border-right: 0;
-    border-top: 0.1em solid;
+    border-top: grey 0.08em solid;
     justify-content: space-around;
   }
 `;
@@ -63,8 +63,16 @@ export const StyledChild = styled.div`
 `;
 
 export const MobileCursorWrapper = styled.div`
-  margin: 1em 0;
-  border-left: 0.1em solid black;
-  height: 2em;
-  width: 2em;
+  margin-top: auto;
+  border-top: 0.01em solid grey;
+  height: 3em;
+  width: 5em;
+  align-self: center;
+  @media ${device.tablet} {
+    margin: 1em 0;
+    border-top: none;
+    border-left: 0.01em solid grey;
+    width: 2em;
+    height: 2em;
+  }
 `;

@@ -43,13 +43,22 @@ const Xp = () => {
   const [dotY, setDotY] = useState(Sections[activeIndex].y);
 
   const handleScroll = () => {
-    const index = sectionsRef.current.findIndex(section => {
-      if (!section) return null;
-      const rect = section.getBoundingClientRect();
-      return rect.top >= 0;
+    let closestIndex = -1;
+    let closestDistance = Number.MAX_VALUE;
+
+    sectionsRef.current.forEach((section, i) => {
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      }
     });
-    if (index !== -1) {
-      setActiveIndex(index);
+
+    if (closestIndex !== -1) {
+      setActiveIndex(closestIndex);
     }
   };
 

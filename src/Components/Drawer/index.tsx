@@ -57,8 +57,13 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   }, []);
 
   const homeCursor = useCallback(() => {
-    setPos(initial);
-  }, [initial]);
+    if (isMobile) {
+      setPos(initial);
+      return;
+    }
+    const rect = drawerRef.current?.getBoundingClientRect();
+    if (rect) setPos({ y: height - 30, x: rect.width / 2 - 8 });
+  }, [initial, height, isMobile]);
 
   useEffect(() => {
     homeCursor();

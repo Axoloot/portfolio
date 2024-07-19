@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { device } from '../../misc/sizes';
 
 export const Page = styled.div`
   display: flex;
@@ -22,6 +23,10 @@ export const Timeline = styled.div<{ sectionNb: number }>`
   align-items: center;
   justify-content: space-between;
   position: relative;
+
+  @media ${device.tablet} {
+    width: 3em;
+  }
 `;
 
 export const TimelineItem = styled.div`
@@ -50,10 +55,17 @@ export const TimelineDot = styled(motion.div)<{
   z-index: 1;
   position: absolute;
   left: 1em;
+  @media ${device.tablet} {
+    left: auto;
+  }
 `;
 
 export const TimelineText = styled.div`
   margin: 0 0 0 2.5em;
+
+  @media ${device.tablet} {
+    display: none;
+  }
 `;
 
 export const Line = styled(motion.div)<{ red?: boolean }>`
@@ -63,10 +75,7 @@ export const Line = styled(motion.div)<{ red?: boolean }>`
   position: absolute;
   z-index: 0;
   left: 1.45em;
-`;
-
-export const Text = styled.div``;
-
-export const Desc = styled.div`
-  text-align: center;
+  @media ${device.tablet} {
+    left: auto;
+  }
 `;

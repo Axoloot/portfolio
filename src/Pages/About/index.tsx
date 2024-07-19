@@ -31,7 +31,7 @@ const TypingEffect: React.FC = ({
         homeCursor && homeCursor();
         isDone(true);
       }
-    }, 150);
+    }, 110);
     return () => clearInterval(interval);
   }, [message, setHidden, isDone, homeCursor]);
 
