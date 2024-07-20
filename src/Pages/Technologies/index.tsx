@@ -13,8 +13,8 @@ const baseCategory = [
   { name: 'devops', title: 'DevOps', color: '#ba3f2c', hidePane: false },
   { name: 'frontend', title: 'FrontEnd', color: '#a33726', hidePane: false },
   { name: 'backend', title: 'BackEnd', color: '#8b2f21', hidePane: false },
-  // { name: 'devops', title: 'DevOps', color: 'tan' },
 ];
+
 const Technologies = ({
   homeCursor,
   setPos,
@@ -28,6 +28,7 @@ const Technologies = ({
   const [width, setWidth] = useState<string | number>(viewed ? 420 : 120);
   const [height, setHeight] = useState(viewed ? 420 : 120);
   const CategRef = useRef<HTMLDivElement[]>([]);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const containerVariants = {
     hidden: {},
@@ -119,18 +120,20 @@ const Technologies = ({
         animate="visible"
         variants={containerVariants}
         custom={2}
+        ref={parentRef}
       >
         {Categories.map((c, i) => {
           return (
             <TechCategory
               onClickCb={() => toggleHidden(i)}
               ref={el => (CategRef.current[i] = el!)}
+              parentRef={parentRef}
               key={c.title}
               viewed={viewed}
               initial={
                 !i
                   ? { width, height }
-                  : { opacity: viewed ? 1 : 0, width, height }
+                  : { opacity: viewed ? 1 : 0, width: 420, height: 420 }
               }
               animate={!i && { width, height }}
               transition={{

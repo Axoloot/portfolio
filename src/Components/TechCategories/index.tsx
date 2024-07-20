@@ -13,6 +13,7 @@ interface TechCategoryProps extends HTMLMotionProps<'div'> {
   title: string;
   hidePane: boolean;
   onClickCb: () => void;
+  parentRef: any;
 }
 
 function useQuery() {
@@ -52,7 +53,7 @@ const TechCategory = React.forwardRef<HTMLDivElement, TechCategoryProps>(
             : active
               ? {
                   height: 'auto',
-                  width: '100%',
+                  width: props.parentRef.current.getBoundingClientRect().width,
                   zIndex: 10,
                 }
               : { height: 420, width: isMobile ? '100%' : 420 }
