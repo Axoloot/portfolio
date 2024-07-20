@@ -16,6 +16,7 @@ export const TechWrapper = styled.div`
 
 export const ActiveContent = styled.div`
   text-align: center;
+  align-self: center;
 `;
 
 export const TechLogo = styled.img`

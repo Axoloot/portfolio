@@ -25,6 +25,7 @@ import Cursor from '../Cursor';
 import { Position } from '../../misc/types';
 import useWindowDimensions from '../../misc/dimension';
 import pointer from '../Cursor/mouseIcon';
+import Credits from '../../Pages/Credits';
 
 interface DrawerProps {
   minified?: boolean;
@@ -145,17 +146,14 @@ const Drawer = ({ children, minified }: DrawerProps) => {
       </DrawerWrapper>
       {!isMobile && (
         <StyledChild ref={creditsRef}>
-          <button
-            onClick={() =>
+          <Credits
+            onClick={() => {
               window.scrollTo({
                 behavior: 'smooth',
                 top: 0,
-              })
-            }
-          >
-            top
-          </button>
-          {/* <Credits /> */}
+              });
+            }}
+          />
         </StyledChild>
       )}
     </>

@@ -17,7 +17,7 @@ export const Section = styled.div<{ img: string }>`
   position: relative;
 
   @media ${device.tablet} {
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 `;
 
@@ -37,7 +37,7 @@ export const Description = styled.div`
   text-align: center;
 
   @media ${device.tablet} {
-    margin: 2em;
+    margin: 1em;
     font-size: 0.5em;
   }
 `;

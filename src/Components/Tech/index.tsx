@@ -1,4 +1,5 @@
 import Rating from '../Rating';
+import { LoremIpsum } from 'lorem-ipsum';
 import {
   ActiveContent,
   FullTechWrapper,
@@ -7,16 +8,28 @@ import {
   TechWrapper,
 } from './styles';
 
-interface Tech {
+const lorem = new LoremIpsum({
+  sentencesPerParagraph: {
+    max: 8,
+    min: 4,
+  },
+  wordsPerSentence: {
+    max: 16,
+    min: 4,
+  },
+});
+
+interface TechElem {
   name: string;
   logo: string;
   type: string;
   rating: number;
+  description: string;
 }
 
 interface TechProps {
   active: boolean;
-  element: Tech;
+  element: TechElem;
 }
 
 const Tech = ({ element, active }: TechProps) => {
@@ -27,7 +40,7 @@ const Tech = ({ element, active }: TechProps) => {
         <TechName>{element.name}</TechName>
         {active && <Rating rate={element.rating} />}
       </TechWrapper>
-      <ActiveContent></ActiveContent>
+      {active && <ActiveContent>{lorem.generateSentences(1)}</ActiveContent>}
     </FullTechWrapper>
   );
 };
