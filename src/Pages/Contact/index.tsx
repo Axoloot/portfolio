@@ -10,7 +10,6 @@ import {
   SubmitButton,
 } from './styles';
 import { useCallback, useState } from 'react';
-
 const Medias = [
   {
     name: 'github',
@@ -46,7 +45,7 @@ const Contact = () => {
 
   return (
     <ContactWrapper>
-      <h1>Contact</h1>
+      <h1>Let&apos;s Connect</h1>
       <ContactBox>
         <NameWrapper>
           <Input

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { generateNeumorphicCss } from '../../misc';
 
 export const ContactWrapper = styled.div`
   height: 100%;
@@ -27,11 +28,7 @@ export const Input = styled.input`
   color: ${props => props.theme.secondary};
   flex: auto;
   border: none;
-  border-radius: 1em;
-  background: #393e41;
-  box-shadow:
-    20px 20px 60px #17191a,
-    -20px -20px 60px #5b6368;
+  ${props => generateNeumorphicCss(props.theme.primary)}
 `;
 
 export const InputText = styled.textarea`
@@ -40,11 +37,7 @@ export const InputText = styled.textarea`
   padding: 1em;
   height: 15em;
   border: none;
-  border-radius: 1em;
-  background: #393e41;
-  box-shadow:
-    20px 20px 60px #17191a,
-    -20px -20px 60px #5b6368;
+  ${props => generateNeumorphicCss(props.theme.primary)}
 `;
 
 export const MediasWrapper = styled.div`

@@ -42,6 +42,12 @@ const theme = {
   tertiary: '#e94f37',
 };
 
+// const theme = {
+//   primary: '#264653',
+//   secondary: '#2a9d8f',
+//   tertiary: '#f4a261',
+// };
+
 root.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
