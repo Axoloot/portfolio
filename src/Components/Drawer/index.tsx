@@ -41,6 +41,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   const [pos, setPos] = useState<Position>(initial);
   const [hidden, setHidden] = useState(false);
   const drawerRef = useRef<HTMLDivElement>();
+  const creditsRef = useRef<HTMLDivElement>(null);
   const [cursorImg, setCursorImgFn] = useState(pointer['cursor']);
 
   const click = useCallback(() => {
@@ -77,63 +78,87 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   });
 
   return (
-    <DrawerWrapper>
-      <StyledDrawer ref={el => (drawerRef.current = el!)}>
-        <DrawerItem to="/" replace={true}>
-          <About
-            fill="inherit"
-            height="2em"
-            width="2em"
-            style={{ margin: '0 0.5em' }}
+    <>
+      <DrawerWrapper>
+        <StyledDrawer ref={el => (drawerRef.current = el!)}>
+          <DrawerItem to="/" replace={true}>
+            <About
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText minified={minified}>About</DrawerItemText>
+          </DrawerItem>
+          <DrawerItem to="/xp" replace={true}>
+            <Career
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText minified={minified}>Career</DrawerItemText>
+          </DrawerItem>
+          <DrawerItem to="/techno" replace={true}>
+            <Code
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText minified={minified}>Technologies</DrawerItemText>
+          </DrawerItem>
+          <DrawerItem to="/contact" replace={true}>
+            <Contact
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText minified={minified}>Contact</DrawerItemText>
+          </DrawerItem>
+          <DrawerItem to="/cv" replace={true}>
+            <Resume
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText minified={minified}>Resume</DrawerItemText>
+          </DrawerItem>
+          <MobileCursorWrapper />
+          <Cursor
+            onClick={() => {
+              creditsRef.current?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'end',
+                inline: 'nearest',
+              });
+            }}
+            initial={initial}
+            pos={pos}
+            hidden={hidden}
+            cursorImg={cursorImg}
           />
-          <DrawerItemText minified={minified}>About</DrawerItemText>
-        </DrawerItem>
-        <DrawerItem to="/xp" replace={true}>
-          <Career
-            fill="inherit"
-            height="2em"
-            width="2em"
-            style={{ margin: '0 0.5em' }}
-          />
-          <DrawerItemText minified={minified}>Career</DrawerItemText>
-        </DrawerItem>
-        <DrawerItem to="/techno" replace={true}>
-          <Code
-            fill="inherit"
-            height="2em"
-            width="2em"
-            style={{ margin: '0 0.5em' }}
-          />
-          <DrawerItemText minified={minified}>Technologies</DrawerItemText>
-        </DrawerItem>
-        <DrawerItem to="/contact" replace={true}>
-          <Contact
-            fill="inherit"
-            height="2em"
-            width="2em"
-            style={{ margin: '0 0.5em' }}
-          />
-          <DrawerItemText minified={minified}>Contact</DrawerItemText>
-        </DrawerItem>
-        <DrawerItem to="/cv" replace={true}>
-          <Resume
-            fill="inherit"
-            height="2em"
-            width="2em"
-            style={{ margin: '0 0.5em' }}
-          />
-          <DrawerItemText minified={minified}>Resume</DrawerItemText>
-        </DrawerItem>
-        <MobileCursorWrapper />
-        <Cursor
-          initial={initial}
-          pos={pos}
-          hidden={hidden}
-          cursorImg={cursorImg}
-        />
-      </StyledDrawer>
-      <StyledChild>{childrenWithProps}</StyledChild>
-    </DrawerWrapper>
+        </StyledDrawer>
+        <StyledChild>{childrenWithProps}</StyledChild>
+      </DrawerWrapper>
+      {!isMobile && (
+        <StyledChild ref={creditsRef}>
+          <button
+            onClick={() =>
+              window.scrollTo({
+                behavior: 'smooth',
+                top: 0,
+              })
+            }
+          >
+            top
+          </button>
+          {/* <Credits /> */}
+        </StyledChild>
+      )}
+    </>
   );
 };
 

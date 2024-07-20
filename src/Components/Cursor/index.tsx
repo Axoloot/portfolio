@@ -6,11 +6,13 @@ interface CursorProps {
   cursorImg: string;
   initial: Position;
   pos: Position;
+  onClick: () => void;
 }
 
-const Cursor = ({ hidden, pos, cursorImg, initial }: CursorProps) => {
+const Cursor = ({ hidden, pos, cursorImg, initial, onClick }: CursorProps) => {
   return (
     <CursorWrapper
+      onClick={onClick}
       initial={initial}
       hidden={hidden}
       animate={pos}
