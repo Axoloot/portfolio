@@ -10,10 +10,8 @@ export const TechCategories = styled(motion.div)<{
   temp?: boolean;
 }>`
   flex-direction: ${({ active }) => (active ? 'column' : 'row')};
-  ${props =>
-    props.temp
-      ? generateNeumorphicCss(props.theme.primary)
-      : `border: solid 0.1em ${props.color};`}
+  ${props => generateNeumorphicCss(props.theme.primary)}
+  ${props => props.temp && `border: solid 0.1em ${props.color};`}
   border-radius: 0.5em 0.5em 0;
   display: flex;
   position: relative;
