@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { device } from '../../misc/sizes';
+import { generateNeumorphicCss } from '../../misc';
 
 export const TechCategories = styled(motion.div)<{
   color: string;

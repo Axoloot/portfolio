@@ -10,9 +10,9 @@ interface TechProps extends DrawerProps {
 }
 
 const baseCategory = [
-  { name: 'devops', title: 'DevOps', color: 'tan', hidePane: false },
-  { name: 'frontend', title: 'FrontEnd', color: 'blue', hidePane: false },
-  { name: 'backend', title: 'BackEnd', color: 'yellow', hidePane: false },
+  { name: 'devops', title: 'DevOps', color: '#ba3f2c', hidePane: false },
+  { name: 'frontend', title: 'FrontEnd', color: '#a33726', hidePane: false },
+  { name: 'backend', title: 'BackEnd', color: '#8b2f21', hidePane: false },
   // { name: 'devops', title: 'DevOps', color: 'tan' },
 ];
 

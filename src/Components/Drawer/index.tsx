@@ -95,7 +95,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
             width="2em"
             style={{ margin: '0 0.5em' }}
           />
-          <DrawerItemText minified={minified}>Expériences</DrawerItemText>
+          <DrawerItemText minified={minified}>Career</DrawerItemText>
         </DrawerItem>
         <DrawerItem to="/techno" replace={true}>
           <Code

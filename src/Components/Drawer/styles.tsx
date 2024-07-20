@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../../misc/sizes';
+import { generateNeumorphicCss } from '../../misc';
 
 export const DrawerWrapper = styled.div`
   display: flex;
@@ -14,14 +15,13 @@ export const DrawerWrapper = styled.div`
 export const StyledDrawer = styled.div`
   display: flex;
   flex-direction: column;
-  border-right: ${props => props.theme.tertiary} 0.08em solid;
+  ${props => generateNeumorphicCss(props.theme.primary, false)}
   background: ${props => props.theme.primary};
   z-index: 1;
 
   @media ${device.tablet} {
     flex-direction: row;
     border-right: 0;
-    border-top: ${props => props.theme.tertiary} 0.08em solid;
     justify-content: space-around;
   }
 `;
@@ -79,6 +79,7 @@ export const MobileCursorWrapper = styled.div`
   height: 3em;
   width: 5em;
   align-self: center;
+
   @media ${device.tablet} {
     margin: 1em 0;
     border-top: none;
