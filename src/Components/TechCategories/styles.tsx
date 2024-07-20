@@ -7,9 +7,13 @@ export const TechCategories = styled(motion.div)<{
   color: string;
   active?: boolean;
   viewed?: boolean;
+  temp?: boolean;
 }>`
   flex-direction: ${({ active }) => (active ? 'column' : 'row')};
-  border: solid 0.1em ${({ color }) => color};
+  ${props =>
+    props.temp
+      ? generateNeumorphicCss(props.theme.primary)
+      : `border: solid 0.1em ${props.color};`}
   border-radius: 0.5em 0.5em 0;
   display: flex;
   position: relative;

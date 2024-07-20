@@ -1,5 +1,5 @@
 import { DrawerProps } from '../../misc/types';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
 import pointers from '../../Components/Cursor/mouseIcon';
 import { TechContainer, TechWrapper } from './styles';
@@ -15,7 +15,6 @@ const baseCategory = [
   { name: 'backend', title: 'BackEnd', color: '#8b2f21', hidePane: false },
   // { name: 'devops', title: 'DevOps', color: 'tan' },
 ];
-
 const Technologies = ({
   homeCursor,
   setPos,

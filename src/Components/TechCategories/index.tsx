@@ -4,6 +4,7 @@ import Tech from '../Tech';
 import { Grid, TechCategories, TechCategoriesTitle } from './styles';
 import techs from './techs';
 import useWindowDimensions from '../../misc/dimension';
+import { useLocation } from 'react-router-dom';
 
 interface TechCategoryProps extends HTMLMotionProps<'div'> {
   viewed: boolean;
@@ -14,8 +15,15 @@ interface TechCategoryProps extends HTMLMotionProps<'div'> {
   onClickCb: () => void;
 }
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
+
 const TechCategory = React.forwardRef<HTMLDivElement, TechCategoryProps>(
   (props, ref) => {
+    const query = useQuery();
     const { isMobile } = useWindowDimensions();
     const [active, setActive] = useState(false);
 
@@ -27,6 +35,7 @@ const TechCategory = React.forwardRef<HTMLDivElement, TechCategoryProps>(
     if (props.hidePane) return null;
     return (
       <TechCategories
+        temp={query.get('nm') === 'true'}
         ref={ref}
         variants={itemVariants}
         onClick={() => {
