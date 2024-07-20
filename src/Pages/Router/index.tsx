@@ -11,6 +11,7 @@ import { useState } from 'react';
 
 const Router = () => {
   const techStatus = useState(false);
+  const aboutStatus = useState(false);
 
   return (
     <BrowserRouter>
@@ -19,7 +20,7 @@ const Router = () => {
           index
           element={
             <Drawer>
-              <About />
+              <About aboutStatus={aboutStatus} />
             </Drawer>
           }
         />

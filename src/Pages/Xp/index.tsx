@@ -68,7 +68,7 @@ const Xp = () => {
 
   useEffect(() => {
     setDotY(Sections[activeIndex].y);
-  });
+  }, [setDotY, Sections, activeIndex]);
 
   const scrollToCurrent = (index: number) => {
     if (!Sections[index].event) return;
@@ -86,7 +86,7 @@ const Xp = () => {
         <Line animate={{ height: Sections[activeIndex].y }} />
         <TimelineDot
           drag="y"
-          initial={{ y: Sections[activeIndex].y }}
+          initial={{ y: Sections[activeIndex].y || 16 }}
           event
           dragElastic={1}
           onDrag={(event, info) => {
