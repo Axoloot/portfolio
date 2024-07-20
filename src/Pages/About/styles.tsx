@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import { device } from '../../misc/sizes';
+import { motion } from 'framer-motion';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -27,9 +28,7 @@ export const Cursor = styled.span`
 export const TextContainer = styled.div`
   text-align: center;
   @media ${device.tablet} {
-    flex-direction: column-reverse;
     font-size: 1em;
-    position: fixed;
   }
   font-size: 1.5em;
   font-family: 'Courier New', Courier, monospace;
@@ -37,7 +36,7 @@ export const TextContainer = styled.div`
   overflow: hidden;
 `;
 
-export const DescriptionContainer = styled.div`
+export const DescriptionContainer = styled(motion.div)`
   justify-self: end;
   text-align: center;
   width: 100%;

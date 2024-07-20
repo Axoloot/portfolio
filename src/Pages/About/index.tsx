@@ -133,7 +133,7 @@ const TypingEffect: React.FC<AboutProps> = ({
           </React.Fragment>
         ))}
       </TextContainer>
-      <DescriptionContainer style={animDone ? {} : { opacity: 0 }}>
+      <DescriptionContainer animate={{ opacity: animDone ? 1 : 0 }}>
         <NavWrapper>
           <Arrow
             direction="prev"

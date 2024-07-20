@@ -13,6 +13,7 @@ const root = ReactDOM.createRoot(
 
 const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
   body {
+    overflow: hidden;
     background: ${props => props.theme.primary};
     color: ${props => props.theme.secondary};
     margin: 0;
