@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { device } from '../../misc/sizes';
 
 export const TechCategories = styled(motion.div)<{
-  color?: string;
+  color: string;
   active?: boolean;
   viewed?: boolean;
 }>`
   flex-direction: ${({ active }) => (active ? 'column' : 'row')};
-  border: solid 0.1em ${({ color }) => color ?? 'green'};
+  border: solid 0.1em ${({ color }) => color};
   border-radius: 0.5em 0.5em 0;
   display: flex;
   position: relative;

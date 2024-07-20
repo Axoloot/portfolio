@@ -43,12 +43,6 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   const drawerRef = useRef<HTMLDivElement>();
   const [cursorImg, setCursorImgFn] = useState(pointer['cursor']);
 
-  const style = ({ isActive }: { isActive: boolean }) => ({
-    fontWeight: isActive ? 'bold' : '',
-    color: isActive ? 'green' : 'black',
-    fill: isActive ? 'green' : 'black',
-  });
-
   const click = useCallback(() => {
     setCursorImgFn(pointer['pointer']);
     const timeout = setTimeout(() => setCursorImgFn(pointer['cursor']), 1500);
@@ -85,7 +79,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   return (
     <DrawerWrapper>
       <StyledDrawer ref={el => (drawerRef.current = el!)}>
-        <DrawerItem to="/" replace={true} style={style}>
+        <DrawerItem to="/" replace={true}>
           <About
             fill="inherit"
             height="2em"
@@ -94,7 +88,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>About</DrawerItemText>
         </DrawerItem>
-        <DrawerItem to="/xp" replace={true} style={style}>
+        <DrawerItem to="/xp" replace={true}>
           <Career
             fill="inherit"
             height="2em"
@@ -103,7 +97,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Expériences</DrawerItemText>
         </DrawerItem>
-        <DrawerItem to="/techno" replace={true} style={style}>
+        <DrawerItem to="/techno" replace={true}>
           <Code
             fill="inherit"
             height="2em"
@@ -112,7 +106,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Technologies</DrawerItemText>
         </DrawerItem>
-        <DrawerItem to="/contact" replace={true} style={style}>
+        <DrawerItem to="/contact" replace={true}>
           <Contact
             fill="inherit"
             height="2em"
@@ -121,7 +115,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           />
           <DrawerItemText minified={minified}>Contact</DrawerItemText>
         </DrawerItem>
-        <DrawerItem to="/cv" replace={true} style={style}>
+        <DrawerItem to="/cv" replace={true}>
           <Resume
             fill="inherit"
             height="2em"

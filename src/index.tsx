@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createGlobalStyle } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import Router from './Pages/Router';
 
 const env = process.env.NODE_ENV || 'local';
@@ -13,6 +13,8 @@ const root = ReactDOM.createRoot(
 
 const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
   body {
+    background: ${props => props.theme.primary};
+    color: ${props => props.theme.secondary};
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -32,10 +34,19 @@ const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
     width: 100svw;
   }
 `;
+
+const theme = {
+  primary: '#393e41',
+  secondary: '#f6f7eb',
+  tertiary: '#e94f37',
+};
+
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <Router />
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

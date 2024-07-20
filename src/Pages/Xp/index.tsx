@@ -82,7 +82,7 @@ const Xp = () => {
   return (
     <Page>
       <Timeline sectionNb={Sections.length}>
-        <Line red />
+        <Line full />
         <Line animate={{ height: Sections[activeIndex].y }} />
         <TimelineDot
           drag="y"
@@ -94,18 +94,14 @@ const Xp = () => {
               if (!s) return null;
               return info.point.y - s.y <= 50;
             });
-            if (index !== -1) {
-              scrollToCurrent(index);
-            }
+            if (index !== -1) scrollToCurrent(index);
           }}
           onDragExit={() => {
             setDotY(Sections[activeIndex].y);
           }}
-          animate={{
-            y: dotY,
-          }}
+          animate={{ y: dotY }}
           transition={{ ease: 'easeInOut' }}
-          style={{ scale: 1.2, background: 'green', zIndex: 3 }}
+          style={{ scale: 1.2, background: '#e94f37', zIndex: 3 }}
         />
         {Sections.map((section, index) => (
           <TimelineItem
@@ -121,15 +117,8 @@ const Xp = () => {
           >
             <TimelineDot
               event={section.event}
-              animate={{
-                scale: 1,
-                backgroundColor:
-                  activeIndex >= index
-                    ? section.type === 'school'
-                      ? 'green'
-                      : 'green'
-                    : 'grey',
-              }}
+              active={activeIndex >= index}
+              animate={{ scale: 1 }}
               transition={{ ease: 'easeInOut' }}
             />
             <TimelineText>{section.year}</TimelineText>

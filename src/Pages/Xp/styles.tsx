@@ -17,7 +17,7 @@ export const Content = styled.div`
 
 export const Timeline = styled.div<{ sectionNb: number }>`
   width: 6em;
-  background-color: #ddd;
+  background-color: ${props => props.theme.primary};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,7 @@ export const TimelineDot = styled(motion.div)<{
   flex: 1 0 100vh;
 
   height: ${props => (props.event ? '1.3em' : '.3em')};
-  background-color: ${props => (props.active ? 'blue' : 'gray')};
+  background-color: ${props => (props.active ? props.theme.tertiary : 'grey')};
   transition: background-color 0.3s ease;
   z-index: 1;
   position: absolute;
@@ -68,9 +68,10 @@ export const TimelineText = styled.div`
   }
 `;
 
-export const Line = styled(motion.div)<{ red?: boolean }>`
-  ${props => (props.red ? 'background: grey;' : 'background: green;')}
-  ${props => (props.red ? 'height: 100%;' : 'height: 0;')}
+export const Line = styled(motion.div)<{ full?: boolean }>`
+  ${props =>
+    props.full ? 'background: grey;' : `background: ${props.theme.tertiary};`}
+  ${props => (props.full ? 'height: 100%;' : 'height: 0;')}
   width: .4em;
   position: absolute;
   z-index: 0;

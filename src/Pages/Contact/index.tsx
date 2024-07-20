@@ -46,7 +46,7 @@ const Contact = () => {
 
   return (
     <ContactWrapper>
-      <h1>Contacte</h1>
+      <h1>Contact</h1>
       <ContactBox>
         <NameWrapper>
           <Input

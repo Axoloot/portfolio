@@ -24,13 +24,27 @@ export const NameWrapper = styled.div`
 export const Input = styled.input`
   margin: 1em;
   padding: 1em;
+  color: ${props => props.theme.secondary};
   flex: auto;
+  border: none;
+  border-radius: 1em;
+  background: #393e41;
+  box-shadow:
+    20px 20px 60px #17191a,
+    -20px -20px 60px #5b6368;
 `;
 
 export const InputText = styled.textarea`
   margin: 1em;
+  color: ${props => props.theme.secondary};
   padding: 1em;
   height: 15em;
+  border: none;
+  border-radius: 1em;
+  background: #393e41;
+  box-shadow:
+    20px 20px 60px #17191a,
+    -20px -20px 60px #5b6368;
 `;
 
 export const MediasWrapper = styled.div`
@@ -54,4 +68,10 @@ export const SubmitButton = styled.button`
   border: none;
   margin: 0 1em;
   padding: 1em;
+  border: none;
+  border-radius: 1em;
+  background: #e94f37;
+  box-shadow:
+    20px 20px 60px #5d2016,
+    -20px -20px 60px #5b6368;
 `;
