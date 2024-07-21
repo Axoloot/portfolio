@@ -8,7 +8,8 @@ export const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   whitespace: pre-wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  position: relative;
 `;
 
 export const blink = keyframes`
@@ -27,19 +28,22 @@ export const Cursor = styled.span`
 
 export const TextContainer = styled.div`
   text-align: center;
-  @media ${device.tablet} {
-    font-size: 1em;
-  }
   font-size: 1.5em;
   font-family: 'Courier New', Courier, monospace;
   white-space: nowrap;
   overflow: hidden;
+  @media ${device.tablet} {
+    font-size: 1em;
+  }
 `;
 
 export const DescriptionContainer = styled(motion.div)`
-  justify-self: end;
   text-align: center;
   width: 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 2em;
 `;
 
 export const NavWrapper = styled.div`

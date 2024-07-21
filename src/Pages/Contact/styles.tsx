@@ -42,7 +42,7 @@ export const InputText = styled.textarea`
 
 export const MediasWrapper = styled.div`
   display: flex;
-  border-top: solid gray 0.1em;
+  border-top: solid ${props => props.theme.tertiary} 0.08em;
   padding-top: 1em;
 `;
 

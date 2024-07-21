@@ -33,13 +33,6 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-// export const TopArrow = styled.div`
-//   height: 2em;
-//   width: 2em;
-//   position: absolute;
-
-// `;
-
 export const TopArrow = styled.button<{ show: boolean }>`
   margin: 0 !important;
   padding: 0 !important;
