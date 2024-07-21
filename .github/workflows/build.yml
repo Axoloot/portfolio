@@ -65,13 +65,12 @@ jobs:
           echo "$PRIVATE_KEY" > private_key.pem && chmod 600 private_key.pem
           ssh -o StrictHostKeyChecking=no -i private_key.pem ${USER_NAME}@${HOSTNAME} '
             docker pull docker.io/axoloot/portfolio:latest &&
-            docker run -d --name portfolio_test -v /home/ubuntu/certs/:/tmp/certs -p 8080:80 -p 4443:443 docker.io/axoloot/portfolio:latest &&
+            docker run -d --name portfolio_test docker.io/axoloot/portfolio:latest &&
             sleep 30 && # Adjust as necessary for your container to start
-            if curl -f http://localhost:8080; then
+            if docker exec portfolio_test curl -f http://localhost:80; then
               docker stop portfolio || true &&
               docker rm portfolio || true &&
-              docker stop portfolio_test &&
-              docker rename portfolio_test portfolio &&
+              docker rm portfolio_test || true &&
               docker run -d -v /home/ubuntu/certs/:/tmp/certs -p 80:80 -p 443:443 --name portfolio docker.io/axoloot/portfolio:latest
             else
               docker stop portfolio_test || true &&
