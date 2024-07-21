@@ -21,6 +21,8 @@ const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
   fill: ${props => props.theme.secondary};
   height: 3em;
   width: 1em;
+  min-width: 1em;
+  max-width: 1em;
   ${props => generateNeumorphicCss(props.theme.primary)}
   @media ${device.tablet} {
     ${props =>

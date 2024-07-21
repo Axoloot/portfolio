@@ -65,3 +65,7 @@ export const Dot = styled.span<{ $active: boolean }>`
   margin: 0 5px;
   ${props => generateNeumorphicCss(props.theme.primary, true, props.$active)}
 `;
+
+export const DescriptionText = styled(motion.div)`
+  padding: 0 1em;
+`;

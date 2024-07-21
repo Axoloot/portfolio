@@ -68,7 +68,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
   }, [children, height, homeCursor]);
 
   const childrenWithProps = cloneElement(children, {
-    $setPos: useCallback(
+    setPos: useCallback(
       (pos: Position) => setTimeout(() => setPos(pos), 1),
       []
     ),

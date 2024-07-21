@@ -9,6 +9,7 @@ import {
   DotContainer,
   Dot,
   NavWrapper,
+  DescriptionText,
 } from './styles';
 import { DrawerProps } from '../../misc/types';
 import Arrow from '../../Components/Arrow';
@@ -133,7 +134,10 @@ const TypingEffect: React.FC<AboutProps> = ({
           </React.Fragment>
         ))}
       </TextContainer>
-      <DescriptionContainer animate={{ opacity: animDone ? 1 : 0 }}>
+      <DescriptionContainer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: animDone ? 1 : 0 }}
+      >
         <NavWrapper>
           <Arrow
             direction="prev"
@@ -144,7 +148,7 @@ const TypingEffect: React.FC<AboutProps> = ({
               )
             }
           />
-          <motion.div
+          <DescriptionText
             key={captionIndex}
             initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
             animate={{ opacity: 1, x: 0 }}
@@ -152,7 +156,7 @@ const TypingEffect: React.FC<AboutProps> = ({
             transition={{ duration: 0.5 }}
           >
             {cap[captionIndex].description}
-          </motion.div>
+          </DescriptionText>
           <Arrow
             direction="next"
             onClick={() =>
