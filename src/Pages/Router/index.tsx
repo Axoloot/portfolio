@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 // @ts-ignore
-import cv from './cv.pdf';
+import cv from '../../misc/cv.pdf';
 import Drawer from '../../Components/Drawer';
 import About from '../About';
 import Xp from '../Xp';
@@ -52,7 +52,7 @@ const Router = () => {
           path="cv"
           element={
             <Drawer minified>
-              <iframe title="cv" src={cv} width="100%" height="100%" />
+              <embed title="cv" src={cv} width="100%" height="100%" />
             </Drawer>
           }
         />

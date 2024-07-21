@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { device } from '../../misc/sizes';
 import { motion } from 'framer-motion';
+import { generateNeumorphicCss } from '../../misc';
 
 export const Wrapper = styled.div`
   height: 100%;
@@ -62,7 +63,5 @@ export const Dot = styled.span<{ active: boolean }>`
   height: 10px;
   width: 10px;
   margin: 0 5px;
-  background-color: ${props => (props.active ? '#000' : '#ccc')};
-  border-radius: 50%;
-  display: inline-block;
+  ${props => generateNeumorphicCss(props.theme.primary, true, props.active)}
 `;
