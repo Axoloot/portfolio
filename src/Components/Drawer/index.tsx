@@ -44,6 +44,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   const drawerRef = useRef<HTMLDivElement>();
   const creditsRef = useRef<HTMLDivElement>(null);
   const [cursorImg, setCursorImgFn] = useState(pointer['cursor']);
+  const displayState = useState(false);
 
   const click = useCallback(() => {
     setCursorImgFn(pointer['pointer']);
@@ -135,6 +136,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
                 block: 'end',
                 inline: 'nearest',
               });
+              displayState[1](true);
             }}
             initial={initial}
             pos={pos}
@@ -147,11 +149,13 @@ const Drawer = ({ children, minified }: DrawerProps) => {
       {!isMobile && (
         <StyledChild ref={creditsRef}>
           <Credits
+            displayState={displayState}
             onClick={() => {
               window.scrollTo({
                 behavior: 'smooth',
                 top: 0,
               });
+              displayState[1](false);
             }}
           />
         </StyledChild>
