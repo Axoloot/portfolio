@@ -42,8 +42,8 @@ export const InputText = styled.textarea`
 
 export const MediasWrapper = styled.div`
   display: flex;
-  border-top: solid ${props => props.theme.tertiary} 0.08em;
-  padding-top: 1em;
+  ${props => generateNeumorphicCss(props.theme.primary, true, false)}
+  padding: 1em;
 `;
 
 export const MediaIcon = styled.img`
@@ -64,7 +64,5 @@ export const SubmitButton = styled.button`
   border: none;
   border-radius: 1em;
   background: ${props => props.theme.tertiary};
-  box-shadow:
-    20px 20px 60px #5d2016,
-    -20px -20px 60px #5b6368;
+  color: ${props => props.theme.secondary};
 `;
