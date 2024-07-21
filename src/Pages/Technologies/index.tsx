@@ -10,9 +10,9 @@ interface TechProps extends DrawerProps {
 }
 
 const baseCategory = [
-  { name: 'devops', title: 'DevOps', color: '#ba3f2c', hidePane: false },
-  { name: 'frontend', title: 'FrontEnd', color: '#a33726', hidePane: false },
-  { name: 'backend', title: 'BackEnd', color: '#8b2f21', hidePane: false },
+  { name: 'devops', title: 'DevOps', color: '#ba3f2c', $hidePane: false },
+  { name: 'frontend', title: 'FrontEnd', color: '#a33726', $hidePane: false },
+  { name: 'backend', title: 'BackEnd', color: '#8b2f21', $hidePane: false },
 ];
 
 const Technologies = ({
@@ -110,7 +110,7 @@ const Technologies = ({
   const toggleHidden = (index: number) => {
     setCategories(prevCategories =>
       prevCategories.map((c, i) =>
-        i !== index ? { ...c, hidePane: !c.hidePane } : c
+        i !== index ? { ...c, $hidePane: !c.$hidePane } : c
       )
     );
   };
@@ -127,11 +127,11 @@ const Technologies = ({
         {Categories.map((c, i) => {
           return (
             <TechCategory
-              onClickCb={() => toggleHidden(i)}
+              $onClickCb={() => toggleHidden(i)}
               ref={el => (CategRef.current[i] = el!)}
-              parentRef={parentRef}
+              $parentRef={parentRef}
               key={c.title}
-              viewed={viewed}
+              $viewed={viewed}
               initial={
                 !i
                   ? { width, height }

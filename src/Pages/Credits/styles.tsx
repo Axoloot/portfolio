@@ -33,17 +33,17 @@ export const StyledLink = styled(NavLink)`
   }
 `;
 
-export const TopArrow = styled.button<{ show: boolean }>`
+export const TopArrow = styled.button<{ $show?: boolean }>`
   margin: 0 !important;
   padding: 0 !important;
   background: ${props => props.theme.secondary};
-  height: ${props => (props.show ? '50px' : '0px')};
-  width: ${props => (props.show ? '50px' : '0px')};
+  height: ${props => (props.$show ? '50px' : '0px')};
+  width: ${props => (props.$show ? '50px' : '0px')};
   overflow: hidden;
   border-radius: 50px;
   color: transparent;
   clear: both;
-  visibility: ${props => (props.show ? 'visible' : 'hidden')};
+  visibility: ${props => (props.$show ? 'visible' : 'hidden')};
   position: fixed;
   cursor: pointer;
   display: block;
@@ -55,7 +55,7 @@ export const TopArrow = styled.button<{ show: boolean }>`
   z-index: 99;
   transition: all 0.3s ease-in-out;
   box-shadow: ${props =>
-    props.show ? '0px 2px 4px 1px rgba(0, 0, 0, 0.25)' : 'none'};
+    props.$show ? '0px 2px 4px 1px rgba(0, 0, 0, 0.25)' : 'none'};
 
   &:hover,
   &:active,
@@ -80,7 +80,7 @@ export const TopArrow = styled.button<{ show: boolean }>`
   }
 
   ${props =>
-    props.show &&
+    props.$show &&
     `
     &::before,
     &::after {

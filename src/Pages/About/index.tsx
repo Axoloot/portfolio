@@ -167,7 +167,7 @@ const TypingEffect: React.FC<AboutProps> = ({
                 handleCaptionChange(index, captionIndex > index ? 0 : 1);
               }}
               key={index}
-              active={index === captionIndex}
+              $active={index === captionIndex}
             />
           ))}
         </DotContainer>

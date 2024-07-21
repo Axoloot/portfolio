@@ -55,8 +55,8 @@ export const DrawerItemIcon = styled.div`
   margin: 0 0.5em;
 `;
 
-export const DrawerItemText = styled.div<{ minified?: boolean }>`
-  ${props => (props.minified ? 'display: none;' : '')}
+export const DrawerItemText = styled.div<{ $minified?: boolean }>`
+  ${props => (props.$minified ? 'display: none;' : '')}
   @media ${device.tablet} {
     display: none;
   }
@@ -69,7 +69,6 @@ export const StyledChild = styled.div`
   height: 100svh;
   @media ${device.tablet} {
     height: auto;
-    overflow-y: scroll;
   }
 `;
 

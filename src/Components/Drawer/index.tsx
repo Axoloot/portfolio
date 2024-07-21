@@ -30,9 +30,10 @@ import Credits from '../../Pages/Credits';
 interface DrawerProps {
   minified?: boolean;
   children: ReactElement;
+  passProps?: boolean;
 }
 
-const Drawer = ({ children, minified }: DrawerProps) => {
+const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
   const { height, width, isMobile } = useWindowDimensions();
   const initial = useMemo(
     () =>
@@ -67,7 +68,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
   }, [children, height, homeCursor]);
 
   const childrenWithProps = cloneElement(children, {
-    setPos: useCallback(
+    $setPos: useCallback(
       (pos: Position) => setTimeout(() => setPos(pos), 1),
       []
     ),
@@ -90,7 +91,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText minified={minified}>About</DrawerItemText>
+            <DrawerItemText $minified={minified}>About</DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/xp" replace={true}>
             <Career
@@ -99,7 +100,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText minified={minified}>Career</DrawerItemText>
+            <DrawerItemText $minified={minified}>Career</DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/techno" replace={true}>
             <Code
@@ -108,7 +109,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText minified={minified}>Technologies</DrawerItemText>
+            <DrawerItemText $minified={minified}>Technologies</DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/contact" replace={true}>
             <Contact
@@ -117,7 +118,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText minified={minified}>Contact</DrawerItemText>
+            <DrawerItemText $minified={minified}>Contact</DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/cv" replace={true}>
             <Resume
@@ -126,7 +127,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText minified={minified}>Resume</DrawerItemText>
+            <DrawerItemText $minified={minified}>Resume</DrawerItemText>
           </DrawerItem>
           <MobileCursorWrapper />
           <Cursor
@@ -145,7 +146,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
             cursorImg={cursorImg}
           />
         </StyledDrawer>
-        <StyledChild>{childrenWithProps}</StyledChild>
+        <StyledChild>{passProps ? childrenWithProps : children}</StyledChild>
       </DrawerWrapper>
       {!isMobile && (
         <StyledChild ref={creditsRef}>

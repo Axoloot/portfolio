@@ -22,7 +22,7 @@ const Credits = (props: CreditsProps) => {
   const [show] = props.displayState;
   return (
     <StyledWrapper>
-      <TopArrow show={show} onClick={props.onClick} />
+      <TopArrow $show={show} onClick={props.onClick} />
       <CreditsWrapper>
         <IconCredit>
           <Code height="2em" width="2em" />

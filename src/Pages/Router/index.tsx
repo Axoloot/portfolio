@@ -51,7 +51,7 @@ const Router = () => {
         <Route
           path="cv"
           element={
-            <Drawer minified>
+            <Drawer minified passProps={false}>
               <iframe
                 title="cv"
                 src={cv}

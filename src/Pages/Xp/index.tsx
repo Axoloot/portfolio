@@ -82,13 +82,13 @@ const Xp = () => {
 
   return (
     <Page>
-      <Timeline sectionNb={Sections.length}>
-        <Line full />
+      <Timeline>
+        <Line $full />
         <Line animate={{ height: Sections[activeIndex].y }} />
         <TimelineDot
           drag="y"
           initial={{ y: Sections[activeIndex].y || 16 }}
-          event
+          $event
           dragElastic={1}
           onDrag={(event, info) => {
             const index = Sections.findIndex(s => {
@@ -117,8 +117,8 @@ const Xp = () => {
             }}
           >
             <TimelineDot
-              event={section.event}
-              active={activeIndex >= index}
+              $event={section.event}
+              $active={activeIndex >= index}
               animate={{ scale: 1 }}
               transition={{ ease: 'easeInOut' }}
             />
@@ -133,6 +133,7 @@ const Xp = () => {
               <XPPage
                 ref={el => (sectionsRef.current[index] = el!)}
                 section={sec}
+                key={index}
               />
             )
           );

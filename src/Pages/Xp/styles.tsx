@@ -16,7 +16,7 @@ export const Content = styled.div`
   scroll-snap-type: y mandatory;
 `;
 
-export const Timeline = styled.div<{ sectionNb: number }>`
+export const Timeline = styled.div`
   width: 6em;
   background-color: ${props => props.theme.primary};
   display: flex;
@@ -40,18 +40,16 @@ export const TimelineItem = styled.div`
 `;
 
 export const TimelineDot = styled(motion.div)<{
-  active?: boolean;
-  hide?: boolean;
-  event?: boolean;
+  $active?: boolean;
+  $event?: boolean;
 }>`
-  ${props => (props.hide ? 'opacity: 0;' : '')}
-  ${props => (props.event ? 'border-radius: 50%;' : '')}
-  ${props => (!props.event ? 'align-self: center;' : '')}
+  ${props => (props.$event ? 'border-radius: 50%;' : '')}
+  ${props => (!props.$event ? 'align-self: center;' : '')}
   width: 1.3em;
   flex: 1 0 100vh;
 
-  height: ${props => (props.event ? '1.3em' : '.3em')};
-  background-color: ${props => (props.active ? props.theme.tertiary : 'grey')};
+  height: ${props => (props.$event ? '1.3em' : '.3em')};
+  background-color: ${props => (props.$active ? props.theme.tertiary : 'grey')};
   transition: background-color 0.3s ease;
   z-index: 1;
   position: absolute;
@@ -69,10 +67,10 @@ export const TimelineText = styled.div`
   }
 `;
 
-export const Line = styled(motion.div)<{ full?: boolean }>`
+export const Line = styled(motion.div)<{ $full?: boolean }>`
   ${props =>
-    props.full ? 'background: grey;' : `background: ${props.theme.tertiary};`}
-  ${props => (props.full ? 'height: 100%;' : 'height: 0;')}
+    props.$full ? 'background: grey;' : `background: ${props.theme.tertiary};`}
+  ${props => (props.$full ? 'height: 100%;' : 'height: 0;')}
   width: .4em;
   position: absolute;
   z-index: 0;

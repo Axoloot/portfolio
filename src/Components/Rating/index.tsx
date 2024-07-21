@@ -11,7 +11,7 @@ const Rating: React.FC<RatingProps> = ({ rate }) => {
       {[...Array(5)].map((_, index) => {
         const ratingValue = index + 1;
         return (
-          <Star key={index} filled={ratingValue <= rate}>
+          <Star key={index} $filled={ratingValue <= rate}>
             &#9733;
           </Star>
         );
@@ -30,8 +30,8 @@ const StarContainer = styled.div`
   padding: 0 1em;
 `;
 
-const Star = styled.span<{ filled: boolean }>`
+const Star = styled.span<{ $filled: boolean }>`
   font-size: 1.5em;
-  color: ${({ filled }) => (filled ? '#FFD700' : '#e4e5e9')};
+  color: ${({ $filled }) => ($filled ? '#FFD700' : '#e4e5e9')};
   transition: color 0.2s;
 `;

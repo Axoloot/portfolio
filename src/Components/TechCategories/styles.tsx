@@ -3,11 +3,7 @@ import styled from 'styled-components';
 import { device } from '../../misc/sizes';
 import { generateNeumorphicCss } from '../../misc';
 
-export const TechCategories = styled(motion.div)<{
-  color: string;
-  active?: boolean;
-  viewed?: boolean;
-}>`
+export const TechCategories = styled(motion.div)`
   ${props => generateNeumorphicCss(props.theme.primary, true, true)}
   border-radius: 0.5em 0.5em 0;
   display: flex;
@@ -23,16 +19,16 @@ export const TechCategories = styled(motion.div)<{
   }
 `;
 
-export const Grid = styled.div<{ active: boolean }>`
+export const Grid = styled.div<{ $active: boolean }>`
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(
-      ${({ active }) => (active ? 2 : 3)},
+      ${({ $active }) => ($active ? 2 : 3)},
       1fr
     );
 
   @media ${device.tablet} {
     grid-template: repeat(3, 1fr) / repeat(
-        ${({ active }) => (active ? 1 : 3)},
+        ${({ $active }) => ($active ? 1 : 3)},
         1fr
       );
   }

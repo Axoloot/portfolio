@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { device } from '../../misc/sizes';
 
-export const Section = styled.div<{ img: string }>`
+export const Section = styled.div<{ $img: string }>`
   flex: 1 0 100vh;
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@ export const Section = styled.div<{ img: string }>`
   flex-direction: column;
 
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
-    url('${({ img }) => img}');
+    url('${({ $img }) => $img}');
   background-size: cover;
   position: relative;
 

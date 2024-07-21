@@ -59,9 +59,9 @@ export const DotContainer = styled.div`
   margin-top: 10px;
 `;
 
-export const Dot = styled.span<{ active: boolean }>`
+export const Dot = styled.span<{ $active: boolean }>`
   height: 10px;
   width: 10px;
   margin: 0 5px;
-  ${props => generateNeumorphicCss(props.theme.primary, true, props.active)}
+  ${props => generateNeumorphicCss(props.theme.primary, true, props.$active)}
 `;
