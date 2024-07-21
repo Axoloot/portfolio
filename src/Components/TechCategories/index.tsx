@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { HTMLMotionProps } from 'framer-motion';
+
 import Tech from '../Tech';
 import { Grid, TechCategories, TechCategoriesTitle } from './styles';
-import techs from './techs';
+import techs from '../../Static/techs.json';
 import useWindowDimensions from '../../misc/dimension';
 
 interface TechCategoryProps extends HTMLMotionProps<'div'> {

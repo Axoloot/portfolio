@@ -8,9 +8,9 @@ import {
   TimelineItem,
   TimelineText,
 } from './styles';
-import JobsJSON from './jobs.json';
+import JobsJSON from '../../Static/jobs.json';
 import XPPage from '../../Components/XPPage';
-// import SchoolJSON from './schools.json';
+import { useTheme } from 'styled-components';
 
 interface Job {
   type: string;
@@ -41,6 +41,7 @@ const Xp = () => {
   const [Sections, setSections] = useState(baseSections);
   const [activeIndex, setActiveIndex] = useState(0);
   const [dotY, setDotY] = useState(Sections[activeIndex].y);
+  const theme = useTheme();
 
   const handleScroll = () => {
     let closestIndex = -1;
@@ -101,7 +102,7 @@ const Xp = () => {
           }}
           animate={{ y: dotY }}
           transition={{ ease: 'easeInOut' }}
-          style={{ scale: 1.2, background: '#e94f37', zIndex: 3 }}
+          style={{ scale: 1.2, background: theme.tertiary, zIndex: 3 }}
         />
         {Sections.map((section, index) => (
           <TimelineItem

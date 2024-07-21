@@ -63,7 +63,7 @@ export const SubmitButton = styled.button`
   padding: 1em;
   border: none;
   border-radius: 1em;
-  background: #e94f37;
+  background: ${props => props.theme.tertiary};
   box-shadow:
     20px 20px 60px #5d2016,
     -20px -20px 60px #5b6368;

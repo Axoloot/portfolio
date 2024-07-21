@@ -1,7 +1,6 @@
 /// <reference types="react-scripts" />
-
 declare global {
   interface Window {
-    setPos: { x: number; y: number };
+    cycleTheme: any;
   }
 }

@@ -24,7 +24,7 @@ import {
 import Cursor from '../Cursor';
 import { Position } from '../../misc/types';
 import useWindowDimensions from '../../misc/dimension';
-import pointer from '../Cursor/mouseIcon';
+import pointer from '../../misc/mouseIcon';
 import Credits from '../../Pages/Credits';
 
 interface DrawerProps {
@@ -131,6 +131,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           <MobileCursorWrapper />
           <Cursor
             onClick={() => {
+              if (isMobile) return (window as any).cycleTheme();
               creditsRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'end',

@@ -1,7 +1,7 @@
 import { DrawerProps } from '../../misc/types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
-import pointers from '../../Components/Cursor/mouseIcon';
+import pointers from '../../misc/mouseIcon';
 import { TechContainer, TechWrapper } from './styles';
 import useWindowDimensions from '../../misc/dimension';
 

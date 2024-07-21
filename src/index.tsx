@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import Router from './Pages/Router';
+import Theme from './Components/ThemeProvider';
 
 const env = process.env.NODE_ENV || 'local';
-window.document.title =
-  env === 'production' ? 'Cyril de Lajudie | Portofolio' : env;
-
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
@@ -35,22 +33,16 @@ const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
     width: 100svw;
   }
 `;
-
-const theme = {
-  primary: '#393e41',
-  secondary: '#f6f7eb',
-  tertiary: '#e94f37',
-};
+window.document.title =
+  env === 'production' ? 'Cyril de Lajudie | Portofolio' : env;
 
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <Router />
-    </ThemeProvider>
+    <Theme>
+      <>
+        <GlobalStyle />
+        <Router />
+      </>
+    </Theme>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
