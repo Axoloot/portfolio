@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { device } from '../../misc/sizes';
 import { generateNeumorphicCss } from '../../misc';
 
-export const DrawerWrapper = styled.div`
+export const PageWrapper = styled.div`
   display: flex;
   flex-direction: row;
   @media ${device.tablet} {
@@ -15,7 +15,7 @@ export const DrawerWrapper = styled.div`
 export const StyledDrawer = styled.div`
   display: flex;
   flex-direction: column;
-  ${props => generateNeumorphicCss(props.theme.primary, 'normal', false, 1.5)}
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal', false, 2)}
   background: ${props => props.theme.primary};
   z-index: 1;
 

@@ -16,8 +16,8 @@ import { ReactComponent as Code } from '../../Images/code.svg';
 import {
   DrawerItem,
   DrawerItemText,
-  DrawerWrapper,
   MobileCursorWrapper,
+  PageWrapper,
   StyledChild,
   StyledDrawer,
 } from './styles';
@@ -82,7 +82,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
 
   return (
     <>
-      <DrawerWrapper>
+      <PageWrapper>
         <StyledDrawer ref={el => (drawerRef.current = el!)}>
           <DrawerItem to="/" replace={true}>
             <About
@@ -147,7 +147,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
           />
         </StyledDrawer>
         <StyledChild>{passProps ? childrenWithProps : children}</StyledChild>
-      </DrawerWrapper>
+      </PageWrapper>
       {!isMobile && (
         <StyledChild ref={creditsRef}>
           <Credits

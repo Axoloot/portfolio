@@ -18,22 +18,15 @@ export function adjustBrightness(
   return `#${((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b)).toString(16).slice(1)}`;
 }
 
-export function findNeumorphicColors(color: string, type: 'lens' | 'dome') {
+export function findNeumorphicColors(color: string, type: NeumorphicTypes) {
   const baseColorRgb = hexToRgb(color);
   const darkShadow = adjustBrightness(baseColorRgb, -0.12); // 12% darker
   const lightShadow = adjustBrightness(baseColorRgb, 0.12); // 12% lighter
 
-  if (type === 'lens') {
-    return {
-      lightShadow: darkShadow,
-      darkShadow: lightShadow,
-    };
-  } else if (type === 'dome') {
-    return {
-      lightShadow: lightShadow,
-      darkShadow: darkShadow,
-    };
-  }
+  if (type === 'inset' || type === 'normal') return color;
+  if (type === 'lens')
+    return `linear-gradient(145deg, ${darkShadow}, ${lightShadow})`;
+  return `linear-gradient(145deg, ${lightShadow}, ${darkShadow})`;
 }
 
 export function generateNeumorphicCss(
@@ -48,7 +41,7 @@ export function generateNeumorphicCss(
 
   return `
     ${border && 'border-radius: 0.7em;'}
-    background: ${color};
+    background: ${findNeumorphicColors(color, type ?? 'normal')};
     box-shadow: ${type === 'inset' ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow},
                ${type === 'inset' ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow};
   `;

@@ -23,7 +23,7 @@ const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
   width: 1em;
   min-width: 1em;
   max-width: 1em;
-  ${props => generateNeumorphicCss(props.theme.primary)}
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal')}
   @media ${device.tablet} {
     ${props =>
       props.direction === 'prev'
