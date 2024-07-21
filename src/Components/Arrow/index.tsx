@@ -31,7 +31,7 @@ const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
 const Arrow: React.FC<ArrowProps> = ({ direction, onClick }) => {
   return (
     <StyledArrow direction={direction} onClick={onClick}>
-      {direction === 'prev' ? '\u2B05' : '\u27A1'}
+      {direction === 'prev' ? '<' : '>'}
     </StyledArrow>
   );
 };
