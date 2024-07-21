@@ -1,3 +1,5 @@
+import { NeumorphicTypes } from './types';
+
 export function hexToRgb(hex: string) {
   const bigint = parseInt(hex.slice(1), 16);
   const r = (bigint >> 16) & 255;
@@ -16,10 +18,28 @@ export function adjustBrightness(
   return `#${((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b)).toString(16).slice(1)}`;
 }
 
+export function findNeumorphicColors(color: string, type: 'lens' | 'dome') {
+  const baseColorRgb = hexToRgb(color);
+  const darkShadow = adjustBrightness(baseColorRgb, -0.12); // 12% darker
+  const lightShadow = adjustBrightness(baseColorRgb, 0.12); // 12% lighter
+
+  if (type === 'lens') {
+    return {
+      lightShadow: darkShadow,
+      darkShadow: lightShadow,
+    };
+  } else if (type === 'dome') {
+    return {
+      lightShadow: lightShadow,
+      darkShadow: darkShadow,
+    };
+  }
+}
+
 export function generateNeumorphicCss(
   color: string,
+  type?: NeumorphicTypes,
   border = true,
-  inset = false,
   scale = 1
 ): string {
   const baseColorRgb = hexToRgb(color);
@@ -29,7 +49,7 @@ export function generateNeumorphicCss(
   return `
     ${border && 'border-radius: 0.7em;'}
     background: ${color};
-    box-shadow: ${inset ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow},
-               ${inset ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow};
+    box-shadow: ${type === 'inset' ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow},
+               ${type === 'inset' ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow};
   `;
 }

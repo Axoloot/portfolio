@@ -1,6 +1,4 @@
-// TypingEffect.tsx
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import {
   Cursor,
   TextContainer,

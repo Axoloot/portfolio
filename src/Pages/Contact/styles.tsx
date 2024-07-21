@@ -28,7 +28,7 @@ export const Input = styled.input`
   color: ${props => props.theme.secondary};
   flex: auto;
   border: none;
-  ${props => generateNeumorphicCss(props.theme.primary, true, true)}
+  ${props => generateNeumorphicCss(props.theme.primary, 'inset', true)}
 `;
 
 export const InputText = styled.textarea`
@@ -42,7 +42,7 @@ export const InputText = styled.textarea`
 
 export const MediasWrapper = styled.div`
   display: flex;
-  ${props => generateNeumorphicCss(props.theme.primary, true, false)}
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal', true)}
   padding: 1em;
 `;
 

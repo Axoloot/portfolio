@@ -10,3 +10,5 @@ export interface DrawerProps {
   setHidden?: React.Dispatch<React.SetStateAction<boolean>>;
   setCursorImg?: (name: string) => void;
 }
+
+export type NeumorphicTypes = 'normal' | 'inset' | 'dome' | 'lens';

@@ -31,7 +31,7 @@ const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
         : 'margin-right: 0.5em;'}
   }
   &:active {
-    ${props => generateNeumorphicCss(props.theme.primary, true, true)}
+    ${props => generateNeumorphicCss(props.theme.primary, 'inset')}
   }
 `;
 

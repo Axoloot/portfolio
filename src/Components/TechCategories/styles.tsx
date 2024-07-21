@@ -4,7 +4,7 @@ import { device } from '../../misc/sizes';
 import { generateNeumorphicCss } from '../../misc';
 
 export const TechCategories = styled(motion.div)`
-  ${props => generateNeumorphicCss(props.theme.primary, true, true)}
+  ${props => generateNeumorphicCss(props.theme.primary, 'inset', true)}
   border-radius: 0.5em 0.5em 0;
   display: flex;
   position: relative;

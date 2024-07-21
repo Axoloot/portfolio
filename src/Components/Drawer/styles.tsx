@@ -15,7 +15,7 @@ export const DrawerWrapper = styled.div`
 export const StyledDrawer = styled.div`
   display: flex;
   flex-direction: column;
-  ${props => generateNeumorphicCss(props.theme.primary, false, false, 1.5)}
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal', false, 1.5)}
   background: ${props => props.theme.primary};
   z-index: 1;
 
