@@ -22,15 +22,15 @@ const cap = [
     description: 'I build and maintain software applications.',
   },
   {
-    title: 'DevOps.',
+    title: 'a DevOps.',
     description: 'I manage development and operational workflows.',
   },
   {
-    title: 'Fullstack Developer.',
+    title: 'a Fullstack Developer.',
     description: 'I work on both front-end and back-end development.',
   },
   {
-    title: 'Innovation Enthusiast.',
+    title: 'an Innovation Enthusiast.',
     description: 'I am passionate about new technologies and innovation.',
   },
 ];
