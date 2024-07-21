@@ -22,51 +22,35 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Get Commit SHAs
-        id: commit_shas
-        run: |
-          CURRENT_SHA=$(git rev-parse --short HEAD)
-          PREVIOUS_SHA=$(git rev-list --skip=1 -n 1 HEAD)
-          OLDER_SHA=$(git rev-list --skip=2 -n 1 HEAD)
-          echo "::set-output name=current_sha::$CURRENT_SHA"
-          echo "::set-output name=previous_sha::$PREVIOUS_SHA"
-          echo "::set-output name=older_sha::$OLDER_SHA"
+      - name: Get Commit SHA
+        id: commit_sha
+        run: echo "::set-output name=sha::$(git rev-parse --short HEAD)"
 
       - name: Pull current latest image
-        run: |
-          docker pull docker.io/axoloot/portfolio:latest || true
+        run: docker pull docker.io/axoloot/portfolio:latest || true
 
-      - name: Tag current latest with previous commit SHA
-        if: success() && steps.commit_shas.outputs.previous_sha != ''
-        run: |
-          docker tag docker.io/axoloot/portfolio:latest docker.io/axoloot/portfolio:${{ steps.commit_shas.outputs.previous_sha }}
+      - name: Tag current latest as previous
+        run: docker tag docker.io/axoloot/portfolio:latest docker.io/axoloot/portfolio:previous || true
 
-      - name: Push current latest with previous commit SHA
-        if: success() && steps.commit_shas.outputs.previous_sha != ''
-        run: |
-          docker push docker.io/axoloot/portfolio:${{ steps.commit_shas.outputs.previous_sha }}
+      - name: Pull current previous image
+        run: docker pull docker.io/axoloot/portfolio:previous || true
 
-      - name: Pull previous commit SHA image
-        run: |
-          docker pull docker.io/axoloot/portfolio:${{ steps.commit_shas.outputs.previous_sha }} || true
+      - name: Tag old previous with commit SHA
+        if: steps.commit_sha.outputs.sha != ''
+        run: docker tag docker.io/axoloot/portfolio:previous docker.io/axoloot/portfolio:${{ steps.commit_sha.outputs.sha }} || true
 
-      - name: Tag previous commit SHA image with older commit SHA
-        if: success() && steps.commit_shas.outputs.older_sha != ''
-        run: |
-          docker tag docker.io/axoloot/portfolio:${{ steps.commit_shas.outputs.previous_sha }} docker.io/axoloot/portfolio:${{ steps.commit_shas.outputs.older_sha }}
+      - name: Push old previous with commit SHA
+        if: steps.commit_sha.outputs.sha != ''
+        run: docker push docker.io/axoloot/portfolio:${{ steps.commit_sha.outputs.sha }} || true
 
-      - name: Push previous commit SHA image with older commit SHA
-        if: success() && steps.commit_shas.outputs.older_sha != ''
-        run: |
-          docker push docker.io/axoloot/portfolio:${{ steps.commit_shas.outputs.older_sha }}
+      - name: Push current latest as previous
+        run: docker push docker.io/axoloot/portfolio:previous || true
 
       - name: Build and Tag New Docker Image as Latest
-        run: |
-          docker build -t docker.io/axoloot/portfolio:latest .
+        run: docker build -t docker.io/axoloot/portfolio:latest .
 
       - name: Push New Docker Image as Latest
-        run: |
-          docker push docker.io/axoloot/portfolio:latest
+        run: docker push docker.io/axoloot/portfolio:latest
 
   deploy:
     name: Deploy to EC2
