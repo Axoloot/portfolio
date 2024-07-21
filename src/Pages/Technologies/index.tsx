@@ -75,8 +75,9 @@ const Technologies = ({
   const SecondAnim = useCallback(() => {
     if (!CategRef.current[isMobile ? 0 : 1]) return;
     const timeout = setTimeout(() => {
-      if (!CategRef.current[1]) return;
-      const { height, width } = CategRef.current[1].getBoundingClientRect();
+      if (!CategRef.current[isMobile ? 0 : 1]) return;
+      const { height, width } =
+        CategRef.current[isMobile ? 0 : 1].getBoundingClientRect();
       animate(1, (width / 2) * -1, (height / 2) * -1);
       Click();
     }, 1000);
