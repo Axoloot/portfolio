@@ -70,7 +70,9 @@ jobs:
             if curl -f http://localhost:8080; then
               docker stop portfolio || true &&
               docker rm portfolio || true &&
-              docker rename portfolio_test portfolio
+              docker stop portfolio_test &&
+              docker rename portfolio_test portfolio &&
+              docker run -d -v /home/ubuntu/certs/:/tmp/certs -p 80:80 -p 443:443 --name portfolio docker.io/axoloot/portfolio:latest
             else
               docker stop portfolio_test || true &&
               docker rm portfolio_test || true &&
