@@ -7,6 +7,7 @@ import {
   TechName,
   TechWrapper,
 } from './styles';
+import { useEffect, useState } from 'react';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -33,6 +34,16 @@ interface TechProps {
 }
 
 const Tech = ({ element, active }: TechProps) => {
+  const [opacity, setOpacity] = useState(0);
+
+  useEffect(() => {
+    if (!active) return setOpacity(0);
+    const timeout = setTimeout(() => {
+      setOpacity(1);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [active]);
+
   return (
     <FullTechWrapper>
       <TechWrapper>
@@ -40,7 +51,11 @@ const Tech = ({ element, active }: TechProps) => {
         <TechName>{element.name}</TechName>
         {active && <Rating rate={element.rating} />}
       </TechWrapper>
-      {active && <ActiveContent>{lorem.generateSentences(1)}</ActiveContent>}
+      {active && (
+        <ActiveContent initial={{ opacity: 0 }} animate={{ opacity }}>
+          {lorem.generateSentences(1)}
+        </ActiveContent>
+      )}
     </FullTechWrapper>
   );
 };

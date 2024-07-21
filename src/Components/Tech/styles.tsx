@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const FullTechWrapper = styled.div`
@@ -14,9 +15,11 @@ export const TechWrapper = styled.div`
   align-items: center;
 `;
 
-export const ActiveContent = styled.div`
+export const ActiveContent = styled(motion.div)`
   text-align: center;
   align-self: center;
+  display: block;
+  overflow: hidden;
 `;
 
 export const TechLogo = styled.img`

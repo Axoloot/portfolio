@@ -16,15 +16,20 @@ export function adjustBrightness(
   return `#${((1 << 24) + (Math.round(r) << 16) + (Math.round(g) << 8) + Math.round(b)).toString(16).slice(1)}`;
 }
 
-export function generateNeumorphicCss(color: string, border = true): string {
+export function generateNeumorphicCss(
+  color: string,
+  border = true,
+  inset = false,
+  scale = 1
+): string {
   const baseColorRgb = hexToRgb(color);
-  const darkShadow = adjustBrightness(baseColorRgb, -0.2); // 20% darker
-  const lightShadow = adjustBrightness(baseColorRgb, 0.2); // 20% lighter
+  const darkShadow = adjustBrightness(baseColorRgb, -0.2);
+  const lightShadow = adjustBrightness(baseColorRgb, 0.2);
 
   return `
     ${border && 'border-radius: 0.7em;'}
     background: ${color};
-    box-shadow: 20px 20px 60px ${darkShadow},
-                -20px -20px 60px ${lightShadow};
+    box-shadow: ${inset ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow},
+               ${inset ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow};
   `;
 }

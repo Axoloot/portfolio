@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { HTMLMotionProps } from 'framer-motion';
 import Tech from '../Tech';
 import { Grid, TechCategories, TechCategoriesTitle } from './styles';
 import techs from './techs';
 import useWindowDimensions from '../../misc/dimension';
-import { useLocation } from 'react-router-dom';
 
 interface TechCategoryProps extends HTMLMotionProps<'div'> {
   viewed: boolean;
@@ -16,27 +15,28 @@ interface TechCategoryProps extends HTMLMotionProps<'div'> {
   parentRef: any;
 }
 
-function useQuery() {
-  const { search } = useLocation();
-
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
-
 const TechCategory = React.forwardRef<HTMLDivElement, TechCategoryProps>(
   (props, ref) => {
-    const query = useQuery();
     const { isMobile } = useWindowDimensions();
     const [active, setActive] = useState(false);
+    const [height, setHeight] = useState(0);
+    const [width, setWidth] = useState(0);
 
     const itemVariants = {
       hidden: { opacity: props.viewed ? 1 : 0 },
       visible: { opacity: 1 },
     };
 
+    useEffect(() => {
+      if (!props.parentRef.current) return;
+      const { height, width } = props.parentRef.current.getBoundingClientRect();
+      setWidth(width);
+      setHeight(height - 30);
+    }, [props.parentRef]);
+
     if (props.hidePane) return null;
     return (
       <TechCategories
-        temp={query.get('nm') === 'true'}
         ref={ref}
         variants={itemVariants}
         onClick={() => {
@@ -52,8 +52,8 @@ const TechCategory = React.forwardRef<HTMLDivElement, TechCategoryProps>(
             ? props.animate
             : active
               ? {
-                  height: 'auto',
-                  width: props.parentRef.current.getBoundingClientRect().width,
+                  height,
+                  width,
                   zIndex: 10,
                 }
               : { height: 420, width: isMobile ? '100%' : 420 }

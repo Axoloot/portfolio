@@ -24,7 +24,7 @@ export const Timeline = styled.div<{ sectionNb: number }>`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  ${props => generateNeumorphicCss(props.theme.primary)};
+  ${props => generateNeumorphicCss(props.theme.primary, false)};
   @media ${device.tablet} {
     width: 3em;
   }

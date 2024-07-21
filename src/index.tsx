@@ -31,7 +31,7 @@ const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
 
 
   body > #root > div {
-    height: 100svh;
+    height: 100%;
     width: 100svw;
   }
 `;

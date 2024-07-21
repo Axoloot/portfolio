@@ -7,11 +7,8 @@ export const TechCategories = styled(motion.div)<{
   color: string;
   active?: boolean;
   viewed?: boolean;
-  temp?: boolean;
 }>`
-  flex-direction: ${({ active }) => (active ? 'column' : 'row')};
-  ${props => generateNeumorphicCss(props.theme.primary)}
-  ${props => props.temp && `border: solid 0.1em ${props.color};`}
+  ${props => generateNeumorphicCss(props.theme.primary, true, true)}
   border-radius: 0.5em 0.5em 0;
   display: flex;
   position: relative;
@@ -40,8 +37,6 @@ export const Grid = styled.div<{ active: boolean }>`
       );
   }
   grid-column-gap: 1em;
-  grid-row-gap: 1em;
-  height: 100%;
 `;
 
 export const TechCategoriesTitle = styled.div<{ color?: string }>`
