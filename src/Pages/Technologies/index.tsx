@@ -73,12 +73,13 @@ const Technologies = ({
   }, [click, HomeAnime]);
 
   const SecondAnim = useCallback(() => {
-    if (!CategRef.current[isMobile ? 0 : 1]) return;
+    const elemIndex = isMobile ? 0 : 1;
+    if (!CategRef.current[elemIndex]) return;
     const timeout = setTimeout(() => {
-      if (!CategRef.current[isMobile ? 0 : 1]) return;
+      if (!CategRef.current[elemIndex]) return;
       const { height, width } =
-        CategRef.current[isMobile ? 0 : 1].getBoundingClientRect();
-      animate(1, (width / 2) * -1, (height / 2) * -1);
+        CategRef.current[elemIndex].getBoundingClientRect();
+      animate(elemIndex, (width / 2) * -1, (height / 2) * -1);
       Click();
     }, 1000);
     return () => clearTimeout(timeout);
