@@ -71,5 +71,5 @@ jobs:
             docker pull docker.io/axoloot/portfolio:latest &&
             docker stop portfolio || true &&
             docker rm portfolio || true &&
-            docker run -d -p 80:80 -p 443:443 --name portfolio docker.io/axoloot/portfolio:latest
+            docker run -d -p 8000:80 --name portfolio docker.io/axoloot/portfolio:latest
           '
