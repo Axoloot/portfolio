@@ -111,15 +111,6 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
             />
             <DrawerItemText $minified={minified}>Technologies</DrawerItemText>
           </DrawerItem>
-          <DrawerItem to="/contact" replace={true}>
-            <Contact
-              fill="inherit"
-              height="2em"
-              width="2em"
-              style={{ margin: '0 0.5em' }}
-            />
-            <DrawerItemText $minified={minified}>Contact</DrawerItemText>
-          </DrawerItem>
           <DrawerItem to="/cv" replace={true}>
             <Resume
               fill="inherit"
@@ -128,6 +119,15 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
               style={{ margin: '0 0.5em' }}
             />
             <DrawerItemText $minified={minified}>Resume</DrawerItemText>
+          </DrawerItem>
+          <DrawerItem to="/contact" replace={true}>
+            <Contact
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText $minified={minified}>Contact</DrawerItemText>
           </DrawerItem>
           <MobileCursorWrapper />
           <Cursor

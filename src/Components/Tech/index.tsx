@@ -53,7 +53,7 @@ const Tech = ({ element, active }: TechProps) => {
       </TechWrapper>
       {active && (
         <ActiveContent initial={{ opacity: 0 }} animate={{ opacity }}>
-          {lorem.generateSentences(1)}
+          {element.description || lorem.generateSentences(1)}
         </ActiveContent>
       )}
     </FullTechWrapper>
