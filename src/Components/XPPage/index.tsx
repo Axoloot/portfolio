@@ -1,6 +1,6 @@
 import React from 'react';
 import { Company, Description, Duration, Section, Year } from './style';
-import Tech from '../Tech';
+// import Tech from '../Tech';
 import { TechCategories } from '../TechCategories/styles';
 
 interface XPSection {
