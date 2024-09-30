@@ -5,7 +5,7 @@
     "shortDesc": "Développeur mobile",
     "desc": "Développement et maintient d'une application React Native de quiz en live.",
     "type": "job",
-    "image": "https://media.licdn.com/dms/image/C4E22AQFiTENHFqCbgw/feedshare-shrink_800/0/1556119440028?e=2147483647&v=beta&t=wu4Qx4oNNRHIQssYJLmZHBviJ3YBdCV3NxjMKxrsNn0",
+    "image": "quidol.jpg",
     "dates": "JUILLET 2019 – DECEMBRE 2019"
   },
   {
@@ -14,7 +14,7 @@
     "shortDesc": "Développeur full stack",
     "desc": "Création d'une page animée de statistique en temps réel sur les différents sites de productions, Application en React.JS & pure css.\nMaintient de la platforme principale destinée à réduire l'utilisation de papier dans les usines à 0%, Front en Angular & backend en node.js, php et SAP",
     "type": "job",
-    "image": "https://froid-news.com/wp-content/uploads/2023/10/Bel.jpg",
+    "image": "bel.jpg",
     "dates": "OCTOBRE 2020 – MARS 2021"
   },
   {
@@ -24,7 +24,7 @@
     "desc": "Développement et maintient d'une application en React.TS d'emission lives. Création et maintient de multiples microservices backend en node.js, Koa, ...",
     "type": "job",
     "dates": "AVRIL 2021 – AOUT 2021",
-    "image": "https://dev.redpill.paris/public/img/home/redhouse.jpg"
+    "image": "redhouse.jpg"
   },
   {
     "year": 2022,
@@ -33,7 +33,7 @@
     "desc": "Mise en place d'un solution complete de live shopping developpée en Next.JS, avec plusieurs micro-service en node.TS, koa. Gestion de GKS, github actions et vercel pour la CICD",
     "type": "job",
     "dates": "JUILLET 2022 – DECEMBRE 2022",
-    "image": "https://dev.redpill.paris/public/img/home/redhouse.jpg"
+    "image": "redhouse.jpg"
   },
   {
     "year": 2024,
@@ -42,6 +42,6 @@
     "desc": "Maintient d'un VPS AWS d'une solution complete. Architecture et prototype de nouvelle logique dev & ops. Gestion et optimizations des couts de la platforme. SRE. Création et reecriture de script shell et powershell. Mise en place de IaC avec terraform & packer",
     "type": "job",
     "dates": "MARS 2023 – AVRIL 2024",
-    "image": "https://bureaux-et-commerces-a-louer.rivp.fr/wp-content/uploads/2020/12/63_inaug_Le-Cargo_157-bd-Macdonald-19e_2016%C2%A9Jean-Baptiste-Gurliat-Ville-de-Paris.jpg"
+    "image": "cargo.jpg"
   }
 ]

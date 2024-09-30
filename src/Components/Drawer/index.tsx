@@ -75,7 +75,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
     homeCursor,
     setHidden,
     click,
-    setCursorImg: useCallback((name: 'cursor' | 'pointer' | 'grabe') => {
+    setCursorImg: useCallback((name: 'cursor' | 'pointer' | 'drag') => {
       setCursorImgFn(name);
     }, []),
   });

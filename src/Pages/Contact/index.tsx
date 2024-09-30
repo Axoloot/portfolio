@@ -13,22 +13,22 @@ import { useCallback, useState } from 'react';
 const Medias = [
   {
     name: 'github',
-    src: 'https://play-lh.googleusercontent.com/PCpXdqvUWfCW1mXhH1Y_98yBpgsWxuTSTofy3NGMo9yBTATDyzVkqU580bfSln50bFU',
+    src: require('./img/github.png'),
     link: 'https://github.com/Axoloot',
   },
   {
     name: 'linkedin',
-    src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmgV3rvl_AvDgG9o7p9b_b1sb1ZVChFrvuNQ&s',
+    src: require('./img/linkedin.png'),
     link: 'https://linkedin.com/',
   },
   {
     name: 'malt',
-    src: 'https://play-lh.googleusercontent.com/pCYfqB1v-c9Phmvjxji_v37Lf1l59fg1pIy17PztwmS2yoRvGtNAgHZlOHQf0AQo_MZv',
+    src: require('./img/malt.png'),
     link: 'https://malt.fr/',
   },
   {
     name: 'fiverr',
-    src: 'https://yt3.googleusercontent.com/ytc/AIdro_kiQwVU8j67tMT26ffYxhkkmK2GsyC_0EUVUu7XbDZH4v8p=s900-c-k-c0x00ffffff-no-rj',
+    src: require('./img/fiverr.jpg'),
     link: 'https://fiverr.com/',
   },
 ];
