@@ -5,7 +5,7 @@
     "shortDesc": "Développeur mobile",
     "desc": "Développement et maintient d'une application React Native de quiz en live.",
     "type": "job",
-    "image": "quidol.jpg",
+    "image": "quidol.png",
     "dates": "JUILLET 2019 – DECEMBRE 2019"
   },
   {
@@ -14,7 +14,7 @@
     "shortDesc": "Développeur full stack",
     "desc": "Création d'une page animée de statistique en temps réel sur les différents sites de productions, Application en React.JS & pure css.\nMaintient de la platforme principale destinée à réduire l'utilisation de papier dans les usines à 0%, Front en Angular & backend en node.js, php et SAP",
     "type": "job",
-    "image": "bel.jpg",
+    "image": "bel.png",
     "dates": "OCTOBRE 2020 – MARS 2021"
   },
   {
@@ -24,7 +24,7 @@
     "desc": "Développement et maintient d'une application en React.TS d'emission lives. Création et maintient de multiples microservices backend en node.js, Koa, ...",
     "type": "job",
     "dates": "AVRIL 2021 – AOUT 2021",
-    "image": "redhouse.jpg"
+    "image": "redhouse.png"
   },
   {
     "year": 2022,
@@ -33,7 +33,7 @@
     "desc": "Mise en place d'un solution complete de live shopping developpée en Next.JS, avec plusieurs micro-service en node.TS, koa. Gestion de GKS, github actions et vercel pour la CICD",
     "type": "job",
     "dates": "JUILLET 2022 – DECEMBRE 2022",
-    "image": "redhouse.jpg"
+    "image": "redhouse.png"
   },
   {
     "year": 2024,
