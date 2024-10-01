@@ -63,6 +63,10 @@ export const SubmitButton = styled.button`
   padding: 1em;
   border: none;
   border-radius: 1em;
-  background: ${props => props.theme.tertiary};
   color: ${props => props.theme.secondary};
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal', true)}
+
+  &:active {
+    ${props => generateNeumorphicCss(props.theme.primary, 'inset', true)}
+  }
 `;

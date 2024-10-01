@@ -4,7 +4,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import cv from '../../Static/cv.pdf';
 import Drawer from '../../Components/Drawer';
 import About from '../About';
-import Xp from '../Xp';
+import Xp from '../Career';
 import Technologies from '../Technologies';
 import Contact from '../Contact';
 import { useState } from 'react';
