@@ -69,4 +69,9 @@ export const SubmitButton = styled.button`
   &:active {
     ${props => generateNeumorphicCss(props.theme.primary, 'inset', true)}
   }
+
+  &:disabled {
+    color: ${props => 'grey'};
+    ${props => generateNeumorphicCss(props.theme.primary, 'inset', true)}
+  }
 `;

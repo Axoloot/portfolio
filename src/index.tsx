@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { createGlobalStyle } from 'styled-components';
 import Router from './Pages/Router';
 import Theme from './Components/ThemeProvider';
+// import 'dotenv/config';
 
 const env = process.env.NODE_ENV || 'local';
 const root = ReactDOM.createRoot(

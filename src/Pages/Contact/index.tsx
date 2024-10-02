@@ -10,6 +10,8 @@ import {
   SubmitButton,
 } from './styles';
 import { useCallback, useRef, useState } from 'react';
+import { Id, ToastContainer, TypeOptions, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Medias = [
   {
     name: 'github',
@@ -32,6 +34,9 @@ const Medias = [
     link: 'https://fiverr.com/',
   },
 ];
+const mailerUrl =
+  process.env.MAILER_URL ||
+  'https://sdov96ntca.execute-api.eu-west-1.amazonaws.com/Mailer';
 
 const Contact = () => {
   const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -39,47 +44,49 @@ const Contact = () => {
   const firstname = useState('');
   const lastname = useState('');
   const body = useState('');
+  const [sending, isSending] = useState(false);
 
-  const showButton = useCallback(() => {
-    return email[0] && firstname[0] && lastname[0] && body[0];
-  }, [email, firstname, lastname, body]);
+  const showButton: boolean =
+    (email[0] && firstname[0] && lastname[0] && body[0]) === '';
+
+  const toastId = useRef<Id | null>(null);
+  const notify = () =>
+    (toastId.current = toast('Sending mail', {
+      type: 'info',
+      isLoading: true,
+    }));
+  const update = (text: string, type: TypeOptions) =>
+    toastId.current &&
+    toast.update(toastId.current, {
+      render: text,
+      type,
+      isLoading: false,
+      autoClose: 2500,
+    });
 
   const sendMessage = useCallback(async () => {
-    console.log(email, firstname, lastname, body);
+    isSending(true);
+    notify();
+    const response = await fetch(mailerUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        firstname,
+        lastname,
+        body,
+      }),
+      mode: 'cors',
+    });
 
-    // Prepare the data to send in the request body
-    const data = {
-      email,
-      firstname,
-      lastname,
-      body,
-    };
-
-    try {
-      // Send a POST request to the Lambda URL
-      const response = await fetch(
-        'https://abnlib6tn4zgjvzsfcd4ndrfae0ywyma.lambda-url.eu-west-1.on.aws/',
-        {
-          method: 'POST', // Use POST as we are sending data
-          headers: {
-            'Content-Type': 'application/json', // Sending JSON
-          },
-          body: JSON.stringify(data), // Convert the data to JSON format
-        }
-      );
-
-      // Handle the response from Lambda
-      const result = await response.json();
-      console.log('Response from Lambda:', result);
-
-      if (response.ok) {
-        alert('Email sent successfully!');
-      } else {
-        console.error('Error sending email:', result.message);
-      }
-    } catch (error) {
-      console.error('Error:', error);
+    if (response.ok) {
+      update('Email sent successfully!', 'success');
+    } else {
+      update('Error sending email', 'error');
     }
+    isSending(false);
   }, [email, firstname, lastname, body]);
 
   return (
@@ -116,16 +123,16 @@ const Contact = () => {
           }}
         />
         <SubmitButton
+          disabled={showButton || sending}
           ref={buttonRef}
-          style={{ opacity: showButton() ? 1 : 0 }}
           onClick={sendMessage}
-          onKeyDown={e => {
-            if (e.key === 'Enter') {
-              sendMessage();
-            }
-          }}
+          // onKeyDown={e => {
+          //   if (e.key === 'Enter') {
+          //     sendMessage();
+          //   }
+          // }}
         >
-          Envoyer
+          Send
         </SubmitButton>
       </ContactBox>
       <MediasWrapper>
@@ -140,6 +147,7 @@ const Contact = () => {
           </Link>
         ))}
       </MediasWrapper>
+      <ToastContainer position="bottom-right" theme="dark" hideProgressBar />
     </ContactWrapper>
   );
 };

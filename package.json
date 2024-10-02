@@ -12,6 +12,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "csv-parse": "^5.5.6",
+    "dotenv": "^16.4.5",
     "framer-motion": "^11.2.13",
     "lorem-ipsum": "^2.0.8",
     "react": "^18.3.1",
@@ -19,6 +20,7 @@
     "react-hook-form": "^7.52.1",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.5",
     "styled-components": "^6.1.11",
     "typescript": "^4.4.2"
   },
@@ -48,7 +50,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "deploy:lambda": "(cd awsLambda && ./deploy.sh)"
   },
   "browserslist": {
     "production": [
