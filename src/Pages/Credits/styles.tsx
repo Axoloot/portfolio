@@ -9,10 +9,21 @@ export const StyledWrapper = styled.div`
   justify-content: center;
 `;
 
-export const MadeBy = styled.div`
+export const MadeByWrapper = styled.div`
   position: absolute;
   bottom: 0;
   right: 10px;
+`;
+
+export const MadeBy = styled.div`
+  font-size: 2em;
+  font-weight: bold;
+`;
+
+export const UsingText = styled.div`
+  font-size: 1em;
+  font-weight: bold;
+  margin: 1em 0;
 `;
 
 export const IconCredit = styled.div`

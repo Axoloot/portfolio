@@ -25,7 +25,7 @@ const Router = () => {
           }
         />
         <Route
-          path="xp"
+          path="career"
           element={
             <Drawer minified>
               <Xp />

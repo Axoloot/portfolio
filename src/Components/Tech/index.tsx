@@ -47,7 +47,7 @@ const Tech = ({ element, active }: TechProps) => {
   return (
     <FullTechWrapper>
       <TechWrapper>
-        <TechLogo src={element.logo} />
+        <TechLogo src={element.logo} alt={element.name} />
         <TechName>{element.name}</TechName>
         {active && <Rating rate={element.rating} />}
       </TechWrapper>

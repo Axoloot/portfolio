@@ -2,10 +2,12 @@ import {
   CreditsWrapper,
   IconCredit,
   MadeBy,
+  MadeByWrapper,
   StyledLink,
   StyledWrapper,
   TechLink,
   TopArrow,
+  UsingText,
 } from './styles';
 
 import { ReactComponent as About } from '../../Images/about.svg';
@@ -62,9 +64,9 @@ const Credits = (props: CreditsProps) => {
         </IconCredit>
       </CreditsWrapper>
 
-      <MadeBy>
-        <h1>Made with ❤️ by Cyril de Lajudie </h1>
-        <h4>
+      <MadeByWrapper>
+        <MadeBy>Made with ❤️ by Cyril de Lajudie </MadeBy>
+        <UsingText>
           Using{' '}
           <TechLink
             to="https://fr.react.dev/"
@@ -97,8 +99,8 @@ const Credits = (props: CreditsProps) => {
           >
             Framer-motion
           </TechLink>
-        </h4>
-      </MadeBy>
+        </UsingText>
+      </MadeByWrapper>
     </StyledWrapper>
   );
 };
