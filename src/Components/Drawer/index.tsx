@@ -84,7 +84,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
     <>
       <PageWrapper>
         <StyledDrawer ref={el => (drawerRef.current = el!)}>
-          <DrawerItem to="/" replace={true}>
+          <DrawerItem to="/" replace={true} aria-label="About">
             <About
               fill="inherit"
               height="2em"
@@ -93,7 +93,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
             />
             <DrawerItemText $minified={minified}>About</DrawerItemText>
           </DrawerItem>
-          <DrawerItem to="/xp" replace={true}>
+          <DrawerItem to="/career" replace={true} aria-label="Career">
             <Career
               fill="inherit"
               height="2em"
@@ -102,7 +102,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
             />
             <DrawerItemText $minified={minified}>Career</DrawerItemText>
           </DrawerItem>
-          <DrawerItem to="/techno" replace={true}>
+          <DrawerItem to="/techno" replace={true} aria-label="Techno">
             <Code
               fill="inherit"
               height="2em"
@@ -111,7 +111,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
             />
             <DrawerItemText $minified={minified}>Technologies</DrawerItemText>
           </DrawerItem>
-          <DrawerItem to="/cv" replace={true}>
+          <DrawerItem to="/cv" replace={true} aria-label="cv">
             <Resume
               fill="inherit"
               height="2em"
@@ -120,7 +120,7 @@ const Drawer = ({ children, minified, passProps = true }: DrawerProps) => {
             />
             <DrawerItemText $minified={minified}>Resume</DrawerItemText>
           </DrawerItem>
-          <DrawerItem to="/contact" replace={true}>
+          <DrawerItem to="/contact" replace={true} aria-label="contact">
             <Contact
               fill="inherit"
               height="2em"
