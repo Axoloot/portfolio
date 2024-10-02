@@ -9,7 +9,7 @@ export const ContactWrapper = styled.div`
   flex-direction: column;
 `;
 
-export const ContactBox = styled.div`
+export const ContactBox = styled.form`
   display: flex;
   flex-direction: column;
   width: fit-content;

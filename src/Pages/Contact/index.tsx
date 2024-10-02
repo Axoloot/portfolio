@@ -45,11 +45,18 @@ const Contact = () => {
   const lastname = useState('');
   const body = useState('');
   const [sending, isSending] = useState(false);
+  const toastId = useRef<Id | null>(null);
 
   const showButton: boolean =
     (email[0] && firstname[0] && lastname[0] && body[0]) === '';
 
-  const toastId = useRef<Id | null>(null);
+  const resetForm = useCallback(() => {
+    email[1]('');
+    firstname[1]('');
+    lastname[1]('');
+    body[1]('');
+  }, [body, email, firstname, lastname]);
+
   const notify = () =>
     (toastId.current = toast('Sending mail', {
       type: 'info',
@@ -64,39 +71,46 @@ const Contact = () => {
       autoClose: 2500,
     });
 
-  const sendMessage = useCallback(async () => {
-    isSending(true);
-    notify();
-    const response = await fetch(mailerUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        firstname,
-        lastname,
-        body,
-      }),
-      mode: 'cors',
-    });
+  const sendMessage = useCallback(
+    async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      isSending(true);
+      notify();
+      const response = await fetch(mailerUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          firstname,
+          lastname,
+          body,
+        }),
+        mode: 'cors',
+        signal: AbortSignal.timeout(5000),
+      });
 
-    if (response.ok) {
-      update('Email sent successfully!', 'success');
-    } else {
-      update('Error sending email', 'error');
-    }
-    isSending(false);
-  }, [email, firstname, lastname, body]);
+      if (response.ok) {
+        update('Email sent successfully!', 'success');
+      } else {
+        update('Error sending email', 'error');
+      }
+      resetForm();
+      isSending(false);
+    },
+    [email, firstname, lastname, body, resetForm]
+  );
 
   return (
     <ContactWrapper>
       <h1>Let&apos;s Connect</h1>
-      <ContactBox>
+      <ContactBox onSubmit={sendMessage}>
         <NameWrapper>
           <Input
             type="text"
             placeholder="Firstname"
+            value={firstname[0]}
             onChange={e => {
               firstname[1](e.currentTarget.value);
             }}
@@ -104,6 +118,7 @@ const Contact = () => {
           <Input
             type="text"
             placeholder="Lastname"
+            value={lastname[0]}
             onChange={e => {
               lastname[1](e.currentTarget.value);
             }}
@@ -112,12 +127,14 @@ const Contact = () => {
         <Input
           type="email"
           placeholder="Email"
+          value={email[0]}
           onChange={e => {
             email[1](e.currentTarget.value);
           }}
         />
         <InputText
           placeholder="Content"
+          value={body[0]}
           onChange={e => {
             body[1](e.currentTarget.value);
           }}
@@ -125,12 +142,7 @@ const Contact = () => {
         <SubmitButton
           disabled={showButton || sending}
           ref={buttonRef}
-          onClick={sendMessage}
-          // onKeyDown={e => {
-          //   if (e.key === 'Enter') {
-          //     sendMessage();
-          //   }
-          // }}
+          type="submit"
         >
           Send
         </SubmitButton>
