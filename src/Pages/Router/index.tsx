@@ -1,7 +1,7 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { lazy, Suspense, useState } from 'react';
 
-const Drawer = lazy(() => import('../../Components/Drawer'));
+import Drawer from '../../Components/Drawer';
 const About = lazy(() => import('../About'));
 const Xp = lazy(() => import('../Career'));
 const Technologies = lazy(() => import('../Technologies'));
@@ -12,66 +12,75 @@ const Router = () => {
   const aboutStatus = useState(false);
 
   return (
-    <Suspense fallback={<></>}>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            index
-            element={
-              <Drawer>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          index
+          element={
+            <Drawer>
+              <Suspense fallback={<></>}>
                 <About aboutStatus={aboutStatus} />
-              </Drawer>
-            }
-          />
-          <Route
-            path="career"
-            element={
-              <Drawer minified>
+              </Suspense>
+            </Drawer>
+          }
+        />
+        <Route
+          path="career"
+          element={
+            <Drawer minified>
+              <Suspense fallback={<></>}>
                 <Xp />
-              </Drawer>
-            }
-          />
-          <Route
-            path="techno"
-            element={
-              <Drawer>
+              </Suspense>
+            </Drawer>
+          }
+        />
+        <Route
+          path="techno"
+          element={
+            <Drawer>
+              <Suspense fallback={<></>}>
                 <Technologies techStatus={techStatus} />
-              </Drawer>
-            }
-          />
-          <Route
-            path="contact"
-            element={
-              <Drawer>
+              </Suspense>
+            </Drawer>
+          }
+        />
+        <Route
+          path="contact"
+          element={
+            <Drawer>
+              <Suspense fallback={<></>}>
                 <Contact />
-              </Drawer>
-            }
-          />
-          <Route
-            path="cv"
-            element={
-              <Drawer minified passProps={false}>
-                <iframe
-                  title="cv"
-                  src={require('../../Static/cv.pdf')}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 'none' }}
-                />
-              </Drawer>
-            }
-          />
-          <Route
-            path="*"
-            element={
-              <Drawer>
+              </Suspense>
+            </Drawer>
+          }
+        />
+        <Route
+          path="cv"
+          element={
+            <Drawer minified passProps={false}>
+              {/* make a comp to lazy load */}
+              <iframe
+                title="cv"
+                src={require('../../Static/cv.pdf')}
+                width="100%"
+                height="100%"
+                style={{ border: 'none' }}
+              />
+            </Drawer>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <Drawer>
+              <Suspense fallback={<></>}>
                 <Xp />
-              </Drawer>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </Suspense>
+              </Suspense>
+            </Drawer>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 

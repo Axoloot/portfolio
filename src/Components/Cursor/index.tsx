@@ -21,7 +21,7 @@ const Cursor = ({ hidden, pos, cursorImg, initial, onClick }: CursorProps) => {
         duration: hidden ? 0 : 1,
       }}
     >
-      <CursorImg src={cursorImg} alt="cur" />
+      <CursorImg src={cursorImg} alt="cur" width="16px" height="23px" />
     </CursorWrapper>
   );
 };
