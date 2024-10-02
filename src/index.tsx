@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createGlobalStyle } from 'styled-components';
-import Router from './Pages/Router';
+import Router from './Components/Router';
 import Theme from './Components/ThemeProvider';
 // import 'dotenv/config';
 

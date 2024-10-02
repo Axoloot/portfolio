@@ -1,11 +1,14 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { lazy, Suspense, useState } from 'react';
 
-import Drawer from '../../Components/Drawer';
-const About = lazy(() => import('../About'));
-const Xp = lazy(() => import('../Career'));
-const Technologies = lazy(() => import('../Technologies'));
-const Contact = lazy(() => import('../Contact'));
+import Drawer from '../Drawer';
+import About from '../../Pages/About';
+import Loader from '../Loader';
+
+const CV = lazy(() => import('../../Pages/cv'));
+const Career = lazy(() => import('../../Pages/Career'));
+const Technologies = lazy(() => import('../../Pages/Technologies'));
+const Contact = lazy(() => import('../../Pages/Contact'));
 
 const Router = () => {
   const techStatus = useState(false);
@@ -18,9 +21,7 @@ const Router = () => {
           index
           element={
             <Drawer>
-              <Suspense fallback={<></>}>
-                <About aboutStatus={aboutStatus} />
-              </Suspense>
+              <About aboutStatus={aboutStatus} />
             </Drawer>
           }
         />
@@ -28,8 +29,8 @@ const Router = () => {
           path="career"
           element={
             <Drawer minified>
-              <Suspense fallback={<></>}>
-                <Xp />
+              <Suspense fallback={<Loader />}>
+                <Career />
               </Suspense>
             </Drawer>
           }
@@ -38,7 +39,7 @@ const Router = () => {
           path="techno"
           element={
             <Drawer>
-              <Suspense fallback={<></>}>
+              <Suspense fallback={<Loader />}>
                 <Technologies techStatus={techStatus} />
               </Suspense>
             </Drawer>
@@ -48,7 +49,7 @@ const Router = () => {
           path="contact"
           element={
             <Drawer>
-              <Suspense fallback={<></>}>
+              <Suspense fallback={<Loader />}>
                 <Contact />
               </Suspense>
             </Drawer>
@@ -58,14 +59,9 @@ const Router = () => {
           path="cv"
           element={
             <Drawer minified passProps={false}>
-              {/* make a comp to lazy load */}
-              <iframe
-                title="cv"
-                src={require('../../Static/cv.pdf')}
-                width="100%"
-                height="100%"
-                style={{ border: 'none' }}
-              />
+              <Suspense fallback={<Loader />}>
+                <CV />
+              </Suspense>
             </Drawer>
           }
         />
@@ -73,8 +69,8 @@ const Router = () => {
           path="*"
           element={
             <Drawer>
-              <Suspense fallback={<></>}>
-                <Xp />
+              <Suspense fallback={<Loader />}>
+                <Career />
               </Suspense>
             </Drawer>
           }

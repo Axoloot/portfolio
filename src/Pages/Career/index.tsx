@@ -36,7 +36,7 @@ const baseSections: sectionContent[] = [...Array(sectionsNb)].map(
   }
 );
 
-const Xp = () => {
+const Career = () => {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const [Sections, setSections] = useState(baseSections);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -143,4 +143,4 @@ const Xp = () => {
   );
 };
 
-export default Xp;
+export default Career;
