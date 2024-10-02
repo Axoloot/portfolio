@@ -1,5 +1,6 @@
 import {
   cloneElement,
+  lazy,
   ReactElement,
   useCallback,
   useEffect,
@@ -8,11 +9,11 @@ import {
   useState,
 } from 'react';
 
-import { ReactComponent as Career } from '../../Images/career.svg';
-import { ReactComponent as About } from '../../Images/about.svg';
-import { ReactComponent as Contact } from '../../Images/contact.svg';
-import { ReactComponent as Resume } from '../../Images/resume.svg';
-import { ReactComponent as Code } from '../../Images/code.svg';
+import { ReactComponent as Career } from '../../Static/icons/career.svg';
+import { ReactComponent as About } from '../../Static/icons/about.svg';
+import { ReactComponent as Contact } from '../../Static/icons/contact.svg';
+import { ReactComponent as Resume } from '../../Static/icons/resume.svg';
+import { ReactComponent as Code } from '../../Static/icons/code.svg';
 import {
   DrawerItem,
   DrawerItemText,
@@ -21,11 +22,12 @@ import {
   StyledChild,
   StyledDrawer,
 } from './styles';
-import Cursor from '../Cursor';
 import { Position } from '../../misc/types';
 import useWindowDimensions from '../../misc/dimension';
 import pointer from '../../misc/mouseIcon';
-import Credits from '../../Pages/Credits';
+
+const Credits = lazy(() => import('../../Pages/Credits'));
+const Cursor = lazy(() => import('../Cursor'));
 
 interface DrawerProps {
   minified?: boolean;

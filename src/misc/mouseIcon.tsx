@@ -1,6 +1,6 @@
-const drag = require('../Images/cursors/drag.png');
-const pointer = require('../Images/cursors/pointer.png');
-const cursor = require('../Images/cursors/cursor.png');
+const drag = require('../Static/cursors/drag.png');
+const pointer = require('../Static/cursors/pointer.png');
+const cursor = require('../Static/cursors/cursor.png');
 
 const cursors = { drag, pointer, cursor };
 

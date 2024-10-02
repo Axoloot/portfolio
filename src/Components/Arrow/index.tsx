@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { device } from '../../misc/sizes';
 import { generateNeumorphicCss } from '../../misc';
-import { ReactComponent as Left } from '../../Images/left-arrow-icon.svg';
-import { ReactComponent as Right } from '../../Images/right-arrow-icon.svg';
+import { ReactComponent as Left } from '../../Static/icons/left-arrow-icon.svg';
+import { ReactComponent as Right } from '../../Static/icons/right-arrow-icon.svg';
 
 interface ArrowProps {
   direction: 'prev' | 'next';

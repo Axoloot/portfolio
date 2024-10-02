@@ -10,10 +10,10 @@ import {
   UsingText,
 } from './styles';
 
-import { ReactComponent as About } from '../../Images/about.svg';
-import { ReactComponent as Contact } from '../../Images/contact.svg';
-import { ReactComponent as Resume } from '../../Images/resume.svg';
-import { ReactComponent as Code } from '../../Images/code.svg';
+import { ReactComponent as About } from '../../Static/icons/about.svg';
+import { ReactComponent as Contact } from '../../Static/icons/contact.svg';
+import { ReactComponent as Resume } from '../../Static/icons/resume.svg';
+import { ReactComponent as Code } from '../../Static/icons/code.svg';
 
 interface CreditsProps {
   onClick: () => void;

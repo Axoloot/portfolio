@@ -18,6 +18,7 @@ export const Section = styled.div<{ $img: string }>`
 
   @media ${device.tablet} {
     justify-content: space-evenly;
+    background-position: center;
   }
 `;
 

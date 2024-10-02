@@ -10,28 +10,29 @@ import {
   SubmitButton,
 } from './styles';
 import { useCallback, useRef, useState } from 'react';
+import './toast.css';
+
 import { Id, ToastContainer, TypeOptions, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Medias = [
   {
     name: 'github',
-    src: require('../../Images/contacts/github.png'),
+    src: require('../../Static/contacts/github.png'),
     link: 'https://github.com/Axoloot',
   },
   {
     name: 'linkedin',
-    src: require('../../Images/contacts/linkedin.png'),
+    src: require('../../Static/contacts/linkedin.png'),
     link: 'https://linkedin.com/',
   },
   {
     name: 'malt',
-    src: require('../../Images/contacts/malt.png'),
+    src: require('../../Static/contacts/malt.png'),
     link: 'https://malt.fr/',
   },
   {
     name: 'fiverr',
-    src: require('../../Images/contacts/fiverr.jpg'),
+    src: require('../../Static/contacts/fiverr.jpg'),
     link: 'https://fiverr.com/',
   },
 ];
