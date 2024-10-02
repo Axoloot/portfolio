@@ -30,7 +30,7 @@ export const Cursor = styled.span`
 export const TextContainer = styled.div`
   text-align: center;
   font-size: 1.5em;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: 'Courier', Courier, monospace;
   white-space: nowrap;
   overflow: hidden;
   @media ${device.tablet} {

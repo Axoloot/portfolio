@@ -26,7 +26,7 @@ import { Position } from '../../misc/types';
 import useWindowDimensions from '../../misc/dimension';
 import pointer from '../../misc/mouseIcon';
 
-const Credits = lazy(() => import('../../Pages/Credits'));
+import Credits from '../../Pages/Credits';
 const Cursor = lazy(() => import('../Cursor'));
 
 interface DrawerProps {

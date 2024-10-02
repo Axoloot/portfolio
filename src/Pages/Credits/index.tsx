@@ -22,6 +22,7 @@ interface CreditsProps {
 
 const Credits = (props: CreditsProps) => {
   const [show] = props.displayState;
+  if (!show) return <></>;
   return (
     <StyledWrapper>
       <TopArrow $show={show} onClick={props.onClick} />
