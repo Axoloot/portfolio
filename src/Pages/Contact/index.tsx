@@ -12,28 +12,30 @@ import {
 import { useCallback, useRef, useState } from 'react';
 import { Id, ToastContainer, TypeOptions, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 const Medias = [
   {
     name: 'github',
-    src: require('./img/github.png'),
+    src: require('../../Images/contacts/github.png'),
     link: 'https://github.com/Axoloot',
   },
   {
     name: 'linkedin',
-    src: require('./img/linkedin.png'),
+    src: require('../../Images/contacts/linkedin.png'),
     link: 'https://linkedin.com/',
   },
   {
     name: 'malt',
-    src: require('./img/malt.png'),
+    src: require('../../Images/contacts/malt.png'),
     link: 'https://malt.fr/',
   },
   {
     name: 'fiverr',
-    src: require('./img/fiverr.jpg'),
+    src: require('../../Images/contacts/fiverr.jpg'),
     link: 'https://fiverr.com/',
   },
 ];
+
 const mailerUrl =
   process.env.MAILER_URL ||
   'https://sdov96ntca.execute-api.eu-west-1.amazonaws.com/Mailer';
@@ -62,6 +64,7 @@ const Contact = () => {
       type: 'info',
       isLoading: true,
     }));
+
   const update = (text: string, type: TypeOptions) =>
     toastId.current &&
     toast.update(toastId.current, {
@@ -155,7 +158,7 @@ const Contact = () => {
             rel="noopener noreferrer"
             to={m.link}
           >
-            <MediaIcon src={m.src} />
+            <MediaIcon src={m.src} alt={m.name} loading="lazy" />
           </Link>
         ))}
       </MediasWrapper>
