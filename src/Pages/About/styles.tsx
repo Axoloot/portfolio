@@ -19,7 +19,7 @@ export const blink = keyframes`
   100% { opacity: 1; }
 `;
 
-export const Cursor = styled.span`
+export const Blinker = styled.span`
   font-weight: bold;
   font-size: 1em;
   margin-left: 5px;

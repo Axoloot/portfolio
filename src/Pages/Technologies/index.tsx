@@ -1,11 +1,11 @@
-import { DrawerProps } from '../../misc/types';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
 import pointers from '../../misc/mouseIcon';
 import { TechContainer, TechWrapper } from './styles';
 import useWindowDimensions from '../../misc/dimension';
+import { useCursor } from '../../Contexts/useCursor';
 
-interface TechProps extends DrawerProps {
+interface TechProps {
   techStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
@@ -15,13 +15,7 @@ const baseCategory = [
   { name: 'backend', title: 'BackEnd', color: '#8b2f21', $hidePane: false },
 ];
 
-const Technologies = ({
-  homeCursor,
-  setPos,
-  techStatus,
-  click,
-  setCursorImg,
-}: TechProps) => {
+const Technologies = ({ techStatus }: TechProps) => {
   const { isMobile } = useWindowDimensions();
   const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
@@ -29,6 +23,7 @@ const Technologies = ({
   const [height, setHeight] = useState(viewed ? 420 : 120);
   const CategRef = useRef<HTMLDivElement[]>([]);
   const parentRef = useRef<HTMLDivElement>(null);
+  const { setPos, homeCursor, click, setCursorImg } = useCursor();
 
   const containerVariants = {
     hidden: {},

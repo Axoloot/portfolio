@@ -1,15 +1,13 @@
-import { Position } from '../../misc/types';
+import { useCursor } from '../../Contexts/useCursor';
 import { CursorImg, CursorWrapper } from './styles';
 
 interface CursorProps {
-  hidden?: boolean;
-  cursorImg: string;
-  initial: Position;
-  pos: Position;
   onClick: () => void;
 }
 
-const Cursor = ({ hidden, pos, cursorImg, initial, onClick }: CursorProps) => {
+const Cursor = ({ onClick }: CursorProps) => {
+  const { pos, initial, hidden, cursorImg } = useCursor();
+
   return (
     <CursorWrapper
       onClick={onClick}

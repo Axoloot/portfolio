@@ -42,7 +42,6 @@ const mailerUrl =
   'https://sdov96ntca.execute-api.eu-west-1.amazonaws.com/Mailer';
 
 const Contact = () => {
-  const buttonRef = useRef<HTMLButtonElement | null>(null);
   const email = useState('');
   const firstname = useState('');
   const lastname = useState('');
@@ -143,11 +142,7 @@ const Contact = () => {
             body[1](e.currentTarget.value);
           }}
         />
-        <SubmitButton
-          disabled={showButton || sending}
-          ref={buttonRef}
-          type="submit"
-        >
+        <SubmitButton disabled={showButton || sending} type="submit">
           Send
         </SubmitButton>
       </ContactBox>

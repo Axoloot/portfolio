@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
-  Cursor,
   TextContainer,
   Wrapper,
   DescriptionContainer,
@@ -8,9 +7,10 @@ import {
   Dot,
   NavWrapper,
   DescriptionText,
+  Blinker,
 } from './styles';
-import { DrawerProps } from '../../misc/types';
 import Arrow from '../../Components/Arrow';
+import { useCursor } from '../../Contexts/useCursor';
 
 const typeSpeed = 110;
 const message = ',% My name is Cyril. % I am';
@@ -34,17 +34,11 @@ const cap = [
   },
 ];
 
-interface AboutProps extends DrawerProps {
+interface AboutProps {
   aboutStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
-const TypingEffect: React.FC<AboutProps> = ({
-  setPos,
-  homeCursor,
-  setHidden,
-  aboutStatus,
-}) => {
-  const cursorObjRef = useRef<HTMLSpanElement>(null);
+const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
   const [captionIndex, setCaptionIndex] = useState(0);
   const [animDone, setAnimDone] = aboutStatus;
   const [text, setText] = useState(
@@ -53,12 +47,18 @@ const TypingEffect: React.FC<AboutProps> = ({
   const [direction, setDirection] = useState(0);
   const [showCursor, toggleCursor] = useState(false);
   const intervalRef = useRef<number | null>(null);
+  const { setPos, homeCursor, setHidden, pos } = useCursor();
 
-  useEffect(() => {
-    const pos = cursorObjRef.current?.getBoundingClientRect();
-    if (!pos || !setPos) return;
-    setPos({ x: pos.x + pos.width / 2, y: pos.y + pos.height - 5 });
-  }, [cursorObjRef, setPos]);
+  const handleCursorRef = (element: HTMLDivElement | null) => {
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      if (
+        pos.x !== rect.x + rect.width / 2 &&
+        pos.y !== rect.y + rect.height - 5
+      )
+        setPos({ x: rect.x + rect.width / 2, y: rect.y + rect.height - 5 });
+    }
+  };
 
   const clearTypingInterval = () => {
     if (intervalRef.current !== null) {
@@ -126,7 +126,7 @@ const TypingEffect: React.FC<AboutProps> = ({
             {(!animDone || showCursor) &&
               (text.length === 0 ||
                 t.length !== message.split('%')[i].length) && (
-                <Cursor ref={cursorObjRef}>|</Cursor>
+                <Blinker ref={handleCursorRef}>|</Blinker>
               )}
             <br />
           </React.Fragment>
