@@ -6,7 +6,7 @@ export const CursorImg = styled.img`
   width: 1em;
 `;
 
-export const CursorWrapper = styled(motion.div)<{ hidden?: boolean }>`
+export const CursorPosition = styled(motion.div)<{ hidden?: boolean }>`
   ${props => (props.hidden ? 'display: none;' : '')}
   position: absolute;
   @media ${device.tablet} {
@@ -16,3 +16,5 @@ export const CursorWrapper = styled(motion.div)<{ hidden?: boolean }>`
     left: 0;
   }
 `;
+
+export const CursorAnimation = styled(motion.div)``;

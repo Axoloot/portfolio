@@ -1,15 +1,15 @@
 import { useCursor } from '../../Contexts/useCursor';
-import { CursorImg, CursorWrapper } from './styles';
+import { CursorAnimation, CursorImg, CursorPosition } from './styles';
 
 interface CursorProps {
   onClick: () => void;
 }
 
 const Cursor = ({ onClick }: CursorProps) => {
-  const { pos, initial, hidden, cursorImg } = useCursor();
+  const { pos, initial, hidden, cursorImg, animation } = useCursor();
 
   return (
-    <CursorWrapper
+    <CursorPosition
       onClick={onClick}
       initial={initial}
       hidden={hidden}
@@ -19,8 +19,13 @@ const Cursor = ({ onClick }: CursorProps) => {
         duration: hidden ? 0 : 1,
       }}
     >
-      <CursorImg src={cursorImg} alt="cur" />
-    </CursorWrapper>
+      <CursorAnimation
+        animate={animation?.animation}
+        transition={animation?.transition}
+      >
+        <CursorImg src={cursorImg} alt="cur" />
+      </CursorAnimation>
+    </CursorPosition>
   );
 };
 

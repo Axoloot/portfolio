@@ -17,11 +17,11 @@ import { ReactComponent as Code } from '../../Static/icons/code.svg';
 
 interface CreditsProps {
   onClick: () => void;
-  displayState: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  visibleCredits: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
 const Credits = (props: CreditsProps) => {
-  const [show] = props.displayState;
+  const [show] = props.visibleCredits;
   if (!show) return <></>;
   return (
     <StyledWrapper>

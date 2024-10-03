@@ -27,7 +27,7 @@ interface DrawerProps {
 const Drawer = ({ children, minified }: DrawerProps) => {
   const creditsRef = useRef<HTMLDivElement>(null);
   const { height, isMobile } = useWindowDimensions();
-  const { displayState, homeCursor, drawerRef } = useCursor();
+  const { visibleCredits, homeCursor, drawerRef } = useCursor();
 
   useEffect(() => {
     homeCursor();
@@ -91,7 +91,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
                 block: 'end',
                 inline: 'nearest',
               });
-              displayState[1](true);
+              visibleCredits[1](true);
             }}
           />
         </StyledDrawer>
@@ -100,13 +100,13 @@ const Drawer = ({ children, minified }: DrawerProps) => {
       {!isMobile && (
         <StyledChild ref={creditsRef}>
           <Credits
-            displayState={displayState}
+            visibleCredits={visibleCredits}
             onClick={() => {
               window.scrollTo({
                 behavior: 'smooth',
                 top: 0,
               });
-              displayState[1](false);
+              visibleCredits[1](false);
             }}
           />
         </StyledChild>
