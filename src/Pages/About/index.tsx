@@ -38,7 +38,7 @@ interface AboutProps {
   aboutStatus: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
-const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
+const About: React.FC<AboutProps> = ({ aboutStatus }) => {
   const [captionIndex, setCaptionIndex] = useState(0);
   const [animDone, setAnimDone] = aboutStatus;
   const [text, setText] = useState(
@@ -54,9 +54,11 @@ const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
       const rect = element.getBoundingClientRect();
       if (
         pos.x !== rect.x + rect.width / 2 &&
-        pos.y !== rect.y + rect.height - 5
-      )
+        pos.y !== rect.y + rect.height - 5 &&
+        !animDone
+      ) {
         setPos({ x: rect.x + rect.width / 2, y: rect.y + rect.height - 5 });
+      }
     }
   };
 
@@ -79,8 +81,8 @@ const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
         } else {
           clearTypingInterval();
           setAnimDone(true);
-          setHidden && setHidden(false);
-          homeCursor && homeCursor();
+          setHidden(false);
+          homeCursor();
           toggleCursor(false);
         }
       }, typeSpeed);
@@ -91,7 +93,7 @@ const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
   const typeMessage = useCallback(() => {
     clearTypingInterval();
     let index = 0;
-    setHidden && setHidden(true);
+    setHidden(true);
     intervalRef.current = window.setInterval(() => {
       setText(message.slice(0, index));
       if (index++ >= message.length) {
@@ -112,7 +114,7 @@ const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
     const timeout = setTimeout(typeMessage, 1500);
     return () => {
       clearTimeout(timeout);
-      setHidden && setHidden(false);
+      setHidden(false);
     };
   }, [typeMessage, setHidden, animDone]);
 
@@ -178,4 +180,4 @@ const TypingEffect: React.FC<AboutProps> = ({ aboutStatus }) => {
   );
 };
 
-export default TypingEffect;
+export default About;

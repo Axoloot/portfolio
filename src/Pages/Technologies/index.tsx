@@ -51,7 +51,7 @@ const Technologies = ({ techStatus }: TechProps) => {
   const HomeAnime = useCallback(
     (cb?: () => void) => {
       const timeout = setTimeout(() => {
-        homeCursor && homeCursor();
+        homeCursor();
         cb && cb();
       }, 1000);
       return () => clearTimeout(timeout);
@@ -61,7 +61,7 @@ const Technologies = ({ techStatus }: TechProps) => {
 
   const Click = useCallback(() => {
     const timeout = setTimeout(() => {
-      click && click();
+      click();
       HomeAnime();
     }, 1000);
     return () => clearTimeout(timeout);
@@ -83,12 +83,12 @@ const Technologies = ({ techStatus }: TechProps) => {
   const FirstAnim = useCallback(() => {
     animate(0);
     const timeout = setTimeout(() => {
-      setCursorImg && setCursorImg(pointers.drag);
+      setCursorImg(pointers.drag);
       setWidth(width => (isMobile ? '100%' : (width as number) + 300));
       setHeight(height => height + 300);
       animate(0, 300, 300);
       HomeAnime(() => {
-        setCursorImg && setCursorImg(pointers.cursor);
+        setCursorImg(pointers.cursor);
         setViewed(true);
         SecondAnim();
       });

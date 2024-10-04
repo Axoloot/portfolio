@@ -8,6 +8,7 @@ import {
   TechWrapper,
 } from './styles';
 import { useEffect, useState } from 'react';
+import useWindowDimensions from '../../misc/dimension';
 
 const lorem = new LoremIpsum({
   sentencesPerParagraph: {
@@ -33,8 +34,25 @@ interface TechProps {
   element: TechElem;
 }
 
+const TechDescription = ({
+  active,
+  opacity,
+}: {
+  active: boolean;
+  opacity: number;
+}) => {
+  if (active)
+    return (
+      <ActiveContent initial={{ opacity: 0 }} animate={{ opacity }}>
+        {lorem.generateSentences(1)}
+      </ActiveContent>
+    );
+  return <></>;
+};
+
 const Tech = ({ element, active }: TechProps) => {
   const [opacity, setOpacity] = useState(0);
+  const { isMobile } = useWindowDimensions();
 
   useEffect(() => {
     if (!active) return setOpacity(0);
@@ -50,12 +68,9 @@ const Tech = ({ element, active }: TechProps) => {
         <TechLogo src={element.logo} alt={element.name} />
         <TechName>{element.name}</TechName>
         {active && <Rating rate={element.rating} />}
+        <TechDescription active={active && isMobile} opacity={opacity} />
       </TechWrapper>
-      {active && (
-        <ActiveContent initial={{ opacity: 0 }} animate={{ opacity }}>
-          {element.description || lorem.generateSentences(1)}
-        </ActiveContent>
-      )}
+      <TechDescription active={active && !isMobile} opacity={opacity} />
     </FullTechWrapper>
   );
 };

@@ -73,4 +73,5 @@ export const Dot = styled.span<{ $active: boolean }>`
 
 export const DescriptionText = styled(motion.div)`
   padding: 0 1em;
+  z-index: -1;
 `;

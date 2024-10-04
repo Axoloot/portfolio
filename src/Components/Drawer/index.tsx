@@ -26,7 +26,7 @@ interface DrawerProps {
 
 const Drawer = ({ children, minified }: DrawerProps) => {
   const creditsRef = useRef<HTMLDivElement>(null);
-  const { height, isMobile } = useWindowDimensions();
+  const { height } = useWindowDimensions();
   const { visibleCredits, homeCursor, drawerRef } = useCursor();
 
   useEffect(() => {
@@ -85,32 +85,29 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           <MobileCursorWrapper />
           <Cursor
             onClick={() => {
-              if (isMobile) return (window as any).cycleTheme();
+              visibleCredits[1](true);
               creditsRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'end',
                 inline: 'nearest',
               });
-              visibleCredits[1](true);
             }}
           />
         </StyledDrawer>
         <StyledChild>{children}</StyledChild>
       </PageWrapper>
-      {!isMobile && (
-        <StyledChild ref={creditsRef}>
-          <Credits
-            visibleCredits={visibleCredits}
-            onClick={() => {
-              window.scrollTo({
-                behavior: 'smooth',
-                top: 0,
-              });
-              visibleCredits[1](false);
-            }}
-          />
-        </StyledChild>
-      )}
+      <StyledChild ref={creditsRef}>
+        <Credits
+          visibleCredits={visibleCredits}
+          onClick={() => {
+            window.scrollTo({
+              behavior: 'smooth',
+              top: 0,
+            });
+            visibleCredits[1](false);
+          }}
+        />
+      </StyledChild>
     </>
   );
 };

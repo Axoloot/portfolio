@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { device } from '../../misc/sizes';
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -7,6 +8,11 @@ export const StyledWrapper = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
+  background: ${props => props.theme.primary};
+
+  @media ${device.tablet} {
+    font-size: 0.7em;
+  }
 `;
 
 export const MadeByWrapper = styled.div`

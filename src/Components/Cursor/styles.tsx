@@ -17,4 +17,6 @@ export const CursorPosition = styled(motion.div)<{ hidden?: boolean }>`
   }
 `;
 
-export const CursorAnimation = styled(motion.div)``;
+export const CursorAnimation = styled(motion.div)`
+  width: 1em;
+`;

@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
+import { device } from '../../misc/sizes';
 
 export const FullTechWrapper = styled.div`
   display: flex;
   flex-direction: row;
+  @media ${device.tablet} {
+    justify-content: center;
+  }
 `;
 
 export const TechWrapper = styled.div`
