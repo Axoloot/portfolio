@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TechCategory from '../../Components/TechCategories';
-import pointers from '../../misc/mouseIcon';
 import { TechContainer, TechWrapper } from './styles';
 import useWindowDimensions from '../../misc/dimension';
 import { useCursor } from '../../Contexts/useCursor';
@@ -16,6 +15,7 @@ const baseCategory = [
 ];
 
 const Technologies = ({ techStatus }: TechProps) => {
+  const { setPos, homeCursor, click, setCursorImg, cursors } = useCursor();
   const { isMobile } = useWindowDimensions();
   const [Categories, setCategories] = useState(baseCategory);
   const [viewed, setViewed] = techStatus;
@@ -23,7 +23,6 @@ const Technologies = ({ techStatus }: TechProps) => {
   const [height, setHeight] = useState(viewed ? 420 : 120);
   const CategRef = useRef<HTMLDivElement[]>([]);
   const parentRef = useRef<HTMLDivElement>(null);
-  const { setPos, homeCursor, click, setCursorImg } = useCursor();
 
   const containerVariants = {
     hidden: {},
@@ -83,19 +82,28 @@ const Technologies = ({ techStatus }: TechProps) => {
   const FirstAnim = useCallback(() => {
     animate(0);
     const timeout = setTimeout(() => {
-      setCursorImg(pointers.drag);
+      setCursorImg(cursors.drag);
       setWidth(width => (isMobile ? '100%' : (width as number) + 300));
       setHeight(height => height + 300);
       animate(0, 300, 300);
       HomeAnime(() => {
-        setCursorImg(pointers.cursor);
+        setCursorImg(cursors.cursor);
         setViewed(true);
         SecondAnim();
       });
     }, 1000);
 
     return () => clearTimeout(timeout);
-  }, [animate, HomeAnime, SecondAnim, setViewed, setCursorImg, isMobile]);
+  }, [
+    animate,
+    HomeAnime,
+    SecondAnim,
+    setViewed,
+    setCursorImg,
+    isMobile,
+    cursors.cursor,
+    cursors.drag,
+  ]);
 
   useEffect(() => {
     if (viewed) return;

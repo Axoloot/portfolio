@@ -75,3 +75,7 @@ export const DescriptionText = styled(motion.div)`
   padding: 0 1em;
   z-index: -1;
 `;
+
+export const Caption = styled.span`
+  font-size: 0.75em;
+`;

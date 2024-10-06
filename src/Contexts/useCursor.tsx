@@ -10,8 +10,14 @@ import React, {
 } from 'react';
 import useWindowDimensions from '../misc/dimension';
 import { Position } from '../misc/types';
-import pointer from '../misc/mouseIcon';
 import { TargetAndTransition, Transition } from 'framer-motion';
+const drag = require('../Static/cursors/drag.png') as string;
+const cursor = require('../Static/cursors/cursor.png') as string;
+
+interface Cursor {
+  drag: string;
+  cursor: string;
+}
 
 interface AnimationTransition {
   animation: TargetAndTransition;
@@ -34,6 +40,7 @@ interface CursorContextFn {
     y: number;
   };
   animation: AnimationTransition | null;
+  cursors: Cursor;
 }
 
 const CursorContext = createContext<CursorContextFn>({} as CursorContextFn);
@@ -61,6 +68,7 @@ const clicking: AnimationTransition = {
 };
 
 export const CursorProvider = ({ children }: { children: ReactElement }) => {
+  const cursors = { drag, cursor };
   const { height, width, isMobile } = useWindowDimensions();
   const initial = useMemo(
     () =>
@@ -69,7 +77,7 @@ export const CursorProvider = ({ children }: { children: ReactElement }) => {
   );
   const [pos, setPos] = useState<Position>(initial);
   const [hidden, setHidden] = useState(false);
-  const [cursorImg, setCursorImg] = useState(pointer['cursor']);
+  const [cursorImg, setCursorImg] = useState(cursors['cursor']);
   const [animation, setAnimation] = useState<AnimationTransition | null>(null);
   const drawerRef = useRef<HTMLDivElement>();
   const visibleCredits = useState(false);
@@ -114,6 +122,7 @@ export const CursorProvider = ({ children }: { children: ReactElement }) => {
         drawerRef,
         initial,
         animation,
+        cursors,
       }}
     >
       {children}
