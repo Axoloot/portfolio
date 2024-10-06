@@ -66,6 +66,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
   const [captionIndex, setCaptionIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [scale, setScale] = useState(animDone ? finalScale : 1);
+
   const intervalRef = useRef<number | null>(null);
   const animRef = useRef<HTMLElement | null>(null);
 
@@ -98,7 +99,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
 
     setTimeout(() => {
       setCursorImg(cursors.drag);
-      setPos(prev => ({ x: prev.x + 15, y: prev.y - 15 / 1.7 }));
+      setPos(prev => ({ x: prev.x + 15, y: prev.y - 8 }));
       setScale(finalScale);
       setResizeDone(true);
     }, 1500);
