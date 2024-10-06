@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { device } from '../../misc/sizes';
+import { generateNeumorphicCss } from '../../misc';
 
 export const StyledWrapper = styled.div`
   display: flex;
@@ -121,4 +122,22 @@ export const CreditsWrapper = styled.div`
 export const TechLink = styled(NavLink)`
   text-decoration: underline;
   color: ${props => props.theme.tertiary};
+`;
+
+export const ResetAnimWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+`;
+
+export const ResetButton = styled.button`
+  color: white;
+  margin: 1em;
+  padding: 1em;
+  border: none;
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal')}
+
+  &:active {
+    ${props => generateNeumorphicCss(props.theme.primary, 'inset')}
+  }
 `;

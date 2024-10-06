@@ -22,16 +22,25 @@ import { useCursor } from '../../Contexts/useCursor';
 interface DrawerProps {
   minified?: boolean;
   children: ReactElement;
+  reset: () => void;
 }
 
-const Drawer = ({ children, minified }: DrawerProps) => {
+const Drawer = ({ children, minified, reset }: DrawerProps) => {
   const creditsRef = useRef<HTMLDivElement>(null);
   const { height } = useWindowDimensions();
   const { visibleCredits, homeCursor, drawerRef } = useCursor();
+  const [visible, setVisible] = visibleCredits;
 
   useEffect(() => {
     homeCursor();
   }, [children, height, homeCursor]);
+
+  useEffect(() => {
+    if (window.screenY !== 0 && !visible)
+      window.scrollTo({
+        top: 0,
+      });
+  });
 
   return (
     <>
@@ -85,7 +94,7 @@ const Drawer = ({ children, minified }: DrawerProps) => {
           <MobileCursorWrapper />
           <Cursor
             onClick={() => {
-              visibleCredits[1](true);
+              setVisible(true);
               creditsRef.current?.scrollIntoView({
                 behavior: 'smooth',
                 block: 'end',
@@ -98,14 +107,15 @@ const Drawer = ({ children, minified }: DrawerProps) => {
       </PageWrapper>
       <StyledChild ref={creditsRef}>
         <Credits
-          visibleCredits={visibleCredits}
+          visible={visible}
           onClick={() => {
             window.scrollTo({
               behavior: 'smooth',
               top: 0,
             });
-            visibleCredits[1](false);
+            setVisible(false);
           }}
+          reset={reset}
         />
       </StyledChild>
     </>

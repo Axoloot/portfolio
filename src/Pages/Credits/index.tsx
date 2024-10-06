@@ -3,6 +3,8 @@ import {
   IconCredit,
   MadeBy,
   MadeByWrapper,
+  ResetAnimWrapper,
+  ResetButton,
   StyledLink,
   StyledWrapper,
   TechLink,
@@ -17,15 +19,15 @@ import { ReactComponent as Code } from '../../Static/icons/code.svg';
 
 interface CreditsProps {
   onClick: () => void;
-  visibleCredits: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
+  visible: boolean;
+  reset: () => void;
 }
 
 const Credits = (props: CreditsProps) => {
-  const [show] = props.visibleCredits;
-  if (!show) return <></>;
+  if (!props.visible) return <></>;
   return (
     <StyledWrapper>
-      <TopArrow $show={show} onClick={props.onClick} />
+      <TopArrow $show={props.visible} onClick={props.onClick} />
       <CreditsWrapper>
         <IconCredit>
           <Code height="2em" width="2em" />
@@ -64,6 +66,10 @@ const Credits = (props: CreditsProps) => {
           </StyledLink>
         </IconCredit>
       </CreditsWrapper>
+
+      <ResetAnimWrapper>
+        <ResetButton onClick={props.reset}>Reset All Animations</ResetButton>
+      </ResetAnimWrapper>
 
       <MadeByWrapper>
         <MadeBy>Made with ❤️ by Cyril de Lajudie </MadeBy>

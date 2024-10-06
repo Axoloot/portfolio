@@ -12,8 +12,15 @@ const Technologies = lazy(() => import('../../Pages/Technologies'));
 const Contact = lazy(() => import('../../Pages/Contact'));
 
 const Router = () => {
+  const [key, setKey] = useState('');
   const techStatus = useState(false);
   const aboutStatus = useState(false);
+
+  const resetAnim = () => {
+    techStatus[1](false);
+    aboutStatus[1](false);
+    setKey(Math.random().toString());
+  };
 
   return (
     <CursorProvider>
@@ -22,15 +29,15 @@ const Router = () => {
           <Route
             index
             element={
-              <Drawer>
-                <About aboutStatus={aboutStatus} />
+              <Drawer reset={resetAnim}>
+                <About aboutStatus={aboutStatus} key={key} />
               </Drawer>
             }
           />
           <Route
             path="career"
             element={
-              <Drawer minified>
+              <Drawer reset={resetAnim} minified>
                 <Suspense fallback={<Loader />}>
                   <Career />
                 </Suspense>
@@ -40,9 +47,9 @@ const Router = () => {
           <Route
             path="techno"
             element={
-              <Drawer>
+              <Drawer reset={resetAnim}>
                 <Suspense fallback={<Loader />}>
-                  <Technologies techStatus={techStatus} />
+                  <Technologies techStatus={techStatus} key={key} />
                 </Suspense>
               </Drawer>
             }
@@ -50,7 +57,7 @@ const Router = () => {
           <Route
             path="contact"
             element={
-              <Drawer>
+              <Drawer reset={resetAnim}>
                 <Suspense fallback={<Loader />}>
                   <Contact />
                 </Suspense>
@@ -60,7 +67,7 @@ const Router = () => {
           <Route
             path="cv"
             element={
-              <Drawer minified>
+              <Drawer reset={resetAnim} minified>
                 <Suspense fallback={<Loader />}>
                   <CV />
                 </Suspense>
@@ -70,7 +77,7 @@ const Router = () => {
           <Route
             path="*"
             element={
-              <Drawer>
+              <Drawer reset={resetAnim}>
                 <Suspense fallback={<Loader />}>
                   <Career />
                 </Suspense>
