@@ -7,10 +7,14 @@ import { ReactComponent as Right } from '../../Static/icons/right-arrow-icon.svg
 
 interface ArrowProps {
   direction: 'prev' | 'next';
+  disabled: boolean;
   onClick: () => void;
 }
 
-const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
+const StyledArrow = styled.div<{
+  direction: 'prev' | 'next';
+  $disabled: boolean;
+}>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +27,11 @@ const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
   width: 1em;
   min-width: 1em;
   max-width: 1em;
-  ${props => generateNeumorphicCss(props.theme.primary, 'normal')}
+  ${props =>
+    generateNeumorphicCss(
+      props.theme.primary,
+      props.$disabled ? 'inset' : 'normal'
+    )}
   @media ${device.tablet} {
     ${props =>
       props.direction === 'prev'
@@ -35,9 +43,9 @@ const StyledArrow = styled.div<{ direction: 'prev' | 'next' }>`
   }
 `;
 
-const Arrow: React.FC<ArrowProps> = ({ direction, onClick }) => {
+const Arrow: React.FC<ArrowProps> = ({ direction, disabled, onClick }) => {
   return (
-    <StyledArrow direction={direction} onClick={onClick}>
+    <StyledArrow direction={direction} onClick={onClick} $disabled={disabled}>
       {direction === 'prev' ? (
         <Left style={{ margin: '.1em' }} />
       ) : (

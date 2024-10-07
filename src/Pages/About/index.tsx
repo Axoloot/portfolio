@@ -58,14 +58,16 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
     useCursor();
   const [animDone, setAnimDone] = aboutStatus;
 
+  const [captionTyping, setCaptionTyping] = useState(false);
   const [captionText, setCaptionText] = useState(animDone ? cap[0].title : '');
+  const [captionIndex, setCaptionIndex] = useState(0);
+  const [captionHighlight, setCaptionHighlight] = useState(false);
+
   const [preText, setPreText] = useState(animDone ? pre : '');
   const [nameText, setNameText] = useState(animDone ? name : '');
   const [postText, setPostText] = useState(animDone ? post : '');
   const [resizeDone, setResizeDone] = useState(false);
 
-  const [captionIndex, setCaptionIndex] = useState(0);
-  const [captionHighlight, setCaptionHighlight] = useState(false);
   const [direction, setDirection] = useState(0);
   const [scale, setScale] = useState(animDone ? finalScale : 1);
 
@@ -165,26 +167,32 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
     }, typeSpeed);
   }, [setAnimDone, typeCaption, homeCursor, setCursorImg, cursors.cursor]);
 
-  const handleCaptionChange = (newIndex: number, direction: number) => {
-    const pos = jobRef.current?.getBoundingClientRect();
-    if (pos)
-      setPos({
-        x: pos.x + pos.width / 2,
-        y: pos.y + pos.height - 5,
-      });
+  const handleCaptionChange = useCallback(
+    (newIndex: number, direction: number) => {
+      if (captionTyping) return;
+      setCaptionTyping(true);
+      const pos = jobRef.current?.getBoundingClientRect();
+      if (pos)
+        setPos({
+          x: pos.x + pos.width / 2,
+          y: pos.y + pos.height - 5,
+        });
 
-    setTimeout(() => {
-      click();
-      setCaptionHighlight(true);
       setTimeout(() => {
-        setCaptionIndex(newIndex);
-        setDirection(direction);
-        typeCaption(newIndex);
-        homeCursor();
-        setCaptionHighlight(false);
-      }, 500);
-    }, 1000);
-  };
+        click();
+        setCaptionHighlight(true);
+        setTimeout(() => {
+          setCaptionIndex(newIndex);
+          setDirection(direction);
+          typeCaption(newIndex);
+          homeCursor();
+          setCaptionHighlight(false);
+          setCaptionTyping(false);
+        }, 500);
+      }, 1000);
+    },
+    [captionTyping, click, homeCursor, setPos, typeCaption]
+  );
 
   useEffect(() => {
     if (animDone) return;
@@ -194,6 +202,15 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
       setHidden(false);
     };
   }, [typePre, setHidden, animDone]);
+
+  useEffect(() => {
+    if (!animDone) return;
+    const interval = setInterval(
+      () => handleCaptionChange((captionIndex + 1) % cap.length, 1),
+      7500
+    );
+    return () => clearInterval(interval);
+  }, [animDone, handleCaptionChange, captionIndex]);
 
   return (
     <Wrapper>
@@ -232,6 +249,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
       >
         <NavWrapper>
           <Arrow
+            disabled={captionTyping}
             direction="prev"
             onClick={() =>
               handleCaptionChange(
@@ -250,6 +268,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
             {cap[captionIndex].description}
           </DescriptionText>
           <Arrow
+            disabled={captionTyping}
             direction="next"
             onClick={() =>
               handleCaptionChange((captionIndex + 1) % cap.length, 1)
