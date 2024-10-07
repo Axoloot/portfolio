@@ -95,4 +95,7 @@ export const TimerBar = styled(motion.div)`
   position: absolute;
   bottom: 0;
   background: ${props => props.theme.tertiary};
+  @media ${device.tablet} {
+    height: 2px;
+  }
 `;
