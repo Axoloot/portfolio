@@ -115,7 +115,10 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
             });
             setVisible(false);
           }}
-          reset={reset}
+          reset={() => {
+            reset();
+            setVisible(false);
+          }}
         />
       </StyledChild>
     </>

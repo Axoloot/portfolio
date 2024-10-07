@@ -9,6 +9,7 @@ import {
   Blinker,
   DescriptionText,
   Caption,
+  Highlighted,
 } from './styles';
 import Arrow from '../../Components/Arrow';
 import { useCursor } from '../../Contexts/useCursor';
@@ -53,7 +54,7 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ aboutStatus }) => {
-  const { setPos, homeCursor, setHidden, setCursorImg, cursors, pos } =
+  const { setPos, homeCursor, setHidden, setCursorImg, cursors, pos, click } =
     useCursor();
   const [animDone, setAnimDone] = aboutStatus;
 
@@ -64,15 +65,16 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
   const [resizeDone, setResizeDone] = useState(false);
 
   const [captionIndex, setCaptionIndex] = useState(0);
+  const [captionHighlight, setCaptionHighlight] = useState(false);
   const [direction, setDirection] = useState(0);
   const [scale, setScale] = useState(animDone ? finalScale : 1);
 
   const intervalRef = useRef<number | null>(null);
   const animRef = useRef<HTMLElement | null>(null);
+  const jobRef = useRef<HTMLElement | null>(null);
 
   const handleCursorRef = (element: HTMLDivElement | null) => {
     if (element && preText.length === 0) {
-      console.log(1);
       const rect = element.getBoundingClientRect();
       if (
         pos.x !== rect.x + rect.width / 2 &&
@@ -164,9 +166,24 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
   }, [setAnimDone, typeCaption, homeCursor, setCursorImg, cursors.cursor]);
 
   const handleCaptionChange = (newIndex: number, direction: number) => {
-    setCaptionIndex(newIndex);
-    setDirection(direction);
-    typeCaption(newIndex);
+    const pos = jobRef.current?.getBoundingClientRect();
+    if (pos)
+      setPos({
+        x: pos.x + pos.width / 2,
+        y: pos.y + pos.height - 5,
+      });
+
+    setTimeout(() => {
+      click();
+      setCaptionHighlight(true);
+      setTimeout(() => {
+        setCaptionIndex(newIndex);
+        setDirection(direction);
+        typeCaption(newIndex);
+        homeCursor();
+        setCaptionHighlight(false);
+      }, 500);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -184,10 +201,18 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         Hi
         <span>{renderTextWithLineBreaks(preText)}</span>
         <motion.span
-          initial={{ fontSize: `${scale}em`, fontWeight: animDone ? 700 : 400 }}
+          initial={{
+            fontSize: `${scale}em`,
+            textShadow: animDone
+              ? '.5px .5px 0 currentColor'
+              : '0 0 0 currentColor',
+          }}
           animate={{
             fontSize: `${scale}em`,
-            fontWeight: scale === finalScale ? 700 : 400,
+            textShadow:
+              scale === finalScale
+                ? '.5px .5px 0 currentColor'
+                : '0 0 0 currentColor',
           }}
           transition={{ duration: 1, ease: 'anticipate' }}
           ref={animRef}
@@ -195,7 +220,10 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         >
           {renderTextWithLineBreaks(nameText)}
         </motion.span>
-        <Caption>{renderTextWithLineBreaks(postText + captionText)}</Caption>
+        <Caption>{renderTextWithLineBreaks(postText)}</Caption>
+        <Highlighted $highlighted={captionHighlight} ref={jobRef}>
+          {captionText}
+        </Highlighted>
         {!animDone && <Blinker ref={handleCursorRef}>|</Blinker>}
       </TextContainer>
       <DescriptionContainer

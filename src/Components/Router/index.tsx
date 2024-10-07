@@ -20,6 +20,9 @@ const Router = () => {
     techStatus[1](false);
     aboutStatus[1](false);
     setKey(Math.random().toString());
+    window.scrollTo({
+      top: 0,
+    });
   };
 
   return (

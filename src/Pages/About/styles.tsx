@@ -79,3 +79,12 @@ export const DescriptionText = styled(motion.div)`
 export const Caption = styled.span`
   font-size: 0.75em;
 `;
+
+export const Highlighted = styled(Caption)<{ $highlighted: boolean }>`
+  ${props =>
+    props.$highlighted &&
+    `font-size: 0.75em;
+    background-color: #3399ff;
+    color: black;`}
+  padding-top: 0.3em;
+`;
