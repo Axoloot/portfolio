@@ -10,6 +10,7 @@ import {
   DescriptionText,
   Caption,
   Highlighted,
+  TimerBar,
 } from './styles';
 import Arrow from '../../Components/Arrow';
 import { useCursor } from '../../Contexts/useCursor';
@@ -17,6 +18,7 @@ import { motion } from 'framer-motion';
 
 const typeSpeed = 80;
 const finalScale = 1.5;
+const captionTiming = 7.5;
 const pre = ',% My name is ';
 const name = 'Cyril';
 const post = '.%% I am ';
@@ -207,7 +209,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
     if (!animDone) return;
     const interval = setInterval(
       () => handleCaptionChange((captionIndex + 1) % cap.length, 1),
-      7500
+      captionTiming * 1000
     );
     return () => clearInterval(interval);
   }, [animDone, handleCaptionChange, captionIndex]);
@@ -287,6 +289,12 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
           ))}
         </DotContainer>
       </DescriptionContainer>
+      <TimerBar
+        key={captionIndex}
+        initial={{ width: 0 }}
+        animate={{ width: animDone ? '100%' : 0 }}
+        transition={{ duration: captionTiming, ease: 'linear' }}
+      />
     </Wrapper>
   );
 };

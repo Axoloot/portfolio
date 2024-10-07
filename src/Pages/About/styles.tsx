@@ -88,3 +88,11 @@ export const Highlighted = styled(Caption)<{ $highlighted: boolean }>`
     color: black;`}
   padding-top: 0.3em;
 `;
+
+export const TimerBar = styled(motion.div)`
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  background: ${props => props.theme.tertiary};
+`;
