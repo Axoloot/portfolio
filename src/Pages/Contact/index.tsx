@@ -129,7 +129,7 @@ const Contact = () => {
         </NameWrapper>
         <Input
           type="email"
-          placeholder="Email"
+          placeholder="Email (for reply)"
           value={email[0]}
           onChange={e => {
             email[1](e.currentTarget.value);
