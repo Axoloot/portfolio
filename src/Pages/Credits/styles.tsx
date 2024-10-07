@@ -126,8 +126,8 @@ export const TechLink = styled(NavLink)`
 
 export const ResetAnimWrapper = styled.div`
   position: absolute;
-  bottom: 0;
-  left: 10px;
+  top: 0;
+  right: 10px;
 `;
 
 export const ResetButton = styled.button`
