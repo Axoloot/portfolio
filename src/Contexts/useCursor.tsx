@@ -47,7 +47,7 @@ const CursorContext = createContext<CursorContextFn>({} as CursorContextFn);
 
 const pulsing: AnimationTransition = {
   animation: {
-    scale: [1, 1.1, 1],
+    scale: [1, 1.3, 1],
     rotate: [0, -10, 10, -10, 10, 0],
   },
   transition: {
