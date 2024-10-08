@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-// import { device } from '../../misc/sizes';
+import { device } from '../../misc/sizes';
 import { motion } from 'framer-motion';
 import { generateNeumorphicCss } from '../../misc';
 
@@ -33,6 +33,9 @@ export const TextContainer = styled.div`
   font-family: 'Courier', Courier, monospace;
   white-space: nowrap;
   overflow: hidden;
+  @media ${device.tablet} {
+    font-size: 1.5em;
+  }
 `;
 
 export const DescriptionContainer = styled(motion.div)`
