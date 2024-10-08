@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const GlobalStyle = createGlobalStyle<{ $whiteColor?: boolean }>`
+const GlobalStyle = createGlobalStyle`
   body {
     overflow: hidden;
     background: ${props => props.theme.primary};

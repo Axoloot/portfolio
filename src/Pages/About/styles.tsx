@@ -96,7 +96,4 @@ export const TimerBar = styled(motion.div)`
   bottom: 0;
   background: ${props => props.theme.tertiary};
   z-index: 999;
-  @media ${device.tablet} {
-    height: 2px;
-  }
 `;

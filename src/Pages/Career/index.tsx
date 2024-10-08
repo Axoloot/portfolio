@@ -58,14 +58,8 @@ const Career = () => {
       }
     });
 
-    if (closestIndex !== -1) {
-      setActiveIndex(closestIndex);
-    }
+    if (closestIndex !== -1) setActiveIndex(closestIndex);
   };
-
-  useEffect(() => {
-    handleScroll();
-  }, []);
 
   useEffect(() => {
     setDotY(Sections[activeIndex].y);
@@ -86,29 +80,27 @@ const Career = () => {
         <Line $full />
         <Line animate={{ height: Sections[activeIndex].y }} />
         <TimelineDot
-          drag="y"
+          // drag="y"
           initial={{ y: Sections[activeIndex].y || 16 }}
-          $event
-          dragElastic={1}
-          onDrag={(event, info) => {
-            const index = Sections.findIndex(s => {
-              if (!s) return null;
-              return info.point.y - s.y <= 50;
-            });
-            if (index !== -1) scrollToCurrent(index);
-          }}
-          onDragExit={() => {
-            setDotY(Sections[activeIndex].y);
-          }}
           animate={{ y: dotY }}
+          $event
+          // dragElastic={1}
+          // onDrag={(event, info) => {
+          //   const index = Sections.findIndex(s => {
+          //     if (!s) return null;
+          //     return info.point.y - s.y <= 50;
+          //   });
+          //   if (index !== -1) scrollToCurrent(index);
+          // }}
+          // onDragExit={() => {
+          //   setDotY(Sections[activeIndex].y);
+          // }}
           transition={{ ease: 'easeInOut' }}
-          style={{ scale: 1.2, background: theme.tertiary, zIndex: 3 }}
+          style={{ scale: 1.2, background: theme.tertiary }}
         />
         {Sections.map((section, index) => (
           <TimelineItem
-            onClick={() => {
-              scrollToCurrent(index);
-            }}
+            onClick={() => scrollToCurrent(index)}
             key={section.year}
             ref={el => {
               const rect = el?.getBoundingClientRect();

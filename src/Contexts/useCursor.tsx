@@ -67,6 +67,14 @@ const clicking: AnimationTransition = {
   },
 };
 
+const base: AnimationTransition = {
+  animation: {
+    scale: 1,
+    rotate: 0,
+  },
+  transition: {},
+};
+
 export const CursorProvider = ({ children }: { children: ReactElement }) => {
   const cursors = { drag, cursor };
   const { height, width, isMobile } = useWindowDimensions();
@@ -84,24 +92,22 @@ export const CursorProvider = ({ children }: { children: ReactElement }) => {
 
   const click = useCallback(() => {
     setAnimation(clicking);
-    const timeout = setTimeout(() => setAnimation(null), 1500);
+    const timeout = setTimeout(() => setAnimation(base), 1500);
 
     return () => clearTimeout(timeout);
   }, []);
 
   const homeCursor = useCallback(() => {
-    if (isMobile) {
-      setPos(initial);
-      return;
-    }
+    setCursorImg(cursors.cursor);
+    if (isMobile) return setPos(initial);
     const rect = drawerRef.current?.getBoundingClientRect();
     if (rect) setPos({ y: height - 30, x: rect.width / 2 - 8 });
-  }, [initial, height, isMobile]);
+  }, [initial, height, isMobile, cursors.cursor]);
 
   useEffect(() => {
     const intervale = setInterval(() => {
       setAnimation(pulsing);
-      const timeout = setTimeout(() => setAnimation(null), 5000);
+      const timeout = setTimeout(() => setAnimation(base), 5000);
       return () => clearTimeout(timeout);
     }, 35000);
     return () => clearInterval(intervale);
