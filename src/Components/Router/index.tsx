@@ -40,7 +40,7 @@ const Router = () => {
           <Route
             path="career"
             element={
-              <Drawer reset={resetAnim} minified>
+              <Drawer reset={resetAnim}>
                 <Suspense fallback={<Loader />}>
                   <Career />
                 </Suspense>
@@ -70,7 +70,7 @@ const Router = () => {
           <Route
             path="cv"
             element={
-              <Drawer reset={resetAnim} minified>
+              <Drawer reset={resetAnim}>
                 <Suspense fallback={<Loader />}>
                   <CV />
                 </Suspense>
