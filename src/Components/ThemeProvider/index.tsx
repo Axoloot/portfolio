@@ -7,8 +7,6 @@ const main = {
   tertiary: '#e94f37',
 };
 
-const themes = [main];
-
 interface ThemeProps {
   children: ReactElement;
 }
