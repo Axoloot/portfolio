@@ -1,5 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import { device } from '../../misc/sizes';
+// import { device } from '../../misc/sizes';
 import { motion } from 'framer-motion';
 import { generateNeumorphicCss } from '../../misc';
 
@@ -29,13 +29,10 @@ export const Blinker = styled.span`
 
 export const TextContainer = styled.div`
   text-align: center;
-  font-size: 1.5em;
+  font-size: 2em;
   font-family: 'Courier', Courier, monospace;
   white-space: nowrap;
   overflow: hidden;
-  @media ${device.tablet} {
-    font-size: 1em;
-  }
 `;
 
 export const DescriptionContainer = styled(motion.div)`
@@ -50,7 +47,7 @@ export const DescriptionContainer = styled(motion.div)`
 export const NavWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const DotContainer = styled.div`
@@ -72,7 +69,7 @@ export const Dot = styled.span<{ $active: boolean }>`
 `;
 
 export const DescriptionText = styled(motion.div)`
-  padding: 0 1em;
+  padding: 3em 1em;
   z-index: -1;
 `;
 

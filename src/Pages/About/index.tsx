@@ -12,13 +12,13 @@ import {
   Highlighted,
   TimerBar,
 } from './styles';
-import Arrow from '../../Components/Arrow';
+// import Arrow from '../../Components/Arrow';
 import { useCursor } from '../../Contexts/useCursor';
 import { motion } from 'framer-motion';
 
 const typeSpeed = 80;
 const finalScale = 1.5;
-const captionTiming = 7.5;
+const captionTiming = 6;
 const pre = ',% My name is ';
 const name = 'Cyril';
 const post = '.%% I am ';
@@ -105,7 +105,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
 
     setTimeout(() => {
       setCursorImg(cursors.drag);
-      setPos(prev => ({ x: prev.x + 15, y: prev.y - 8 }));
+      setPos(prev => ({ x: prev.x + 20, y: prev.y - 15 }));
       setScale(finalScale);
       setResizeDone(true);
     }, 1500);
@@ -250,7 +250,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         animate={{ opacity: animDone ? 1 : 0 }}
       >
         <NavWrapper>
-          <Arrow
+          {/* <Arrow
             disabled={captionTyping}
             direction="prev"
             onClick={() =>
@@ -259,7 +259,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
                 -1
               )
             }
-          />
+          /> */}
           <DescriptionText
             key={captionIndex}
             initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
@@ -269,13 +269,13 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
           >
             {cap[captionIndex].description}
           </DescriptionText>
-          <Arrow
+          {/* <Arrow
             disabled={captionTyping}
             direction="next"
             onClick={() =>
               handleCaptionChange((captionIndex + 1) % cap.length, 1)
             }
-          />
+          /> */}
         </NavWrapper>
         <DotContainer>
           {cap.map((_, index) => (
