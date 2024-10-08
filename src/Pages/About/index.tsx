@@ -105,7 +105,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
 
     setTimeout(() => {
       setCursorImg(cursors.drag);
-      setPos(prev => ({ x: prev.x + 20, y: prev.y - 15 }));
+      setPos(prev => ({ x: prev.x + 20, y: prev.y - 11.7 }));
       setScale(finalScale);
       setResizeDone(true);
     }, 1500);
