@@ -16,7 +16,7 @@ export const handler = async (event) => {
             },
             Subject: { Data: `New Contact Form Submission from ${firstname} ${lastname}` },
         },
-        Source: 'contact@therealcyril.dev',
+        Source: 'contact@cyrildelajudie.fr',
     };
 
     try {
