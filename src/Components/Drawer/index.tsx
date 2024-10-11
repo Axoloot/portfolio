@@ -18,6 +18,7 @@ import useWindowDimensions from '../../misc/dimension';
 import Credits from '../../Pages/Credits';
 import Cursor from '../Cursor';
 import { useCursor } from '../../Contexts/useCursor';
+import { useTranslation } from 'react-i18next';
 
 interface DrawerProps {
   minified?: boolean;
@@ -26,6 +27,7 @@ interface DrawerProps {
 }
 
 const Drawer = ({ children, minified, reset }: DrawerProps) => {
+  const { t } = useTranslation();
   const creditsRef = useRef<HTMLDivElement>(null);
   const { height } = useWindowDimensions();
   const { visibleCredits, homeCursor, drawerRef } = useCursor();
@@ -53,7 +55,9 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText $minified={minified}>About</DrawerItemText>
+            <DrawerItemText $minified={minified}>
+              {t('drawer.about')}
+            </DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/career" replace={true} aria-label="Career">
             <Career
@@ -62,7 +66,9 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText $minified={minified}>Career</DrawerItemText>
+            <DrawerItemText $minified={minified}>
+              {t('drawer.career')}
+            </DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/techno" replace={true} aria-label="Techno">
             <Code
@@ -71,7 +77,9 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText $minified={minified}>Technologies</DrawerItemText>
+            <DrawerItemText $minified={minified}>
+              {t('drawer.technologies')}
+            </DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/cv" replace={true} aria-label="cv">
             <Resume
@@ -80,7 +88,9 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText $minified={minified}>Resume</DrawerItemText>
+            <DrawerItemText $minified={minified}>
+              {t('drawer.resume')}
+            </DrawerItemText>
           </DrawerItem>
           <DrawerItem to="/contact" replace={true} aria-label="contact">
             <Contact
@@ -89,7 +99,9 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               width="2em"
               style={{ margin: '0 0.5em' }}
             />
-            <DrawerItemText $minified={minified}>Contact</DrawerItemText>
+            <DrawerItemText $minified={minified}>
+              {t('drawer.contact')}
+            </DrawerItemText>
           </DrawerItem>
           <MobileCursorWrapper />
           <Cursor

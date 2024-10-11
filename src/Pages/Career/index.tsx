@@ -8,7 +8,7 @@ import {
   TimelineItem,
   TimelineText,
 } from './styles';
-import JobsJSON from '../../Static/jobs.json';
+import JobsJSON from './jobs';
 import XPPage from '../../Components/XPPage';
 import { useTheme } from 'styled-components';
 

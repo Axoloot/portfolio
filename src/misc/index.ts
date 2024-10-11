@@ -20,8 +20,8 @@ export function adjustBrightness(
 
 export function findNeumorphicColors(color: string, type: NeumorphicTypes) {
   const baseColorRgb = hexToRgb(color);
-  const darkShadow = adjustBrightness(baseColorRgb, -0.12); // 12% darker
-  const lightShadow = adjustBrightness(baseColorRgb, 0.12); // 12% lighter
+  const darkShadow = adjustBrightness(baseColorRgb, -0.12);
+  const lightShadow = adjustBrightness(baseColorRgb, 0.12);
 
   if (type === 'inset' || type === 'normal') return color;
   if (type === 'lens')

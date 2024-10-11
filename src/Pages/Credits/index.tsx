@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import {
   CreditsWrapper,
   IconCredit,
@@ -11,11 +13,11 @@ import {
   TopArrow,
   UsingText,
 } from './styles';
-
 import { ReactComponent as About } from '../../Static/icons/about.svg';
 import { ReactComponent as Contact } from '../../Static/icons/contact.svg';
 import { ReactComponent as Resume } from '../../Static/icons/resume.svg';
 import { ReactComponent as Code } from '../../Static/icons/code.svg';
+import LangSwitcher from '../../Components/LangSwitcher';
 
 interface CreditsProps {
   onClick: () => void;
@@ -24,6 +26,8 @@ interface CreditsProps {
 }
 
 const Credits = (props: CreditsProps) => {
+  const { t } = useTranslation();
+
   if (!props.visible) return <></>;
   return (
     <StyledWrapper>
@@ -35,7 +39,7 @@ const Credits = (props: CreditsProps) => {
             to="https://www.flaticon.com/fr/icones-gratuites/code"
             title="code icônes"
           >
-            Code icônes créées par KP Arts - Flaticon
+            {t('credits.code')}
           </StyledLink>
         </IconCredit>
         <IconCredit>
@@ -44,7 +48,7 @@ const Credits = (props: CreditsProps) => {
             to="https://www.flaticon.com/fr/icones-gratuites/utilisateur"
             title="utilisateur icônes"
           >
-            Utilisateur icônes créées par Freepik - Flaticon
+            {t('credits.about')}
           </StyledLink>
         </IconCredit>
         <IconCredit>
@@ -53,7 +57,7 @@ const Credits = (props: CreditsProps) => {
             to="https://www.flaticon.com/fr/icones-gratuites/contact"
             title="contact icônes"
           >
-            Contact icônes créées par Smashicons - Flaticon
+            {t('credits.contact')}
           </StyledLink>
         </IconCredit>
         <IconCredit>
@@ -62,19 +66,20 @@ const Credits = (props: CreditsProps) => {
             to="https://www.flaticon.com/fr/icones-gratuites/document"
             title="document icônes"
           >
-            Document icônes créées par Freepik - Flaticon
+            {t('credits.resume')}
           </StyledLink>
         </IconCredit>
       </CreditsWrapper>
 
       <ResetAnimWrapper>
-        <ResetButton onClick={props.reset}>Reset All Animations</ResetButton>
+        <LangSwitcher cb={props.reset} />
+        <ResetButton onClick={props.reset}>{t('credits.reset')}</ResetButton>
       </ResetAnimWrapper>
 
       <MadeByWrapper>
-        <MadeBy>Made with ❤️ by Cyril de Lajudie </MadeBy>
+        <MadeBy>{t('contact.madeby')}</MadeBy>
         <UsingText>
-          Using{' '}
+          {t('contact.using')}{' '}
           <TechLink
             to="https://fr.react.dev/"
             target="_blank"

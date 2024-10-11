@@ -125,6 +125,7 @@ export const TechLink = styled(NavLink)`
 `;
 
 export const ResetAnimWrapper = styled.div`
+  display: flex;
   position: absolute;
   top: 0;
   right: 10px;

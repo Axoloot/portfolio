@@ -1,4 +1,13 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useMemo,
+} from 'react';
+import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
+
 import {
   TextContainer,
   Wrapper,
@@ -12,35 +21,11 @@ import {
   Highlighted,
   TimerBar,
 } from './styles';
-// import Arrow from '../../Components/Arrow';
 import { useCursor } from '../../Contexts/useCursor';
-import { motion } from 'framer-motion';
 
 const typeSpeed = 80;
 const finalScale = 1.5;
 const captionTiming = 6;
-const pre = ',% My name is ';
-const name = 'Cyril';
-const post = '.%% I am ';
-
-const cap = [
-  {
-    title: 'a Software Engineer.',
-    description: 'I build and maintain software applications.',
-  },
-  {
-    title: 'a DevOps.',
-    description: 'I manage development and operational workflows.',
-  },
-  {
-    title: 'a Fullstack Developer.',
-    description: 'I work on both front-end and back-end development.',
-  },
-  {
-    title: 'an Innovation Enthusiast.',
-    description: 'I am passionate about new technologies and innovation.',
-  },
-];
 
 const renderTextWithLineBreaks = (text: string) => {
   return text.split('%').map((part, index) => (
@@ -56,6 +41,34 @@ interface AboutProps {
 }
 
 const About: React.FC<AboutProps> = ({ aboutStatus }) => {
+  const { t } = useTranslation();
+
+  const pre = `,% ${t('about.name')} `;
+  const name = 'Cyril';
+  const post = `.%% ${t('about.iam')} `;
+
+  const cap = useMemo(
+    () => [
+      {
+        title: t('about.se.title'),
+        description: t('about.se.desc'),
+      },
+      {
+        title: t('about.devops.title'),
+        description: t('about.devops.desc'),
+      },
+      {
+        title: t('about.fs.title'),
+        description: t('about.fs.desc'),
+      },
+      {
+        title: t('about.ie.title'),
+        description: t('about.ie.desc'),
+      },
+    ],
+    [t]
+  );
+
   const { setPos, homeCursor, setHidden, setCursorImg, cursors, pos, click } =
     useCursor();
   const [animDone, setAnimDone] = aboutStatus;
@@ -127,7 +140,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         }
       }, typeSpeed);
     },
-    [setAnimDone]
+    [setAnimDone, cap]
   );
 
   const typePre = useCallback(() => {
@@ -145,7 +158,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         nameIndex++;
       } else resizeAnim();
     }, typeSpeed);
-  }, [resizeAnim, setHidden]);
+  }, [resizeAnim, setHidden, pre]);
 
   const typePost = useCallback(() => {
     let postIndex = 0;
@@ -167,7 +180,14 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         typeCaption(0);
       }
     }, typeSpeed);
-  }, [setAnimDone, typeCaption, homeCursor, setCursorImg, cursors.cursor]);
+  }, [
+    setAnimDone,
+    typeCaption,
+    homeCursor,
+    setCursorImg,
+    cursors.cursor,
+    post,
+  ]);
 
   const handleCaptionChange = useCallback(
     (newIndex: number, direction: number) => {
@@ -212,12 +232,12 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
       captionTiming * 1000
     );
     return () => clearInterval(interval);
-  }, [animDone, handleCaptionChange, captionIndex]);
+  }, [animDone, handleCaptionChange, captionIndex, cap.length]);
 
   return (
     <Wrapper>
       <TextContainer>
-        Hi
+        {t('about.hi')}
         <span>{renderTextWithLineBreaks(preText)}</span>
         <motion.span
           initial={{
@@ -250,16 +270,6 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         animate={{ opacity: animDone ? 1 : 0 }}
       >
         <NavWrapper>
-          {/* <Arrow
-            disabled={captionTyping}
-            direction="prev"
-            onClick={() =>
-              handleCaptionChange(
-                (captionIndex - 1 + cap.length) % cap.length,
-                -1
-              )
-            }
-          /> */}
           <DescriptionText
             key={captionIndex}
             initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
@@ -269,13 +279,6 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
           >
             {cap[captionIndex].description}
           </DescriptionText>
-          {/* <Arrow
-            disabled={captionTyping}
-            direction="next"
-            onClick={() =>
-              handleCaptionChange((captionIndex + 1) % cap.length, 1)
-            }
-          /> */}
         </NavWrapper>
         <DotContainer>
           {cap.map((_, index) => (

@@ -1,4 +1,8 @@
 import { Link } from 'react-router-dom';
+import { Id, ToastContainer, TypeOptions, toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { useCallback, useRef, useState } from 'react';
+
 import {
   ContactWrapper,
   ContactBox,
@@ -9,10 +13,7 @@ import {
   NameWrapper,
   SubmitButton,
 } from './styles';
-import { useCallback, useRef, useState } from 'react';
 import './toast.css';
-
-import { Id, ToastContainer, TypeOptions, toast } from 'react-toastify';
 
 const Medias = [
   {
@@ -42,6 +43,7 @@ const mailerUrl =
   'https://sdov96ntca.execute-api.eu-west-1.amazonaws.com/Mailer';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const email = useState('');
   const firstname = useState('');
   const lastname = useState('');
@@ -95,24 +97,24 @@ const Contact = () => {
       });
 
       if (response.ok) {
-        update('Email sent successfully!', 'success');
+        update(t('toast.success'), 'success');
       } else {
-        update('Error sending email', 'error');
+        update(t('toast.fail'), 'error');
       }
       resetForm();
       isSending(false);
     },
-    [email, firstname, lastname, body, resetForm]
+    [email, firstname, lastname, body, resetForm, t]
   );
 
   return (
     <ContactWrapper>
-      <h1>Let&apos;s Connect</h1>
+      <h1>{t('contact.title')}</h1>
       <ContactBox onSubmit={sendMessage}>
         <NameWrapper>
           <Input
             type="text"
-            placeholder="Firstname"
+            placeholder={t('contact.firstname')}
             value={firstname[0]}
             onChange={e => {
               firstname[1](e.currentTarget.value);
@@ -120,7 +122,7 @@ const Contact = () => {
           />
           <Input
             type="text"
-            placeholder="Lastname"
+            placeholder={t('contact.lastname')}
             value={lastname[0]}
             onChange={e => {
               lastname[1](e.currentTarget.value);
@@ -129,21 +131,21 @@ const Contact = () => {
         </NameWrapper>
         <Input
           type="email"
-          placeholder="Email (for reply)"
+          placeholder={t('contact.email')}
           value={email[0]}
           onChange={e => {
             email[1](e.currentTarget.value);
           }}
         />
         <InputText
-          placeholder="Content"
+          placeholder={t('contact.message')}
           value={body[0]}
           onChange={e => {
             body[1](e.currentTarget.value);
           }}
         />
         <SubmitButton disabled={showButton || sending} type="submit">
-          Send
+          {t('contact.send')}
         </SubmitButton>
       </ContactBox>
       <MediasWrapper>

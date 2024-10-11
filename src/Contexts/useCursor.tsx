@@ -105,12 +105,12 @@ export const CursorProvider = ({ children }: { children: ReactElement }) => {
   }, [initial, height, isMobile, cursors.cursor]);
 
   useEffect(() => {
-    const intervale = setInterval(() => {
+    const interval = setInterval(() => {
       setAnimation(pulsing);
       const timeout = setTimeout(() => setAnimation(base), 5000);
       return () => clearTimeout(timeout);
     }, 35000);
-    return () => clearInterval(intervale);
+    return () => clearInterval(interval);
   }, []);
 
   return (
