@@ -8,9 +8,11 @@ import React, {
   ReactElement,
   useEffect,
 } from 'react';
+import { TargetAndTransition, Transition } from 'framer-motion';
+
 import useWindowDimensions from '../misc/dimension';
 import { Position } from '../misc/types';
-import { TargetAndTransition, Transition } from 'framer-motion';
+
 const drag = require('../Static/cursors/drag.png') as string;
 const cursor = require('../Static/cursors/cursor.png') as string;
 
@@ -33,6 +35,7 @@ interface CursorContextFn {
   setCursorImg: React.Dispatch<React.SetStateAction<string>>;
   click: () => () => void;
   homeCursor: () => void;
+  resetAnimation: () => void;
   visibleCredits: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
   drawerRef: React.MutableRefObject<HTMLDivElement | undefined>;
   initial: {
@@ -86,7 +89,7 @@ export const CursorProvider = ({ children }: { children: ReactElement }) => {
   const [pos, setPos] = useState<Position>(initial);
   const [hidden, setHidden] = useState(false);
   const [cursorImg, setCursorImg] = useState(cursors['cursor']);
-  const [animation, setAnimation] = useState<AnimationTransition | null>(null);
+  const [animation, setAnimation] = useState<AnimationTransition>(base);
   const drawerRef = useRef<HTMLDivElement>();
   const visibleCredits = useState(false);
 
@@ -129,6 +132,7 @@ export const CursorProvider = ({ children }: { children: ReactElement }) => {
         initial,
         animation,
         cursors,
+        resetAnimation: () => setAnimation(base),
       }}
     >
       {children}

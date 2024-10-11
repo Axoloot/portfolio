@@ -263,7 +263,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         <Highlighted $highlighted={captionHighlight} ref={jobRef}>
           {captionText}
         </Highlighted>
-        {!animDone && <Blinker ref={handleCursorRef}>|</Blinker>}
+        {<Blinker ref={handleCursorRef}>|</Blinker>}
       </TextContainer>
       <DescriptionContainer
         initial={{ opacity: 0 }}

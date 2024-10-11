@@ -6,11 +6,13 @@ interface CursorProps {
 }
 
 const Cursor = ({ onClick }: CursorProps) => {
-  const { pos, initial, hidden, cursorImg, animation } = useCursor();
+  const { pos, initial, hidden, cursorImg, animation, resetAnimation } =
+    useCursor();
 
   return (
     <CursorPosition
-      onClick={onClick}
+      onAnimationStart={resetAnimation}
+      onClick={() => pos.y === initial.y && onClick()}
       initial={initial}
       hidden={hidden}
       animate={pos}

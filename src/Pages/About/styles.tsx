@@ -22,7 +22,6 @@ export const blink = keyframes`
 export const Blinker = styled.span`
   font-weight: bold;
   font-size: 1em;
-  margin-left: 5px;
   color: ${props => props.theme.secondary};
   animation: ${blink} 1s infinite;
 `;
