@@ -31,10 +31,10 @@
     "credits.reset": "Reset All Animations",
     "contact.madeby": "Made with ❤️ by Cyril de Lajudie",
     "contact.using": "Using",
-    "jobs.quidol": "Développement et maintient d'une application React Native de quiz en live.",
-    "jobs.bel": "Création d'une page animée de statistique en temps réel sur les différents sites de productions, Application en React.JS & pure css.\nMaintient de la platforme principale destinée à réduire l'utilisation de papier dans les usines à 0%, Front en Angular & backend en node.js, php et SAP",
-    "jobs.redpilllive": "Développement et maintient d'une application en React.TS d'emission lives. Création et maintient de multiples microservices backend en node.js, Koa, ...",
-    "jobs.redpill": "Mise en place d'un solution complete de live shopping developpée en Next.JS, avec plusieurs micro-service en node.TS, koa. Gestion de GKS, github actions et vercel pour la CICD",
-    "jobs.pitchy": "Maintient d'un VPS AWS d'une solution complete. Architecture et prototype de nouvelle logique dev & ops. Gestion et optimizations des couts de la platforme. SRE. Création et reecriture de script shell et powershell. Mise en place de IaC avec terraform & packer"
+    "jobs.quidol": "Developed a live quiz app in React Native, with scalable microservices on GKE, ensuring high availability and a stable user experience.",
+    "jobs.bel": "Developed a real-time production dashboard in React and maintained a full-stack Angular and Node.js platform to reduce paper usage.",
+    "jobs.redpilllive": "Created a React streaming application with Node.js microservices on GKE, reducing latency via HLS and integrating automated payments with Stripe.",
+    "jobs.redpill": "Developed a live shopping platform in Next.js and Node, with automated CI/CD using GitHub Actions and Vercel, enhancing user experience with a smooth interface.",
+    "jobs.pitchy": "Designed and maintained a full AWS infrastructure with cost optimization, scaling via Terraform, and DevOps scripting. Workflow migration reduced video generation times by 40%."
   }
 }

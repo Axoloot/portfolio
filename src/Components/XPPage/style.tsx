@@ -5,7 +5,7 @@ export const Section = styled.div<{ $img: string }>`
   flex: 1 0 100svh;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   scroll-snap-align: start;
   font-size: 2rem;
   color: white;
