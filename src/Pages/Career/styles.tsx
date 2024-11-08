@@ -46,7 +46,7 @@ export const TimelineDot = styled(motion.div)<{
   ${props => (props.$event ? 'border-radius: 50%;' : '')}
   ${props => (!props.$event ? 'align-self: center;' : '')}
   width: 1.3em;
-  flex: 1 0 100vh;
+  flex: 1 0 100svh;
 
   height: ${props => (props.$event ? '1.3em' : '.3em')};
   background-color: ${props => (props.$active ? props.theme.tertiary : 'grey')};
