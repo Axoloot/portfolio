@@ -24,17 +24,17 @@ const Medias = [
   {
     name: 'linkedin',
     src: require('../../Static/contacts/linkedin.png'),
-    link: 'https://linkedin.com/',
+    link: 'https://fr.linkedin.com/in/cyrildelajudie?trk=people-guest_people_search-card',
   },
   {
     name: 'malt',
     src: require('../../Static/contacts/malt.png'),
-    link: 'https://malt.fr/',
+    link: 'https://www.malt.fr/profile/cyrildelajudie1',
   },
   {
     name: 'fiverr',
     src: require('../../Static/contacts/fiverr.jpg'),
-    link: 'https://fiverr.com/',
+    link: 'https://fiverr.com/cyrildl',
   },
 ];
 
