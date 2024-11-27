@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { generateNeumorphicCss } from '../../misc';
 
 export const LangSwitcherContainer = styled.div`
   position: absolute;

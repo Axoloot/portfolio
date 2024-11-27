@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import { TechContainer, TechWrapper, Tree } from './styles';
 import { SkillTreeGroup, SkillProvider, SkillTree } from 'beautiful-skill-tree';
 
-import skills, { backendSD } from './skills'; // Place the JSON in a separate file
+import skills from './skills'; // Place the JSON in a separate file
 import { generateTreeNeumorphicJson } from '../../misc';
 import { useTheme } from 'styled-components';
 import { Dot, DotContainer } from '../About/styles';
