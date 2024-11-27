@@ -1,3 +1,4 @@
+import { TargetAndTransition } from 'framer-motion';
 import { useCursor } from '../../Contexts/useCursor';
 import { CursorAnimation, CursorImg, CursorPosition } from './styles';
 
@@ -15,7 +16,7 @@ const Cursor = ({ onClick }: CursorProps) => {
       onClick={() => pos.y === initial.y && onClick()}
       initial={initial}
       hidden={hidden}
-      animate={pos}
+      animate={pos as TargetAndTransition}
       transition={{
         ease: 'anticipate',
         duration: hidden ? 0 : 1,
