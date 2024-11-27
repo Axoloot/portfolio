@@ -2,6 +2,9 @@ import styled from 'styled-components';
 import { generateNeumorphicCss } from '../../misc';
 
 export const LangSwitcherContainer = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
 `;
@@ -9,14 +12,11 @@ export const LangSwitcherContainer = styled.div`
 export const StyledSelect = styled.select`
   appearance: none;
   font-size: 1em;
-  margin: 1em;
-  padding: 1em;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   font-family: inherit;
-
-  ${props => generateNeumorphicCss(props.theme.primary)}
+  background: transparent;
 `;
 
 export const StyledOption = styled.option`

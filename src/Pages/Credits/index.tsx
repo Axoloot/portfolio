@@ -17,7 +17,6 @@ import { ReactComponent as About } from '../../Static/icons/about.svg';
 import { ReactComponent as Contact } from '../../Static/icons/contact.svg';
 import { ReactComponent as Resume } from '../../Static/icons/resume.svg';
 import { ReactComponent as Code } from '../../Static/icons/code.svg';
-import LangSwitcher from '../../Components/LangSwitcher';
 
 interface CreditsProps {
   onClick: () => void;
@@ -72,7 +71,6 @@ const Credits = (props: CreditsProps) => {
       </CreditsWrapper>
 
       <ResetAnimWrapper>
-        <LangSwitcher cb={props.reset} />
         <ResetButton onClick={props.reset}>{t('credits.reset')}</ResetButton>
       </ResetAnimWrapper>
 

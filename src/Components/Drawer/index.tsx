@@ -19,6 +19,7 @@ import Credits from '../../Pages/Credits';
 import Cursor from '../Cursor';
 import { useCursor } from '../../Contexts/useCursor';
 import { useTranslation } from 'react-i18next';
+import LangSwitcher from '../LangSwitcher';
 
 interface DrawerProps {
   minified?: boolean;
@@ -114,6 +115,7 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               });
             }}
           />
+          <LangSwitcher cb={reset} />
         </StyledDrawer>
         <StyledChild>{children}</StyledChild>
       </PageWrapper>

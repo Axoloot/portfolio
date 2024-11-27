@@ -63,7 +63,16 @@ const Technologies = ({ techStatus }: TechProps) => {
                     collapsible={false}
                     treeId={skill.title}
                     title={skill.title}
-                    savedData={backendSD}
+                    savedData={{
+                      backend: {
+                        optional: false,
+                        nodeState: 'locked',
+                      },
+                      languages: {
+                        optional: false,
+                        nodeState: 'locked',
+                      },
+                    }}
                     data={[skill]}
                     description={skill.title}
                   />
