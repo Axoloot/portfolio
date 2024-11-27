@@ -49,7 +49,7 @@ export const DescriptionContainer = styled(motion.div)`
 export const NavWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 
 export const DotContainer = styled.div`

@@ -22,6 +22,7 @@ import {
   TimerBar,
 } from './styles';
 import { useCursor } from '../../Contexts/useCursor';
+import Arrow from '../../Components/Arrow';
 
 const typeSpeed = 80;
 const finalScale = 1.5;
@@ -270,6 +271,16 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         animate={{ opacity: animDone ? 1 : 0 }}
       >
         <NavWrapper>
+          <Arrow
+            disabled={captionTyping}
+            direction="prev"
+            onClick={() =>
+              handleCaptionChange(
+                (captionIndex - 1 + cap.length) % cap.length,
+                -1
+              )
+            }
+          />
           <DescriptionText
             key={captionIndex}
             initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
@@ -279,6 +290,13 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
           >
             {cap[captionIndex].description}
           </DescriptionText>
+          <Arrow
+            disabled={captionTyping}
+            direction="next"
+            onClick={() =>
+              handleCaptionChange((captionIndex + 1) % cap.length, 1)
+            }
+          />
         </NavWrapper>
         <DotContainer>
           {cap.map((_, index) => (

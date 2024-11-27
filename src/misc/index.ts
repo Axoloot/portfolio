@@ -46,3 +46,24 @@ export function generateNeumorphicCss(
                ${type === 'inset' ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow};
   `;
 }
+
+export function generateTreeNeumorphicJson(
+  color: string,
+  type?: NeumorphicTypes,
+  nodeType?: NeumorphicTypes,
+  border = true,
+  scale = 1
+) {
+  const baseColorRgb = hexToRgb(color);
+  const darkShadow = adjustBrightness(baseColorRgb, -0.2);
+  const lightShadow = adjustBrightness(baseColorRgb, 0.2);
+
+  const style: any = {
+    treeBackgroundColor: findNeumorphicColors(color, type ?? 'normal'),
+    nodeBackgroundColor: findNeumorphicColors(color, nodeType ?? 'normal'),
+    treeBoxShadow: `${type === 'inset' ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow}, ${type === 'inset' ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow}`,
+    nodeBoxShadow: `${nodeType === 'inset' ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow}, ${nodeType === 'inset' ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow}`,
+  };
+  if (border) style.borderRadius = '0.7em';
+  return style;
+}
