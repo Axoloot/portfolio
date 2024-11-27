@@ -69,7 +69,7 @@ export const backend: SkillType = {
         {
           id: 'c++',
           title: 'C++',
-          icon: require('../../Static/tech/c+.png'),
+          icon: require('../../Static/tech/C++.png'),
           tooltip: {
             content:
               'This node is the top most level, and will be unlocked, and ready to be clicked.',
@@ -351,6 +351,56 @@ export const root: SkillType = {
       },
       children: [
         {
+          id: 'ci-cd',
+          title: 'CI/CD Tools',
+          tooltip: {
+            content:
+              'This node is the top most level, and will be unlocked, and ready to be clicked.',
+          },
+          children: [
+            {
+              id: 'vercel',
+              title: 'Vercel',
+              icon: require('../../Static/tech/vercel.png'),
+              tooltip: {
+                content:
+                  'This node is the top most level, and will be unlocked, and ready to be clicked.',
+              },
+              children: [],
+            },
+            {
+              id: 'jenkins',
+              title: 'Jenkins',
+              icon: require('../../Static/tech/jenkins.png'),
+              tooltip: {
+                content:
+                  'This node is the top most level, and will be unlocked, and ready to be clicked.',
+              },
+              children: [],
+            },
+            {
+              id: 'github-actions',
+              title: 'GitHub Actions',
+              icon: require('../../Static/tech/gh.png'),
+              tooltip: {
+                content:
+                  'This node is the top most level, and will be unlocked, and ready to be clicked.',
+              },
+              children: [],
+            },
+            {
+              id: 'gitlab-ci',
+              title: 'GitLab CI',
+              icon: require('../../Static/tech/gitlabci.png'),
+              tooltip: {
+                content:
+                  'This node is the top most level, and will be unlocked, and ready to be clicked.',
+              },
+              children: [],
+            },
+          ],
+        },
+        {
           id: 'aws',
           title: 'AWS',
           icon: require('../../Static/tech/aws.png'),
@@ -382,57 +432,14 @@ export const root: SkillType = {
         },
       ],
     },
-    {
-      id: 'ci-cd',
-      title: 'CI/CD Tools',
-      tooltip: {
-        content:
-          'This node is the top most level, and will be unlocked, and ready to be clicked.',
-      },
-      children: [
-        {
-          id: 'vercel',
-          title: 'Vercel',
-          icon: require('../../Static/tech/vercel.png'),
-          tooltip: {
-            content:
-              'This node is the top most level, and will be unlocked, and ready to be clicked.',
-          },
-          children: [],
-        },
-        {
-          id: 'jenkins',
-          title: 'Jenkins',
-          icon: require('../../Static/tech/jenkins.png'),
-          tooltip: {
-            content:
-              'This node is the top most level, and will be unlocked, and ready to be clicked.',
-          },
-          children: [],
-        },
-        {
-          id: 'github-actions',
-          title: 'GitHub Actions',
-          icon: require('../../Static/tech/gh.png'),
-          tooltip: {
-            content:
-              'This node is the top most level, and will be unlocked, and ready to be clicked.',
-          },
-          children: [],
-        },
-        {
-          id: 'gitlab-ci',
-          title: 'GitLab CI',
-          icon: require('../../Static/tech/gitlabci.png'),
-          tooltip: {
-            content:
-              'This node is the top most level, and will be unlocked, and ready to be clicked.',
-          },
-          children: [],
-        },
-      ],
-    },
   ],
+};
+
+export const backendSD = {
+  backend: {
+    optional: false,
+    nodeState: 'unlocked',
+  },
 };
 
 const list = [backend, frontend, root, unix];
