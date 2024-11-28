@@ -1,9 +1,15 @@
 import styled from 'styled-components';
+import { device } from '../../misc/sizes';
 
 export const LangSwitcherContainer = styled.div`
   position: absolute;
   bottom: 0;
-  left: 0;
+  @media ${device.tablet} {
+    right: 0;
+  }
+  @media ${device.desktop} {
+    left: 0;
+  }
   display: flex;
   align-items: center;
 `;

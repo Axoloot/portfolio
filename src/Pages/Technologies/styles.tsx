@@ -36,7 +36,7 @@ export const TechWrapper = styled.div`
 
 export const Tree = styled.div`
   min-width: 100%;
-  flex-shrink: 0; /* Prevent shrinking */
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,4 +45,8 @@ export const Tree = styled.div`
   color: white;
   flex-direction: column;
   padding: 1rem;
+
+  @media ${device.tablet} {
+    padding: 0;
+  }
 `;

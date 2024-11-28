@@ -497,8 +497,8 @@ var StyledIcon =
 styled__default.div.attrs(function (props) {
   return {
     style: {
-      height: props.containerWidth + "px",
-      width: props.containerWidth + "px"
+      height: props.theme.nodeIconWidth,
+      width: props.theme.nodeIconWidth
     }
   };
 })(
@@ -610,7 +610,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteralLoose(["\n  background: ", ";\n  border: 0;\n  border-color: ", ";\n  box-shadow: ", ";\n  border-radius: ", ";\n  cursor: pointer;\n  display: flex;\n  margin: 0 3px;\n  outline: none;\n  position: relative;\n  transition: box-shadow 0.6s, opacity 1s;\n  user-select: none;\n\n  @media (min-width: 410px) {\n    margin: 0 8px;\n  }\n\n  @media (min-width: 900px) {\n    margin: 0 16px;\n    outline: initial;\n    outline-color: white;\n  }\n\n  ", "\n\n  ", "\n\n    ", "\n\n  ", "\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  background: ", ";\n  border: 2px solid;\n  border-color: ", ";\n  box-shadow: ", ";\n  border-radius: ", ";\n  cursor: pointer;\n  display: flex;\n  margin: 0 3px;\n  outline: none;\n  position: relative;\n  transition: box-shadow 0.6s, opacity 1s;\n  user-select: none;\n\n  @media (min-width: 410px) {\n    margin: 0 8px;\n  }\n\n  @media (min-width: 900px) {\n    margin: 0 16px;\n    outline: initial;\n    outline-color: white;\n  }\n\n  ", "\n\n  ", "\n\n    ", "\n\n  ", "\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -797,28 +797,8 @@ _templateObject10(), function (_ref19) {
   });
 });
 
-function _templateObject5$1() {
-  var data = _taggedTemplateLiteralLoose(["\n  display: flex;\n  justify-content: center;\n  position: relative;\n"]);
-
-  _templateObject5$1 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4$1() {
-  var data = _taggedTemplateLiteralLoose(["\n      animation: ", " 3.5s 1;\n    "]);
-
-  _templateObject4$1 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject3$1() {
-  var data = _taggedTemplateLiteralLoose(["\n  background-color: ", ";\n  border-radius: ", ";\n  height: 100%;\n  left: 3px;\n  opacity: 0;\n  pointer-events: none;\n  position: absolute;\n  width: ", "px;\n  z-index: 10;\n\n  @media (min-width: 410px) {\n    left: 8px;\n  }\n\n  @media (min-width: 900px) {\n    left: 16px;\n  }\n\n  ", "\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  display: flex;\n  justify-content: center;\n  position: relative;\n"]);
 
   _templateObject3$1 = function _templateObject3() {
     return data;
@@ -828,7 +808,7 @@ function _templateObject3$1() {
 }
 
 function _templateObject2$3() {
-  var data = _taggedTemplateLiteralLoose(["\n  margin: 0 auto;\n  position: relative;\n  width: fit-content;\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  background-color: ", ";\n  border-radius: ", ";\n  height: 100%;\n  left: 3px;\n  opacity: 0;\n  pointer-events: none;\n  position: absolute;\n  width: ", "px;\n  z-index: 10;\n\n  @media (min-width: 410px) {\n    left: 8px;\n  }\n\n  @media (min-width: 900px) {\n    left: 16px;\n  }\n\n"]);
 
   _templateObject2$3 = function _templateObject2() {
     return data;
@@ -838,7 +818,7 @@ function _templateObject2$3() {
 }
 
 function _templateObject$5() {
-  var data = _taggedTemplateLiteralLoose(["\n  from,\n  30% {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n  }\n"]);
+  var data = _taggedTemplateLiteralLoose(["\n  margin: 0 auto;\n  position: relative;\n  width: fit-content;\n"]);
 
   _templateObject$5 = function _templateObject() {
     return data;
@@ -846,14 +826,6 @@ function _templateObject$5() {
 
   return data;
 }
-
-var keyframes$1 =
-/*#__PURE__*/
-require('styled-components').keyframes;
-
-var css$1 =
-/*#__PURE__*/
-require('styled-components').css;
 
 function SkillNode(_ref) {
   var skill = _ref.skill,
@@ -948,22 +920,26 @@ function SkillNode(_ref) {
 }
 
 var SkillNode$1 = /*#__PURE__*/
-React.memo(SkillNode);
-var fadeout =
-/*#__PURE__*/
-keyframes$1(
-/*#__PURE__*/
-_templateObject$5());
+React.memo(SkillNode); // const fadeout = keyframes`
+//   from,
+//   30% {
+//     opacity: 1;
+//   }
+//   to {
+//     opacity: 0;
+//   }
+// `;
+
 var StyledSkillNode =
 /*#__PURE__*/
 styled__default.div(
 /*#__PURE__*/
-_templateObject2$3());
+_templateObject$5());
 var SkillNodeOverlay =
 /*#__PURE__*/
 styled__default.span(
 /*#__PURE__*/
-_templateObject3$1(), function (_ref2) {
+_templateObject2$3(), function (_ref2) {
   var theme = _ref2.theme;
   return theme.nodeOverlayColor;
 }, function (_ref3) {
@@ -971,19 +947,17 @@ _templateObject3$1(), function (_ref2) {
   return theme.borderRadius;
 }, function (props) {
   return props.childWidth + 4;
-}, function (props) {
-  return props.selected && css$1(_templateObject4$1(), fadeout);
 });
 var SkillTreeSegmentWrapper =
 /*#__PURE__*/
 styled__default.div(
 /*#__PURE__*/
-_templateObject5$1());
+_templateObject3$1());
 
-function _templateObject4$2() {
+function _templateObject4$1() {
   var data = _taggedTemplateLiteralLoose(["\n      animation: ", " 1.2s 1 ease-out;\n      background-position: left bottom;\n    "]);
 
-  _templateObject4$2 = function _templateObject4() {
+  _templateObject4$1 = function _templateObject4() {
     return data;
   };
 
@@ -1020,11 +994,11 @@ function _templateObject$6() {
   return data;
 }
 
-var keyframes$2 =
+var keyframes$1 =
 /*#__PURE__*/
 require('styled-components').keyframes;
 
-var css$2 =
+var css$1 =
 /*#__PURE__*/
 require('styled-components').css;
 
@@ -1043,7 +1017,7 @@ styled__default.div(
 _templateObject$6());
 var slidedown =
 /*#__PURE__*/
-keyframes$2(
+keyframes$1(
 /*#__PURE__*/
 _templateObject2$4());
 var StyledLine =
@@ -1054,7 +1028,7 @@ _templateObject3$2(), function (_ref2) {
   var theme = _ref2.theme;
   return theme.edgeBorder;
 }, function (props) {
-  return props.selected && css$2(_templateObject4$2(), slidedown);
+  return props.selected && css$1(_templateObject4$1(), slidedown);
 }, function (props) {
   return props.unlocked && "\n      opacity: 1;\n    ";
 });
@@ -1109,11 +1083,11 @@ function _templateObject$8() {
   return data;
 }
 
-var keyframes$3 =
+var keyframes$2 =
 /*#__PURE__*/
 require('styled-components').keyframes;
 
-var css$3 =
+var css$2 =
 /*#__PURE__*/
 require('styled-components').css;
 
@@ -1136,11 +1110,11 @@ _templateObject$8(), function (props) {
 }, function (props) {
   return props.direction === 'left' && "\n      border-top-right-radius: 8px;\n    ";
 }, function (props) {
-  return props.selected && css$3(_templateObject2$5(), slideDownAngledLineTop);
+  return props.selected && css$2(_templateObject2$5(), slideDownAngledLineTop);
 });
 var slideDownAngledLineTop =
 /*#__PURE__*/
-keyframes$3(
+keyframes$2(
 /*#__PURE__*/
 _templateObject3$3());
 
@@ -1174,11 +1148,11 @@ function _templateObject$9() {
   return data;
 }
 
-var keyframes$4 =
+var keyframes$3 =
 /*#__PURE__*/
 require('styled-components').keyframes;
 
-var css$4 =
+var css$3 =
 /*#__PURE__*/
 require('styled-components').css;
 
@@ -1205,11 +1179,11 @@ _templateObject$9(), function (props) {
 }, function (props) {
   return props.direction === 'right' && "\n      transform: translateX(-3px) scale(-1);\n      transform-origin: 0;\n  ";
 }, function (props) {
-  return props.selected && css$4(_templateObject2$6(), slideDownAngledLineMiddle);
+  return props.selected && css$3(_templateObject2$6(), slideDownAngledLineMiddle);
 });
 var slideDownAngledLineMiddle =
 /*#__PURE__*/
-keyframes$4(
+keyframes$3(
 /*#__PURE__*/
 _templateObject3$4());
 
@@ -1243,11 +1217,11 @@ function _templateObject$a() {
   return data;
 }
 
-var keyframes$5 =
+var keyframes$4 =
 /*#__PURE__*/
 require('styled-components').keyframes;
 
-var css$5 =
+var css$4 =
 /*#__PURE__*/
 require('styled-components').css;
 
@@ -1270,11 +1244,11 @@ _templateObject$a(), function (props) {
 }, function (props) {
   return props.direction === 'left' && "\n      border-bottom-left-radius: 8px;\n    ";
 }, function (props) {
-  return props.selected && css$5(_templateObject2$7(), slideDownAngledLineBottom);
+  return props.selected && css$4(_templateObject2$7(), slideDownAngledLineBottom);
 });
 var slideDownAngledLineBottom =
 /*#__PURE__*/
-keyframes$5(
+keyframes$4(
 /*#__PURE__*/
 _templateObject3$5());
 
@@ -1760,20 +1734,20 @@ function _templateObject6$1() {
   return data;
 }
 
-function _templateObject5$2() {
+function _templateObject5$1() {
   var data = _taggedTemplateLiteralLoose(["\n      transform: rotate(180deg);\n    "]);
 
-  _templateObject5$2 = function _templateObject5() {
+  _templateObject5$1 = function _templateObject5() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject4$3() {
+function _templateObject4$2() {
   var data = _taggedTemplateLiteralLoose(["\n  color: ", ";\n  display: ", ";\n  font-family: ", ";\n  font-size: ", ";\n  left: 8px;\n  position: absolute;\n  transform: rotate(90deg);\n  transition: 0.15s transform ease-out;\n\n  ", "\n"]);
 
-  _templateObject4$3 = function _templateObject4() {
+  _templateObject4$2 = function _templateObject4() {
     return data;
   };
 
@@ -1810,7 +1784,7 @@ function _templateObject$d() {
   return data;
 }
 
-var css$6 =
+var css$5 =
 /*#__PURE__*/
 require('styled-components').css;
 
@@ -1859,13 +1833,13 @@ styled__default.div(
 /*#__PURE__*/
 _templateObject$d(), function (_ref) {
   var isDisabled = _ref.isDisabled;
-  return isDisabled && css$6(_templateObject2$8(), function (_ref2) {
+  return isDisabled && css$5(_templateObject2$8(), function (_ref2) {
     var theme = _ref2.theme;
     return theme.disabledTreeOpacity;
   });
 }, function (_ref3) {
   var isCollapsible = _ref3.isCollapsible;
-  return isCollapsible && css$6(_templateObject3$6(), function (_ref4) {
+  return isCollapsible && css$5(_templateObject3$6(), function (_ref4) {
     var theme = _ref4.theme;
     return theme.treeBackgroundColor;
   }, function (_ref5) {
@@ -1886,7 +1860,7 @@ var HeaderCaret =
 /*#__PURE__*/
 styled__default.span(
 /*#__PURE__*/
-_templateObject4$3(), function (_ref9) {
+_templateObject4$2(), function (_ref9) {
   var theme = _ref9.theme;
   return theme.headingFontColor;
 }, function (_ref10) {
@@ -1900,7 +1874,7 @@ _templateObject4$3(), function (_ref9) {
   return theme.headingFontSize;
 }, function (_ref13) {
   var isVisible = _ref13.isVisible;
-  return isVisible && css$6(_templateObject5$2());
+  return isVisible && css$5(_templateObject5$1());
 });
 var StyledTippy$1 =
 /*#__PURE__*/

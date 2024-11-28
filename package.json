@@ -10,8 +10,7 @@
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "prepare": "husky",
-    "deploy:lambda": "(cd awsLambda && ./deploy.sh)",
-    "tree": "rm -rf ./Modules/beautiful-skill-tree && cp -r /home/axo/CurrentProjects/beautiful-skill-tree/dist ./Modules/beautiful-skill-tree"
+    "deploy:lambda": "(cd awsLambda && ./deploy.sh)"
   },
   "dependencies": {
     "@emailjs/browser": "^4.3.3",
