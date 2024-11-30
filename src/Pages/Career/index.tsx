@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, Dispatch } from 'react';
 import {
   Page,
   Content,
@@ -36,7 +36,11 @@ const baseSections: sectionContent[] = [...Array(sectionsNb)].map(
   }
 );
 
-const Career = () => {
+interface CareerProps {
+  careerStatus: [boolean, Dispatch<React.SetStateAction<boolean>>];
+}
+
+const Career = ({ careerStatus }: CareerProps) => {
   const sectionsRef = useRef<HTMLDivElement[]>([]);
   const [Sections, setSections] = useState(baseSections);
   const [activeIndex, setActiveIndex] = useState(0);

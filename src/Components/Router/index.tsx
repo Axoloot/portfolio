@@ -15,6 +15,7 @@ const Router = () => {
   const [key, setKey] = useState('');
   const techStatus = useState(false);
   const aboutStatus = useState(false);
+  const careerStatus = useState(false);
 
   const resetAnim = () => {
     techStatus[1](false);
@@ -42,7 +43,7 @@ const Router = () => {
             element={
               <Drawer reset={resetAnim} minified>
                 <Suspense fallback={<Loader />}>
-                  <Career />
+                  <Career careerStatus={careerStatus} />
                 </Suspense>
               </Drawer>
             }
@@ -82,7 +83,7 @@ const Router = () => {
             element={
               <Drawer reset={resetAnim}>
                 <Suspense fallback={<Loader />}>
-                  <Career />
+                  <Career careerStatus={careerStatus} />
                 </Suspense>
               </Drawer>
             }
