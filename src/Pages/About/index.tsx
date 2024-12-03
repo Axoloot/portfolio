@@ -20,6 +20,8 @@ import {
   Caption,
   Highlighted,
   TimerBar,
+  Profile,
+  Image,
 } from './styles';
 import { useCursor } from '../../Contexts/useCursor';
 import Arrow from '../../Components/Arrow';
@@ -46,7 +48,8 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
 
   const pre = `,% ${t('about.name')} `;
   const name = 'Cyril';
-  const post = `.%% ${t('about.iam')} `;
+  const dot = `.%`;
+  const post = `${t('about.iam')} `;
 
   const cap = useMemo(
     () => [
@@ -81,6 +84,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
 
   const [preText, setPreText] = useState(animDone ? pre : '');
   const [nameText, setNameText] = useState(animDone ? name : '');
+  const [dotText, setDotText] = useState(animDone ? dot : '');
   const [postText, setPostText] = useState(animDone ? post : '');
   const [resizeDone, setResizeDone] = useState(false);
 
@@ -163,15 +167,19 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
 
   const typePost = useCallback(() => {
     let postIndex = 0;
+    let dotIndex = 0;
     let once = false;
 
     intervalRef.current = window.setInterval(() => {
-      if (postIndex < post.length) {
+      if (dotIndex < dot.length) {
         if (!once) {
           homeCursor();
           setCursorImg(cursors.cursor);
           once = true;
         }
+        setDotText(dot.slice(0, dotIndex + 1));
+        dotIndex++;
+      } else if (postIndex < post.length) {
         setPostText(post.slice(0, postIndex + 1));
         postIndex++;
       } else {
@@ -260,6 +268,12 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
         >
           {renderTextWithLineBreaks(nameText)}
         </motion.span>
+        <Caption>{renderTextWithLineBreaks(dotText)}</Caption>
+        {dotText.length === dot.length && (
+          <Profile>
+            <Image src={require('../../Static/pp.jpg')} alt="cyril" />
+          </Profile>
+        )}
         <Caption>{renderTextWithLineBreaks(postText)}</Caption>
         <Highlighted $highlighted={captionHighlight} ref={jobRef}>
           {captionText}

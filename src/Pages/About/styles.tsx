@@ -96,3 +96,42 @@ export const TimerBar = styled(motion.div)`
   background: ${props => props.theme.tertiary};
   z-index: 999;
 `;
+
+export const Profile = styled.div`
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+  padding: 0.5em;
+  margin: 1em auto;
+
+  @keyframes rotating {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  animation: rotating 15s linear infinite;
+  ${props => generateNeumorphicCss(props.theme.primary, 'normal', false)};
+`;
+
+export const Image = styled.img`
+  border-radius: 50%;
+  height: 3em;
+  width: 3em;
+  object-fit: cover;
+
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+
+  @keyframes rotating2 {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  animation: rotating2 15s linear infinite;
+`;

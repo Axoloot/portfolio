@@ -40,7 +40,7 @@ export function generateNeumorphicCss(
   const lightShadow = adjustBrightness(baseColorRgb, 0.2);
 
   return `
-    ${border && 'border-radius: 0.7em;'}
+    ${border ? 'border-radius: 0.7em;' : ''}
     background: ${findNeumorphicColors(color, type ?? 'normal')};
     box-shadow: ${type === 'inset' ? 'inset' : ''} ${scale * 5}px ${scale * 5}px ${scale * 10}px ${darkShadow},
                ${type === 'inset' ? 'inset' : ''} -${scale * 5}px -${scale * 5}px ${scale * 10}px ${lightShadow};

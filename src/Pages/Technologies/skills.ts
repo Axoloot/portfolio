@@ -4,16 +4,14 @@ export const backend: SkillType = {
   id: 'backend',
   title: 'Backend',
   tooltip: {
-    content:
-      'This node is the top most level, and will be selected, and ready to be clicked.',
+    content: '',
   },
   children: [
     {
       id: 'languages',
       title: 'Langages',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -21,8 +19,7 @@ export const backend: SkillType = {
           title: 'Python',
           icon: require('../../Static/tech/python.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -31,8 +28,7 @@ export const backend: SkillType = {
           title: 'Node.js',
           icon: require('../../Static/tech/nodejs.webp'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -41,8 +37,7 @@ export const backend: SkillType = {
           title: 'Go (Golang)',
           icon: require('../../Static/tech/golang.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -51,8 +46,7 @@ export const backend: SkillType = {
           title: 'Rust',
           icon: require('../../Static/tech/rust.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -61,8 +55,7 @@ export const backend: SkillType = {
           title: 'C',
           icon: require('../../Static/tech/C.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -71,8 +64,7 @@ export const backend: SkillType = {
           title: 'C++',
           icon: require('../../Static/tech/C++.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -81,8 +73,7 @@ export const backend: SkillType = {
           title: 'Lua',
           icon: require('../../Static/tech/lua.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -92,8 +83,7 @@ export const backend: SkillType = {
       id: 'databases',
       title: 'Bases de Données',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -101,8 +91,7 @@ export const backend: SkillType = {
           title: 'SQL',
           icon: require('../../Static/tech/sql.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -111,8 +100,7 @@ export const backend: SkillType = {
           title: 'PostgreSQL',
           icon: require('../../Static/tech/postgresql.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -121,8 +109,7 @@ export const backend: SkillType = {
           title: 'MariaDB',
           icon: require('../../Static/tech/mariadb.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -131,8 +118,7 @@ export const backend: SkillType = {
           title: 'MongoDB',
           icon: require('../../Static/tech/mongodb.webp'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -145,16 +131,14 @@ export const frontend: SkillType = {
   id: 'frontend',
   title: 'Frontend',
   tooltip: {
-    content:
-      'This node is the top most level, and will be selected, and ready to be clicked.',
+    content: '',
   },
   children: [
     {
       id: 'frameworks',
       title: 'Frameworks',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -162,8 +146,7 @@ export const frontend: SkillType = {
           title: 'React.js',
           icon: require('../../Static/tech/react.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -172,8 +155,7 @@ export const frontend: SkillType = {
           title: 'Next.js',
           icon: require('../../Static/tech/nextjs.webp'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -182,8 +164,7 @@ export const frontend: SkillType = {
           title: 'React Native',
           icon: require('../../Static/tech/reactnative.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -192,8 +173,7 @@ export const frontend: SkillType = {
           title: 'Angular',
           icon: require('../../Static/tech/angular.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -204,8 +184,7 @@ export const frontend: SkillType = {
       title: 'Flutter',
       icon: require('../../Static/tech/flutter.png'),
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -213,8 +192,7 @@ export const frontend: SkillType = {
           title: 'Dart',
           icon: require('../../Static/tech/dart.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -267,8 +245,7 @@ export const root: SkillType = {
   id: 'devops',
   title: 'DevOps',
   tooltip: {
-    content:
-      'This node is the top most level, and will be selected, and ready to be clicked.',
+    content: '',
     direction: 'left',
   },
   children: [
@@ -276,8 +253,7 @@ export const root: SkillType = {
       id: 'sre',
       title: 'SRE (Site Reliability Engineering)',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [],
     },
@@ -286,8 +262,7 @@ export const root: SkillType = {
       title: 'Kubernetes',
       icon: require('../../Static/tech/kube.png'),
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -295,8 +270,7 @@ export const root: SkillType = {
           title: 'Helm',
           icon: require('../../Static/tech/helm.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -305,8 +279,7 @@ export const root: SkillType = {
           title: 'Tilt',
           icon: require('../../Static/tech/titl.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -316,8 +289,7 @@ export const root: SkillType = {
       id: 'infrastructure',
       title: 'IaC',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -325,8 +297,7 @@ export const root: SkillType = {
           title: 'Terraform',
           icon: require('../../Static/tech/tf.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -335,8 +306,7 @@ export const root: SkillType = {
           title: 'Packer',
           icon: require('../../Static/tech/packer.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -346,8 +316,7 @@ export const root: SkillType = {
       id: 'cloudproviders',
       title: 'Cloud Providers',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -355,8 +324,7 @@ export const root: SkillType = {
           title: 'AWS',
           icon: require('../../Static/tech/aws.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -365,8 +333,7 @@ export const root: SkillType = {
           icon: require('../../Static/tech/azure.png'),
           title: 'Azure',
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -375,8 +342,7 @@ export const root: SkillType = {
           title: 'GCP (Google Cloud Platform)',
           icon: require('../../Static/tech/gcp.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -386,8 +352,7 @@ export const root: SkillType = {
       id: 'cicd',
       title: 'CI/CD Tools',
       tooltip: {
-        content:
-          'This node is the top most level, and will be selected, and ready to be clicked.',
+        content: '',
       },
       children: [
         {
@@ -395,8 +360,7 @@ export const root: SkillType = {
           title: 'Vercel',
           icon: require('../../Static/tech/vercel.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -405,8 +369,7 @@ export const root: SkillType = {
           title: 'Jenkins',
           icon: require('../../Static/tech/jenkins.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -415,8 +378,7 @@ export const root: SkillType = {
           title: 'GitHub Actions',
           icon: require('../../Static/tech/gh.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
@@ -425,8 +387,7 @@ export const root: SkillType = {
           title: 'GitLab CI',
           icon: require('../../Static/tech/gitlabci.png'),
           tooltip: {
-            content:
-              'This node is the top most level, and will be selected, and ready to be clicked.',
+            content: '',
           },
           children: [],
         },
