@@ -196,6 +196,7 @@ const About: React.FC<AboutProps> = ({ aboutStatus }) => {
     setCursorImg,
     cursors.cursor,
     post,
+    dot,
   ]);
 
   const handleCaptionChange = useCallback(
