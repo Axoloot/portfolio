@@ -71,6 +71,17 @@ const Drawer = ({ children, minified, reset }: DrawerProps) => {
               {t('drawer.career')}
             </DrawerItemText>
           </DrawerItem>
+          {/* <DrawerItem to="/schools" replace={true} aria-label="Schools">
+            <Career
+              fill="inherit"
+              height="2em"
+              width="2em"
+              style={{ margin: '0 0.5em' }}
+            />
+            <DrawerItemText $minified={minified}>
+              {t('drawer.schools')}
+            </DrawerItemText>
+          </DrawerItem> */}
           <DrawerItem to="/techno" replace={true} aria-label="Techno">
             <Code
               fill="inherit"

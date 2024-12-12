@@ -8,7 +8,7 @@ import {
   TimelineItem,
   TimelineText,
 } from './styles';
-import JobsJSON from './jobs';
+import JobsJSON from './schools';
 import XPPage from '../../Components/XPPage';
 import { useTheme } from 'styled-components';
 
@@ -127,7 +127,7 @@ const Career = ({ careerStatus }: CareerProps) => {
           return (
             sec.event && (
               <XPPage
-                parent="jobs"
+                parent="schools"
                 ref={el => (sectionsRef.current[index] = el!)}
                 section={sec}
                 key={index}

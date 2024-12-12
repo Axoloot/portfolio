@@ -5,13 +5,17 @@ import { Company, Description, Duration, Section, Year } from './style';
 
 interface XPSection {
   section: any;
+  parent: string;
 }
 
 const XPPage = React.forwardRef<HTMLDivElement, XPSection>((props, ref) => {
-  const { section } = props;
+  const { section, parent } = props;
 
   return (
-    <Section ref={ref} $img={require(`../../Static/jobs/${section.image}`)}>
+    <Section
+      ref={ref}
+      $img={require(`../../Static/${parent}/${section.image}`)}
+    >
       <Year>{section.year}</Year>
       <div style={{ textAlign: 'center' }}>
         <Company>{section.company}</Company>

@@ -15,10 +15,10 @@ export const Section = styled.div<{ $img: string }>`
     url('${({ $img }) => $img}');
   background-size: cover;
   position: relative;
+  background-position: center;
 
   @media ${device.tablet} {
     justify-content: space-evenly;
-    background-position: center;
   }
 `;
 
