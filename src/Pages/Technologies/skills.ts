@@ -62,7 +62,7 @@ export const backend: SkillType = {
         {
           id: 'cpp',
           title: 'C++',
-          icon: require('../../Static/tech/C++.png'),
+          icon: require('../../Static/tech/CPP.png'),
           tooltip: {
             content: '',
           },
