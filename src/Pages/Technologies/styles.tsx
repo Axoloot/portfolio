@@ -49,4 +49,8 @@ export const Tree = styled.div`
   @media ${device.tablet} {
     padding: 0;
   }
+
+  img {
+    object-fit: contain;
+  }
 `;

@@ -29,6 +29,7 @@ const Renderer = ({ sectionsRef, activeIndex }: any) => {
     nodeDesktopTextNodeHeight: '28px',
     nodeDesktopTextNodeWidth: '144px',
     nodeDesktopFontSize: '16px',
+    objectFit: 'contain',
     ...generateTreeNeumorphicJson(theme.primary, 'inset', 'dome'),
   };
 
